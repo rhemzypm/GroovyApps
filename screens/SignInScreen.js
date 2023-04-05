@@ -15,18 +15,6 @@ const LoginScreen = ({navigation}) => {
             imageStyle={styles.backgroundImage}
       ></Image>
         </View>
-
-        <Text
-          style={{
-            fontFamily: 'Roboto-Medium',
-            fontSize: 28,
-            fontWeight: '500',
-            color: '#333',
-            marginBottom: 30,
-          }}>
-          Login
-        </Text>
-
         <InputField
           label={'Phone Number'}
           keyboardType="number-pad"
@@ -36,7 +24,7 @@ const LoginScreen = ({navigation}) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'center',
-            marginBottom: 30,
+            marginBottom: 100,
           }}>
           <Text>New to the app?</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
@@ -58,8 +46,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   rootScreen: {
-    width: 358,
-    height: 158,
+    width: 158,
+    height: 258,
   },
 });
 
