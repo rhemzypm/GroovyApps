@@ -1,15 +1,27 @@
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Onboarding from './components/Onboarding';
-import SignInScreen from './screens/SignInScreen'; 
+import Splashscreen from './screens/Splashscreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      {/* <Onboarding/> */}
-      <SignInScreen />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Splashscreen"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="Splashscreen" component={Splashscreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
+    // <View style={styles.container}>
+    //   <SplashScreen/>
+    //   <StatusBar style="auto" />
+    // </View>
   )
 }
 
