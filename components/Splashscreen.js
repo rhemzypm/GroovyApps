@@ -1,15 +1,18 @@
 // import { StyleSheet, View, Image } from 'react-native';
 // import React, { useEffect } from 'react';
 // import Onboarding from './components/Onboarding';
+// import {StackActions} from '@react-navigation/native';
+// import {set} from 'react-native-reanimated';
 
 // const SplashScreen = ({ navigation }) => {
 //   useEffect(() => {
 //     setTimeout(() => {
-//       navigation.navigate('Onboarding');
+//       this.props.dispatch(StackActions.replace('Onboarding'));
 //     }, 3000);
 //   }, []);
 
-//   return (
+//   render()  {  
+//     return (
 //     <View style={styles.container}>
 //       <Image style={styles.hiasan1} source={require("./assets/img/Hiasan1.png")} />
 //       <Image style={styles.hiasan2} source={require("./assets/img/Hiasan2.png")} />
@@ -21,6 +24,8 @@
 //       ></Image>
 //     </View>
 //   );
+//   }
+  
 // };
 
 // export default SplashScreen;

@@ -1,11 +1,13 @@
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Onboarding from './components/Onboarding';
+import SignInScreen from './screens/SignInScreen'; 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Onboarding/>
+      {/* <Onboarding/> */}
+      <SignInScreen />
       <StatusBar style="auto" />
     </View>
   )

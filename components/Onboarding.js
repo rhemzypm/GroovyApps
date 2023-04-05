@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, FlatList, Animated, Image } from 'react-native';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react'; 
+import { StyleSheet, Text, View, FlatList, Animated, Image, Pressable } from 'react-native';
 import slides from '../slides';
 import OnboardingItem from './OnboardingItem';
 import Paginator from './Paginator';
+import { Button } from 'antd';
 
-export default function Onboarding() {
+const Onboarding = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
@@ -13,9 +14,16 @@ export default function Onboarding() {
     setCurrentIndex(viewableItems[0].index);
   }).current;
 
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50}).current;
+
+  const handlePress = () => {
+    console.log('Login button pressed');
+  }
+
   return (
     <View style={styles.container}>
-    <Image style={styles.decor} source={require("../assets/img/decor.png")} />
+      <Image style={styles.decor} source={require("../assets/img/decor.png")} />
+      <View style={{flex: 3}}>
         <FlatList
           data={slides}
           renderItem={({ item }) => <OnboardingItem item={item} />}
@@ -29,13 +37,14 @@ export default function Onboarding() {
           })}
           scrollEventThrottle={32}
           onViewableItemsChanged={viewableItemsChanged}
-          viewabilityConfig={{
-          viewAreaCoveragePercentThreshold: 50,
-          }}
+          viewabilityConfig={viewConfig}
           ref={slidesRef}
         />
+      </View>
+      <Paginator data={slides} scrollX={scrollX}/>
+      <View style={{ flexDirection: 'row', height: 55 }} >
+      </View>
     </View>
-
   );
 }
 
@@ -45,12 +54,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-    decor: {
-     position: 'absolute',
-     left: -9,
-     top: 0,
-     width: 180,
-     height: 200,
-     resizeMode: 'contain',
-    },
+  decor: {
+    position: 'absolute',
+    left: -9,
+    top: 0,
+    width: 180,
+    height: 200,
+    resizeMode: 'contain',
+  },
 });
+
+export default Onboarding;
