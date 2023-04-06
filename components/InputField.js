@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { TextInput } from "@react-native-material/core";
 
 export default function InputField({
   label,
@@ -13,10 +14,8 @@ export default function InputField({
     <View
       style={{
         flexDirection: 'row',
-        borderBottomColor: '#ccc',
-        borderBottomWidth: 1,
         paddingBottom: 10,
-        marginBottom: 40,
+        marginBottom: 10,
       }}>
       {inputType == 'password' ? (
         <TextInput
