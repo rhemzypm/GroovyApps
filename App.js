@@ -4,6 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Onboarding from './components/Onboarding';
 import Splashscreen from './screens/Splashscreen';
+import SignInScreen from './components/SignInScreen';
+import InputOTP from './components/InputOTP';
+import Register from './components/Register';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,10 +14,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splashscreen"
+        initialRouteName="SignInScreen"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Splashscreen" component={Splashscreen} />
+        <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen name="InputOTP" component={InputOTP} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
 

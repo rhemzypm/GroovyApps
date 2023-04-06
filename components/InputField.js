@@ -15,10 +15,9 @@ export default function InputField({
         flexDirection: 'row',
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
-        paddingBottom: 8,
-        marginBottom: 25,
+        paddingBottom: 10,
+        marginBottom: 40,
       }}>
-      {icon}
       {inputType == 'password' ? (
         <TextInput
           placeholder={label}
