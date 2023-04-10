@@ -1,9 +1,28 @@
 import React from 'react';
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native'; // Menambahkan Alert
 import CustomButton from './CustomButton';
 import InputField from './InputField';
 
 const InputOTP = ({ navigation }) => {
+  const handleResendOTP = () => {
+    Alert.alert(
+      "Resend OTP",
+      "Are you sure you want to resend the OTP?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        { 
+          text: "Resend",
+          onPress: () => {
+            // Kode untuk mengirim ulang OTP
+          }
+        }
+      ]
+    );
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
       <View style={{ paddingHorizontal: 25 }}>
@@ -30,7 +49,7 @@ const InputOTP = ({ navigation }) => {
             marginBottom: 100,
           }}>
           <Text>Didn't Receive The Code?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Resend OTP')}>
+          <TouchableOpacity onPress={handleResendOTP}>
             <Text style={{ color: '#F79944', fontWeight: '700' }}> Resend OTP</Text>
           </TouchableOpacity>
         </View>

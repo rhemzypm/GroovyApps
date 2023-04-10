@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, FlatList, Animated, Image, Pressable } from 're
 import slides from '../slides';
 import OnboardingItem from './OnboardingItem';
 import Paginator from './Paginator';
-import { Button } from 'antd';
 import Nextbutton from './Nextbutton';
 import CustomButton from './CustomButton';
 import SignInScreen from './SignInScreen';
@@ -22,11 +21,6 @@ const Onboarding = ({ navigation }) => {
   }).current;
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50}).current;
-
-  const handlePress = () => {
-    console.log('Login button pressed');
-  }
-
   return (
     <View style={styles.container}>
       <Image style={styles.decor} source={require("../assets/img/decor.png")} />
