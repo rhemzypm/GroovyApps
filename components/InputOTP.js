@@ -16,6 +16,7 @@ import axios from "axios";
 
 const InputOTP = ({ navigation }) => {
   const [otp, setOTP] = useState("");
+  const [msg, setMsg] = useState("");
 
   const handleResendOTP = () => {
     Alert.alert("Resend OTP", "Are you sure you want to resend the OTP?", [
@@ -84,7 +85,14 @@ const InputOTP = ({ navigation }) => {
             imageStyle={styles.backgroundImage}
           ></Image>
         </View>
-        <Text style={{ marginTop: 20, fontSize: 16, textAlign: "center" }}>
+        <Text
+          style={{
+            marginTop: 20,
+            marginBottom: 10,
+            fontSize: 16,
+            textAlign: "center",
+          }}
+        >
           We've already sent OTP in your email
         </Text>
         <InputField
