@@ -30,9 +30,7 @@ const LoginScreen = ({ navigation }) => {
 
           // redirect to input OTP
           navigation.navigate("InputOTP");
-        } else if (res.data.status === 1) {
-          console.log(res.data.message);
-        } else if (res.data.status === 2) {
+        } else if (res.data.status === 1 || res.data.status === 2) {
           console.log(res.data.message);
         }
       })
