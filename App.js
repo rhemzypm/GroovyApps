@@ -7,30 +7,32 @@ import Splashscreen from './screens/Splashscreen';
 import SignInScreen from './components/SignInScreen';
 import InputOTP from './components/InputOTP';
 import Register from './components/Register';
-import Dashboard from './components/Dashboard';
-
-
+import BottomTab from './components/AnimatedScrollView';
+import TabNavigator from './app/contexts/TabBarProvider';
+import TabBarProvider from './app/contexts/TabBarProvider';
+import Home from './components/Home';
+import Create from './components/Create';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Splashscreen"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Splashscreen" component={Splashscreen} />
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
-        <Stack.Screen name="InputOTP" component={InputOTP} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
-      </Stack.Navigator>
-    </NavigationContainer>
-
-    // <View style={styles.container}>
-    //   <SplashScreen/>
-    //   <StatusBar style="auto" />
-    // </View>
+    <TabBarProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Create"
+          screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Splashscreen" component={Splashscreen} />
+          <Stack.Screen name="Onboarding" component={Onboarding} />
+          <Stack.Screen name="SignInScreen" component={SignInScreen} />
+          <Stack.Screen name="InputOTP" component={InputOTP} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="BottomTab" component={BottomTab} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Create" component={Create} />
+        </Stack.Navigator>
+        <TabNavigator />
+      </NavigationContainer>
+    </TabBarProvider>
   )
 }
 
