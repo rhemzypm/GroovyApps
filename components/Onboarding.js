@@ -1,25 +1,26 @@
+
 import React, { useState, useRef } from 'react'; 
 import { StyleSheet, Text, View, FlatList, Animated, Image, Pressable } from 'react-native';
 import slides from '../slides';
 import OnboardingItem from './OnboardingItem';
 import Paginator from './Paginator';
-import { Button } from 'antd';
+import Nextbutton from './Nextbutton';
+import CustomButton from './CustomButton';
+import SignInScreen from './SignInScreen';
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
-  
+  const handleLoginPress = () => {
+    navigation.navigate('SignInScreen');
+  };
+
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50}).current;
-
-  const handlePress = () => {
-    console.log('Login button pressed');
-  }
-
   return (
     <View style={styles.container}>
       <Image style={styles.decor} source={require("../assets/img/decor.png")} />
@@ -41,7 +42,13 @@ const Onboarding = () => {
           ref={slidesRef}
         />
       </View>
+      
+      
       <Paginator data={slides} scrollX={scrollX}/>
+      {((currentIndex+1)*(100/slides.length)) === 100 && (
+      <CustomButton label={'Next'} onPress={handleLoginPress} />
+      )}
+      
       <View style={{ flexDirection: 'row', height: 55 }} >
       </View>
     </View>
