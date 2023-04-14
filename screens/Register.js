@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import CustomButton from './CustomButton';
-import InputField from './InputField';
+import CustomButton from '../components/CustomButton';
+import InputField from '../components/InputField';
 
 const Register = ({ navigation }) => {
   const handleLoginPress = () => {

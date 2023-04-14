@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image } from 'react-native';
 import React, { useEffect } from 'react';
-import Onboarding from '../components/Onboarding';
+import Onboarding from './Onboarding';
 import Lottie from 'lottie-react-native';
 
 const Splashscreen = ({ navigation }) => {

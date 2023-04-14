@@ -2,18 +2,19 @@ import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import Onboarding from './components/Onboarding';
+import Onboarding from './screens/Onboarding';
 import Splashscreen from './screens/Splashscreen';
-import SignInScreen from './components/SignInScreen';
+import SignInScreen from './screens/SignInScreen';
 import InputOTP from './components/InputOTP';
-import Register from './components/Register';
+import Register from './screens/Register';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Coba"
+          initialRouteName="SignInScreenn"
           screenOptions={{headerShown: false}}>
           <Stack.Screen name="Splashscreen" component={Splashscreen} />
           <Stack.Screen name="Onboarding" component={Onboarding} />

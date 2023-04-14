@@ -2,10 +2,10 @@
 import React, { useState, useRef } from 'react'; 
 import { StyleSheet, Text, View, FlatList, Animated, Image, Pressable, TouchableOpacity } from 'react-native';
 import slides from '../slides';
-import OnboardingItem from './OnboardingItem';
-import Paginator from './Paginator';
-import Nextbutton from './Nextbutton';
-import CustomButton from './CustomButton';
+import OnboardingItem from '../components/OnboardingItem';
+import Paginator from '../components/Paginator';
+import Nextbutton from '../components/Nextbutton';
+import CustomButton from '../components/CustomButton';
 import SignInScreen from './SignInScreen';
 
 const Onboarding = ({ navigation }) => {
