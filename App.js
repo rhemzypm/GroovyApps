@@ -7,14 +7,13 @@ import Splashscreen from './screens/Splashscreen';
 import SignInScreen from './components/SignInScreen';
 import InputOTP from './components/InputOTP';
 import Register from './components/Register';
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="SplashScreen"
+          initialRouteName="Coba"
           screenOptions={{headerShown: false}}>
           <Stack.Screen name="Splashscreen" component={Splashscreen} />
           <Stack.Screen name="Onboarding" component={Onboarding} />
