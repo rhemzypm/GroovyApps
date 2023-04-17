@@ -7,25 +7,33 @@ import Splashscreen from './screens/Splashscreen';
 import SignInScreen from './screens/SignInScreen';
 import InputOTP from './components/InputOTP';
 import Register from './screens/Register';
+import TabNavigator from './components/TabNavigator';
 
 const Stack = createNativeStackNavigator();
 
+function StackNavigator() {
+  return (
+    <Stack.Navigator
+    initialRouteName="Splashscreen"
+    screenOptions={{headerShown: false}}>
+    <Stack.Screen name="Splashscreen" component={Splashscreen} />
+    <Stack.Screen name="Onboarding" component={Onboarding} />
+    <Stack.Screen name="SignInScreen" component={SignInScreen} />
+    <Stack.Screen name="InputOTP" component={InputOTP} />
+    <Stack.Screen name="Register" component={Register} />
+    </Stack.Navigator>
+    );
+  }
+
 export default function App() {
   return (
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="SignInScreenn"
-          screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Splashscreen" component={Splashscreen} />
-          <Stack.Screen name="Onboarding" component={Onboarding} />
-          <Stack.Screen name="SignInScreen" component={SignInScreen} />
-          <Stack.Screen name="InputOTP" component={InputOTP} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
-      </NavigationContainer>
-  )
-}
-
+    <NavigationContainer>
+    <StackNavigator />
+    </NavigationContainer>
+    );
+  }
+  // <TabNavigator />
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
