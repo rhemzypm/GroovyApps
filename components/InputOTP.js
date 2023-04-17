@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native'; // Menambahkan Alert
 import CustomButton from './CustomButton';
 import InputField from './InputField';
-import TabNavigator from './TabNavigator';
+import { useNavigation } from '@react-navigation/native'
 
 const InputOTP = ({ navigation }) => {
   const handleResendOTP = () => {
