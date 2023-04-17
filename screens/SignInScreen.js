@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import {ArrowLeftIcon} from 'react-native-heroicons/solid'
 import { themeColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
+import Register from './Register'
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -58,7 +59,7 @@ export default function LoginScreen() {
               <Text className="text-gray-500 font-semibold">
                   Don't have an account?
               </Text>
-              <TouchableOpacity onPress={()=> navigation.navigate('SignUp')}>
+              <TouchableOpacity onPress={()=> navigation.navigate('Register')}>
                   <Text className="font-semibold text-yellow-500"> Sign Up</Text>
               </TouchableOpacity>
           </View>
