@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { themeColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
 import Register from './Register'
+import InputOTP from '../components/InputOTP'
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -29,7 +30,7 @@ export default function LoginScreen() {
               placeholder="number"
               value="082296283315" 
             />
-            <TouchableOpacity 
+            <TouchableOpacity onPress={()=> navigation.navigate('InputOTP')}
               className="py-4 bg-yellow-400 rounded-xl"
               style={{ marginTop: 10 }}>
                 <Text className="text-xl font-bold text-center text-gray-700">Login</Text>

@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native'; // Menambahkan Alert
 import CustomButton from './CustomButton';
 import InputField from './InputField';
+import TabNavigator from './TabNavigator';
 
 const InputOTP = ({ navigation }) => {
   const handleResendOTP = () => {
@@ -40,7 +41,7 @@ const InputOTP = ({ navigation }) => {
           label={'OTP'}
           keyboardType="number-pad"
         />
-        <CustomButton label={"Login"} onPress={() => {}} />
+        <CustomButton label={"Login"} onPress={()=> navigation.navigate('TabNavigator')} />
         <View
           style={{
             flexDirection: 'row',
