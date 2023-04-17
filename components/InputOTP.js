@@ -16,7 +16,6 @@ const InputOTP = ({ navigation }) => {
         { 
           text: "Resend",
           onPress: () => {
-            // Kode untuk mengirim ulang OTP
           }
         }
       ]

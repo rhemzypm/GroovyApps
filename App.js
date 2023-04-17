@@ -7,6 +7,7 @@ import Splashscreen from './screens/Splashscreen';
 import SignInScreen from './screens/SignInScreen';
 import InputOTP from './components/InputOTP';
 import Register from './screens/Register';
+import BottomNav from './components/BottomNav';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,13 +15,14 @@ export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="SignInScreenn"
+          initialRouteName="SplashScreen"
           screenOptions={{headerShown: false}}>
           <Stack.Screen name="Splashscreen" component={Splashscreen} />
           <Stack.Screen name="Onboarding" component={Onboarding} />
           <Stack.Screen name="SignInScreen" component={SignInScreen} />
           <Stack.Screen name="InputOTP" component={InputOTP} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="BottomNav" component={BottomNav} />
         </Stack.Navigator>
       </NavigationContainer>
   )
