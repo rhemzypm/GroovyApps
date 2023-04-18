@@ -34,6 +34,7 @@
     "react-native-select-dropdown": "^3.3.2",
     "react-native-svg": "^13.4.0",
     "react-native-tailwindcss": "^1.1.11",
+    "tailwind-react-native-classnames": "^1.5.1",
     "tailwindcss-react-native": "^1.7.10"
   },
   "devDependencies": {

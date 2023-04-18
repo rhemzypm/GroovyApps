@@ -1,16 +1,30 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import tw from 'tailwind-react-native-classnames';
 
-const AccordionItem = ({title, bodyText}) => {
-    return (
-        <View style={styles.container} >
-            <TouchableOpacity>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>{title}</Text>
-                    <MaterialIcons name={'keyboard-arrow-right'} size={30} />
-                </View>
-            </TouchableOpacity>
+const AccordionItem = ({ title, content }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleAccordion = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <View style={tw`mb-4`}>
+      <TouchableOpacity
+        style={tw`flex-row justify-between items-center bg-gray-200 p-4`}
+        onPress={toggleAccordion}
+      >
+        <Text style={tw`font-bold text-lg`}>{title}</Text>
+        <Text style={tw`font-bold text-lg`}>{isExpanded ? '-' : '+'}</Text>
+      </TouchableOpacity>
+      {isExpanded && (
+        <View style={tw`bg-white p-4`}>
+          <Text style={tw`text-base`}>{content}</Text>
         </View>
-    )
-}
+      )}
+    </View>
+  );
+};
+
+export default AccordionItem;
