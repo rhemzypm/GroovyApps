@@ -1,30 +1,37 @@
 import React from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, Text } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import AccordionItem from '../components/AccordionItem';
 
 const FAQScreen = () => {
+  const { top } = useSafeAreaInsets();
+  
   const faqData = [
     {
-      title: 'What is React Native?',
+      title: 'Pembayaran Groovy Package Tidak Masuk',
       content:
         'React Native is a framework for building mobile applications using React and JavaScript. It allows you to build mobile apps for iOS and Android platforms using a single codebase.',
     },
     {
-      title: 'Is React Native free to use?',
+      title: 'Saya Lupa Nomer Telefon',
       content:
-        'Yes, React Native is an open-source project and is free to use for building mobile applications.',
+        'Lorem Ipsum Dolor Amet',
     },
     {
-      title: 'What are the advantages of using React Native?',
+      title: 'OTP Tidak Masuk',
       content:
         'Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.',
     },
   ];
 
   return (
-    <SafeAreaView style={tw`flex-1`}>
-      <View style={tw`p-4`}>
+    <SafeAreaView style={[tw`flex-1`, { paddingTop: top }]}>
+      <View style={tw`p-6`}>
+        <View style={tw`mb-2`}>
+          <Text style={tw`text-4xl font-bold mb-10`}>Help Center</Text>
+          <Text style={tw`text-xl font-bold`}>FAQs</Text>
+        </View>
         {faqData.map((faq, index) => (
           <AccordionItem key={index} title={faq.title} content={faq.content} />
         ))}
