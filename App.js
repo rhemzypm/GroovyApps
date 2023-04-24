@@ -2,35 +2,58 @@ import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import Onboarding from './components/Onboarding';
+import Onboarding from './screens/Onboarding';
 import Splashscreen from './screens/Splashscreen';
-import SignInScreen from './components/SignInScreen';
+import SignInScreen from './screens/SignInScreen';
 import InputOTP from './components/InputOTP';
-import Register from './components/Register';
-
+import Register from './screens/Register';
+import BottomNav from './components/BottomNav';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './screens/HomeScreen';
+import CreateScreen from './screens/CreateScreen';
+import FAQScreen from './screens/FAQScreen';
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator()
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="SplashScreen"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Splashscreen" component={Splashscreen} />
-        <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
-        <Stack.Screen name="InputOTP" component={InputOTP} />
-        <Stack.Screen name="Register" component={Register} />
-      </Stack.Navigator>
-    </NavigationContainer>
-
-    // <View style={styles.container}>
-    //   <SplashScreen/>
-    //   <StatusBar style="auto" />
-    // </View>
-  )
+function TabNavigator(){
+  return <Tab.Navigator
+    initialRouteName="Home"
+    screenOptions={{headerShown: false}}>
+        <Tab.Screen name='Home' component={HomeScreen} />
+        <Tab.Screen name='Create' component={CreateScreen} />
+    </Tab.Navigator>
 }
 
+
+function StackNavigator() {
+  return (
+    <Stack.Navigator
+    initialRouteName="SplashScreen"
+    screenOptions={{headerShown: false}}>
+    <Stack.Screen name="Splashscreen" component={Splashscreen} />
+    <Stack.Screen name="Onboarding" component={Onboarding} />
+    <Stack.Screen name="SignInScreen" component={SignInScreen} />
+    <Stack.Screen name="InputOTP" component={InputOTP} />
+    <Stack.Screen name="Register" component={Register} />
+    <Stack.Screen name="BottomNav" component={BottomNav} />
+    <Stack.Screen name="FAQScreen" component={FAQScreen} />
+    <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{ headerShown: false}}
+        />
+    </Stack.Navigator>
+    );
+  }
+
+  export default function App() {
+    return (
+    <NavigationContainer>
+    <StackNavigator />
+    </NavigationContainer>
+    );
+  }
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,

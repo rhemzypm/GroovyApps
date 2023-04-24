@@ -11,6 +11,7 @@ import {
 } from "react-native"; // Menambahkan Alert
 import CustomButton from "./CustomButton";
 import InputField from "./InputField";
+import { useNavigation } from "@react-navigation/native";
 
 import axios from "axios";
 
@@ -32,7 +33,7 @@ const InputOTP = ({ navigation }) => {
           console.log("Sending request...");
 
           await axios
-            .get("http://10.10.28.121:5000/v1/users/resendOTP")
+            .get("http://10.10.28.121:5000/v1/ga/users/resendOTP")
             .then((res) => {
               if (res.data.status === 0) {
                 console.log(res.data);
@@ -55,7 +56,7 @@ const InputOTP = ({ navigation }) => {
 
     // send POST request to API endpoint
     await axios
-      .post("http://10.10.28.121:5000/v1/users/verified", {
+      .post("http://10.10.28.121:5000/v1/ga/users/verified", {
         otp,
       })
       .then((res) => {
@@ -64,6 +65,7 @@ const InputOTP = ({ navigation }) => {
           console.log(res.data.msg);
 
           // redirect to dashboard(??)
+          navigation.navigate("InputOTP");
         } else if (res.data.status === 1 || res.data.status === 2) {
           console.log(res.data);
           console.log(res.data.message);
@@ -101,7 +103,11 @@ const InputOTP = ({ navigation }) => {
           onChangeText={(text) => setOTP(text)}
           keyboardType="number-pad"
         />
-        <CustomButton label={"Login"} onPress={() => handleVerifyOTP()} />
+        <CustomButton
+          label={"Login"}
+          onPress={() => navigation.navigate("TabNavigator")}
+        />
+
         <View
           style={{
             flexDirection: "row",

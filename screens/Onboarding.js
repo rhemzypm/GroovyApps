@@ -1,11 +1,11 @@
 
 import React, { useState, useRef } from 'react'; 
-import { StyleSheet, Text, View, FlatList, Animated, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Animated, Image, Pressable, TouchableOpacity } from 'react-native';
 import slides from '../slides';
-import OnboardingItem from './OnboardingItem';
-import Paginator from './Paginator';
-import Nextbutton from './Nextbutton';
-import CustomButton from './CustomButton';
+import OnboardingItem from '../components/OnboardingItem';
+import Paginator from '../components/Paginator';
+import Nextbutton from '../components/Nextbutton';
+import CustomButton from '../components/CustomButton';
 import SignInScreen from './SignInScreen';
 
 const Onboarding = ({ navigation }) => {
@@ -13,7 +13,7 @@ const Onboarding = ({ navigation }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
   const handleLoginPress = () => {
-    navigation.navigate('SignInScreen');
+    navigation.navigate('Register');
   };
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
@@ -42,14 +42,22 @@ const Onboarding = ({ navigation }) => {
           ref={slidesRef}
         />
       </View>
-      
-      
+      <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            marginBottom: -170,
+          }}>
+          <Text>Have an Account ?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}>
+            <Text style={{ color: '#F79944', fontWeight: '700' }}> Sign In</Text>
+          </TouchableOpacity>
+        </View>
       <Paginator data={slides} scrollX={scrollX}/>
       {((currentIndex+1)*(100/slides.length)) === 100 && (
-      <CustomButton label={'Next'} onPress={handleLoginPress} />
+      <CustomButton label={'SignUp'} onPress={handleLoginPress} />
       )}
-      
-      <View style={{ flexDirection: 'row', height: 55 }} >
+      <View style={{ flexDirection: 'row', height: 65 }} >
       </View>
     </View>
   );
@@ -63,7 +71,7 @@ const styles = StyleSheet.create({
   },
   decor: {
     position: 'absolute',
-    left: -9,
+    left: -10,
     top: 0,
     width: 180,
     height: 200,
