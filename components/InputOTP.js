@@ -72,7 +72,7 @@ const InputOTP = ({ navigation }) => {
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err, err.message);
       });
   };
 
