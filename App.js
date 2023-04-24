@@ -10,25 +10,51 @@ import Register from './screens/Register';
 import BottomNav from './components/BottomNav';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
-import CreateScreen from './screens/CreateScreen';
+import PointScreen from './screens/PointScreen';
 import FAQScreen from './screens/FAQScreen';
+import TabBar from './components/TabBar';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator()
 
 function TabNavigator(){
   return <Tab.Navigator
+    tabBar={props => <TabBar {...props}/>}
     initialRouteName="Home"
     screenOptions={{headerShown: false}}>
-        <Tab.Screen name='Home' component={HomeScreen} />
-        <Tab.Screen name='Create' component={CreateScreen} />
-    </Tab.Navigator>
-}
+        <Tab.Screen 
+        name='Home' 
+        component={HomeScreen} 
+        initialParams={{icon: "home" }}
+        />
+        <Tab.Screen 
+        name='Point' 
+        component={PointScreen} 
+        initialParams={{icon: "point" }}
+        />
+        <Tab.Screen 
+        name='Help' 
+        component={FAQScreen} 
+        initialParams={{icon: "customerservice" }}
+        />
+        </Tab.Navigator>
+      }
+      // <Tab.Screen 
+      // name='Home' 
+      // component={HomeScreen} 
+      // initialParams={{icon: "shoppingcart" }}
+      // />
+      // <Tab.Screen 
+      // name='Home' 
+      // component={HomeScreen} 
+      // initialParams={{icon: "user" }}
+      // />
 
 
 function StackNavigator() {
   return (
     <Stack.Navigator
-    initialRouteName="SplashScreen"
+    initialRouteName="TabNavigator"
     screenOptions={{headerShown: false}}>
     <Stack.Screen name="Splashscreen" component={Splashscreen} />
     <Stack.Screen name="Onboarding" component={Onboarding} />

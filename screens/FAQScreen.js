@@ -3,6 +3,7 @@ import { SafeAreaView, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import AccordionItem from '../components/AccordionItem';
+import TabBar from "fluidbottomnavigation-rn";
 
 const FAQScreen = () => {
   const { top } = useSafeAreaInsets();
@@ -31,13 +32,26 @@ const FAQScreen = () => {
         <View style={tw`mb-2`}>
           <Text style={tw`text-4xl font-bold mb-10`}>Help Center</Text>
           <Text style={tw`text-xl font-bold`}>FAQs</Text>
-        </View>
+          </View>
         {faqData.map((faq, index) => (
           <AccordionItem key={index} title={faq.title} content={faq.content} />
-        ))}
-      </View>
-    </SafeAreaView>
-  );
-};
-
-export default FAQScreen;
+          ))}
+          </View>
+          </SafeAreaView>
+          );
+        };
+        //   <TabBar
+        //   onPress={tabIndex => {
+        //     // eslint-disable-next-line no-console
+        //     console.log("render component with index: ", tabIndex);
+        //   }}
+        //   values={[
+        //     { title: "News", icon: require("../assets/img/logo.png") },
+        //     { title: "Requests", icon: require("../assets/img/logo.png") },
+        //     { title: "Events", icon: require("../assets/img/logo.png") },
+        //     { title: "Members", icon: require("../assets/img/logo.png") },
+        //     { title: "Account", icon: require("../assets/img/logo.png") }
+        //   ]}
+        // />
+        
+        export default FAQScreen;
