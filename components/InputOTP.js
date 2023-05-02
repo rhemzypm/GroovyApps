@@ -17,7 +17,7 @@ import axios from "axios";
 
 const InputOTP = ({ navigation }) => {
   const [otp, setOTP] = useState("");
-  const [msg, setMsg] = useState("");
+  const [, setMsg] = useState("");
 
   const handleResendOTP = () => {
     Alert.alert("Resend OTP", "Are you sure you want to resend the OTP?", [

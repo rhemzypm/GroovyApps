@@ -13,7 +13,8 @@ import HomeScreen from './screens/HomeScreen';
 import PointScreen from './screens/PointScreen';
 import FAQScreen from './screens/FAQScreen';
 import TabBar from './components/TabBar';
-
+import Profile from './screens/Profile';
+import ProductScreen from './screens/ProductScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator()
 
@@ -32,23 +33,23 @@ function TabNavigator(){
         component={PointScreen} 
         initialParams={{icon: "point" }}
         />
+      <Tab.Screen 
+      name='Product' 
+      component={ProductScreen} 
+      initialParams={{icon: "shoppingcart" }}
+      />
         <Tab.Screen 
         name='Help' 
         component={FAQScreen} 
         initialParams={{icon: "customerservice" }}
         />
+      <Tab.Screen 
+      name='Profile' 
+      component={Profile} 
+      initialParams={{icon: "user" }}
+      />
         </Tab.Navigator>
       }
-      // <Tab.Screen 
-      // name='Home' 
-      // component={HomeScreen} 
-      // initialParams={{icon: "shoppingcart" }}
-      // />
-      // <Tab.Screen 
-      // name='Home' 
-      // component={HomeScreen} 
-      // initialParams={{icon: "user" }}
-      // />
 
 
 function StackNavigator() {
@@ -62,7 +63,6 @@ function StackNavigator() {
     <Stack.Screen name="InputOTP" component={InputOTP} />
     <Stack.Screen name="Register" component={Register} />
     <Stack.Screen name="BottomNav" component={BottomNav} />
-    <Stack.Screen name="FAQScreen" component={FAQScreen} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}

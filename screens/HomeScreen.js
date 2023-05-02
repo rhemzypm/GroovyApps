@@ -86,7 +86,7 @@ const { top } = useSafeAreaInsets();
             <View style={[styles.HeaderBoxContainer]}>
               <View style={[styles.flexRow]}>
                 <Ionicons name="megaphone" size={18} style={[styles.iconInnerCircle]}  />
-                <Text style={[styles.textHeaderContainer]} >Latest from telkomsel</Text>
+                <Text style={[styles.textHeaderContainer]} >Latest From Us !</Text>
               </View>
             </View>
       
@@ -95,7 +95,7 @@ const { top } = useSafeAreaInsets();
                 inactiveSlideScale={1} sliderWidth={screenWidth}
                 onSnapToItem={(index) => {
                   console.log("onSnapToItem index:", index);
-                  this.setState({ activeSlide: index }) ;}}
+                  setActiveSlide(index) ;}}
                 itemWidth={ITEM_WIDTH}  data={recentTransaction} renderItem={({item}) => <ItemPagerViewLatest item={item} />}  />
       
               <Pagination
