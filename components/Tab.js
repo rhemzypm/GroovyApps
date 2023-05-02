@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 export default function Tab ({color, tab, onPress, icon}) {
 function isObject(source) {
-  return typeof source === 'string' && (source === 'home' || source === 'customerservice');
+  return typeof source === 'string' && (source === 'home' || source === 'customerservice' || source === 'shoppingcart' || source === 'user');
 }
 
   return (
@@ -29,6 +29,5 @@ const styles = StyleSheet.create({
     image: {
     width: 24,
     height: 24,
-    marginBottom: 5
   },
 })
