@@ -65,7 +65,7 @@ const InputOTP = ({ navigation }) => {
           console.log(res.data.msg);
 
           // redirect to dashboard(??)
-          navigation.navigate("InputOTP");
+          navigation.navigate("TabNavigator");
         } else if (res.data.status === 1 || res.data.status === 2) {
           console.log(res.data);
           console.log(res.data.message);
@@ -103,10 +103,7 @@ const InputOTP = ({ navigation }) => {
           onChangeText={(text) => setOTP(text)}
           keyboardType="number-pad"
         />
-        <CustomButton
-          label={"Login"}
-          onPress={() => navigation.navigate("TabNavigator")}
-        />
+        <CustomButton label={"Login"} onPress={() => handleVerifyOTP()} />
 
         <View
           style={{
