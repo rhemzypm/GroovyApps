@@ -14,6 +14,7 @@ import InputField from "./InputField";
 import { useNavigation } from "@react-navigation/native";
 
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const InputOTP = ({ navigation }) => {
   const [otp, setOTP] = useState("");
@@ -63,6 +64,9 @@ const InputOTP = ({ navigation }) => {
         if (res.data.status === 0) {
           console.log(res.data);
           console.log(res.data.msg);
+
+          // set token
+          AsyncStorage.setItem("token", res.data.token);
 
           // redirect to dashboard(??)
           navigation.navigate("TabNavigator");
