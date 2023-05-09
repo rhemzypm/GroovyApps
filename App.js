@@ -15,6 +15,7 @@ import FAQScreen from './screens/FAQScreen';
 import TabBar from './components/TabBar';
 import Profile from './screens/Profile';
 import ProductScreen from './screens/ProductScreen';
+import MessageScreen from './screens/messages/MessageScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator()
 
@@ -63,6 +64,7 @@ function StackNavigator() {
     <Stack.Screen name="InputOTP" component={InputOTP} />
     <Stack.Screen name="Register" component={Register} />
     <Stack.Screen name="BottomNav" component={BottomNav} />
+    <Stack.Screen name="MessageScreen" component={MessageScreen} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}

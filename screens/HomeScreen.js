@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   StyleSheet,
   Dimensions,
@@ -6,14 +6,14 @@ import {
   ScrollView,
   Text,
   View,
-  Image
+  Image,
+  Platform,
+  TouchableOpacity,
+
 } from 'react-native';
 import Lottie from 'lottie-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
-
-import head1 from '../assets/img/headvg1.json';
-import head2 from '../assets/img/headvg2.json';
 
 const screenWidth = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
@@ -21,7 +21,7 @@ const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 export default function Home() {
   const { top } = useSafeAreaInsets();
 
-  const [point, setPoint] = useState('60 Points');
+  const [point, setPoint] = useState('60');
   const [imgDashboard, setImgDashboard] = useState(
     require('../assets/img/head.png')
   );
@@ -78,7 +78,7 @@ export default function Home() {
         style={styles.imgLogo} 
         source={imgLogo} 
       />
-      <Text style={styles.point} >{point} Point</Text>
+      <Text style={styles.point} >{point} Points</Text>
     </View>
     <ScrollView style={styles.scrollViewContainer}>
       <View style={[styles.screenContainer]}>
@@ -95,6 +95,7 @@ export default function Home() {
           </View>                    
         </View>                          
       </View>   
+          <Text style={styles.andalpost}>The Andalpost</Text>
     </ScrollView>
   </SafeAreaView>
 );
@@ -102,13 +103,13 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   scrollViewContainer: {
-    top: -140,
+    top: -230,
   },
   screenContainer: {
-    backgroundColor: '#EAEEF1',
+    top: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     justifyContent: 'center',
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginRight: 25,
     alignItems: 'center',
-    top: -180,
+    top: -260,
   }, 
   headerText: {
     position: 'absolute',
@@ -172,13 +173,31 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   boxContainer: {
-    backgroundColor:'white',
-    paddingBottom:16,
-    marginBottom:16,
-    width: screenWidth* 0.9,
+    backgroundColor: 'white',
+    paddingBottom: 10,
+    paddingTop: 10,
+    marginBottom: 60,
+    width: ITEM_WIDTH,
     borderRadius: 20,
-  },
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 4.84,
+    elevation: 10,
+},
   flexRow : {
     flexDirection:'row',
   },
+    andalpostContainer: {
+    marginTop: 10,
+    alignItems: 'center',
+},
+  andalpost: {
+    color: '#121212',
+    fontWeight: 'bold',
+    fontSize: 16,
+    left: 24,
+    bottom: 20,
+}
+
 });

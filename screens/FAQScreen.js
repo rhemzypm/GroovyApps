@@ -3,8 +3,7 @@ import { SafeAreaView, View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import AccordionItem from '../components/AccordionItem';
-import TabBar from "fluidbottomnavigation-rn";
-
+import FloatingButton from '../components/FloatingButton';
 const FAQScreen = () => {
   const { top } = useSafeAreaInsets();
   
@@ -37,21 +36,11 @@ const FAQScreen = () => {
           <AccordionItem key={index} title={faq.title} content={faq.content} />
           ))}
           </View>
+          <View style={tw `relative inset-x-4 h-64`}>
+          <FloatingButton/>
+          </View>
           </SafeAreaView>
           );
         };
-        //   <TabBar
-        //   onPress={tabIndex => {
-        //     // eslint-disable-next-line no-console
-        //     console.log("render component with index: ", tabIndex);
-        //   }}
-        //   values={[
-        //     { title: "News", icon: require("../assets/img/logo.png") },
-        //     { title: "Requests", icon: require("../assets/img/logo.png") },
-        //     { title: "Events", icon: require("../assets/img/logo.png") },
-        //     { title: "Members", icon: require("../assets/img/logo.png") },
-        //     { title: "Account", icon: require("../assets/img/logo.png") }
-        //   ]}
-        // />
         
         export default FAQScreen;
