@@ -14,6 +14,9 @@ import {
 import Lottie from 'lottie-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
+import CarouselCards from '../components/CarouselCards';
+import head1 from '../assets/img/headvg1.json';
+import head2 from '../assets/img/headvg2.json';
 
 const screenWidth = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
@@ -28,24 +31,10 @@ export default function Home() {
   const [imgLogo, setImgLogo] = useState(
     require('../assets/img/G-Point-3.png')
   );
-  const [notification, setNotification] = useState(100);
   const [initialName, setInitialName] = useState('TP');
   const [userName, setUserName] = useState('Rhemzy');
   const [balance, setBalance] = useState('69.420');
   const [expDate, setExpDate] = useState('28/04/2022');
-  const [currentPackage, setCurrentPackage] = useState([
-    { id: 1, title: 'Internet', amount: '14,46 MB', date: '22/06/2021' },
-    { id: 2, title: 'Multimedia', amount: '949,74 MB', date: '22/06/2021' },
-    { id: 3, title: 'Voice', amount: '300 Min', date: '22/06/2021' },
-    { id: 4, title: 'SMS', amount: '100 SMS', date: '22/06/2021' },
-    { id: 5, title: 'Monetery', amount: 'Rp. 0', date: '' }
-  ]);
-  const [recentTransaction, setRecentTransaction] = useState([
-    { id: 1, title: 'Internet', date: '23 Apr 2021 03:24:06' },
-    { id: 2, title: 'Combo', date: '06 Apr 2021 06:53:06' }
-  ]);
-  const [latestPromo, setLatestPromo] = useState([{ id: 1, type: 'Promo' }]);
-  const [activeSlide, setActiveSlide] = useState(0);
 
   return ( 
   <SafeAreaView style={[tw`flex-1`]}>
@@ -95,13 +84,28 @@ export default function Home() {
           </View>                    
         </View>                          
       </View>   
-          <Text style={styles.andalpost}>The Andalpost</Text>
+      <View style={styles.andalContainer}>
+        <Text style={styles.andalText}> The Andal Post </Text>
+      </View>
+      <View style={styles.carousel}>
+        <CarouselCards />
+      </View>
+      <Text> Promo </Text>
+      <View style={styles.PromoContainer}>
+      </View>
     </ScrollView>
   </SafeAreaView>
 );
 }
 
 const styles = StyleSheet.create({
+  carousel: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    padding: 40
+  },
   container: {
     flex: 1,
   },
@@ -109,11 +113,11 @@ const styles = StyleSheet.create({
     top: -230,
   },
   screenContainer: {
-    top: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10,
   },
   homeHeaderContainer: {
     flexDirection: "row",
@@ -122,9 +126,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: -260,
   }, 
+  andalContainer: {
+    flexDirection: "row",
+    marginLeft: 25,
+    marginRight: 25,
+  }, 
+  andalContainer: {
+    flexDirection: "row",
+    marginLeft: 25,
+    marginRight: 25,
+  }, 
   headerText: {
     position: 'absolute',
     fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  andalText: {
+    position: 'absolute',
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
   },
@@ -173,10 +193,9 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   boxContainer: {
-    backgroundColor: 'white',
-    paddingBottom: 10,
-    paddingTop: 10,
-    marginBottom: 60,
+    backgroundColor:'white',
+    paddingBottom:16,
+    marginBottom:16,
     width: ITEM_WIDTH,
     borderRadius: 20,
     shadowColor: '#000',
