@@ -18,10 +18,14 @@ import ProductScreen from './screens/ProductScreen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator()
 
+//test
+import { SafeAreaView} from 'react-native';
+import CarouselCards from './components/CarouselCards';
+
 function TabNavigator(){
   return <Tab.Navigator
     tabBar={props => <TabBar {...props}/>}
-    initialRouteName="Home"
+    initialRouteName="Product"
     screenOptions={{headerShown: false}}>
         <Tab.Screen 
         name='Home' 
@@ -63,6 +67,7 @@ function StackNavigator() {
     <Stack.Screen name="InputOTP" component={InputOTP} />
     <Stack.Screen name="Register" component={Register} />
     <Stack.Screen name="BottomNav" component={BottomNav} />
+    <Stack.Screen name="CarouselCards" component={CarouselCards} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
