@@ -1,18 +1,13 @@
+
+
 import React, { useState} from "react";
-import { useNavigation } from "@react-navigation/native";
 import { View, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import Icon from "react-native-vector-icons/FontAwesome";
-
 import MessageScreen from "../screens/messages/MessageScreen";
-
-
-
+import { useNavigation } from "@react-navigation/native";
 const FloatingButton = () => {
   const navigation = useNavigation();
-
   const [icon_1] = useState(new Animated.Value(40));
-  const [icon_2] = useState(new Animated.Value(40));
   const [icon_3] = useState(new Animated.Value(40));
 
   const [pop, setPop] = useState(false);
@@ -21,11 +16,6 @@ const FloatingButton = () => {
     setPop(true);
     Animated.timing(icon_1, {
       toValue: 130,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
-    Animated.timing(icon_2, {
-      toValue: 110,
       duration: 500,
       useNativeDriver: false,
     }).start();
@@ -43,11 +33,6 @@ const FloatingButton = () => {
       duration: 500,
       useNativeDriver: false,
     }).start();
-    Animated.timing(icon_2, {
-      toValue: 40,
-      duration: 500,
-      useNativeDriver: false,
-    }).start();
     Animated.timing(icon_3, {
       toValue: 40,
       duration: 500,
@@ -60,18 +45,13 @@ const FloatingButton = () => {
       flex: 1
     }}>
       <Animated.View style={[styles.circle, { bottom: icon_1}]}>
-        <TouchableOpacity>
-          <Icon name="cloud-upload" size={25} color="#FFFF" />
-        </TouchableOpacity>
-      </Animated.View>
-      <Animated.View style={[styles.circle, { bottom: icon_2, right: icon_2}]}>
-        <TouchableOpacity>
-          <Icon name="print" size={25} color="#FFFF" />
+        <TouchableOpacity onPress={() => navigation.navigate('MessageScreen')}>
+          <FontAwesomeIcon name="comment" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
       <Animated.View style={[styles.circle, { right: icon_3}]}>
         <TouchableOpacity>
-          <Icon name="share-alt" size={25} color="#FFFF" />
+          <FontAwesomeIcon name="envelope" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
       <TouchableOpacity
@@ -80,7 +60,7 @@ const FloatingButton = () => {
           pop === false ? popIn() : popOut();
         }}
       >
-        <Icon name="plus" size={25} color="#FFFF" />
+        <FontAwesomeIcon name="question" size={25} color="#FFFF" />
       </TouchableOpacity>
     </View>
   )
@@ -91,7 +71,7 @@ export default FloatingButton;
 
 const styles = StyleSheet.create({
   circle: {
-     backgroundColor: '#f52d56',
+     backgroundColor: '#F79944',
      width: 60,
      height: 60,
      position: 'absolute',
