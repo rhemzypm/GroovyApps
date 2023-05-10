@@ -70,7 +70,7 @@ export default function ProductScreen() {
         }} 
       />
     </View>
-    <Text style={styles.headerText}>Groovy Product</Text>
+    <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
     <ScrollView style={styles.scrollViewContainer}>
       <View style={[styles.screenContainer]}>
         <View style={[styles.boxContainer]}>
@@ -78,17 +78,16 @@ export default function ProductScreen() {
             <View style={styles.imgProfile}>
               <Text style={styles.imgProfileText}>{initialName}</Text>
             </View>
-            <View >
+            <View style={styles.headerCoverage} >
               <Text style={styles.profileText}>{userName}</Text>
               <Text style={styles.profileText2}>Rp {balance}</Text>
               <Text style={styles.profileText3}>Active Until {expDate}</Text>
             </View>
           </View>                              
-        </View>        
-                        
+        </View>                         
       </View>   
     </ScrollView>
-    <Text style={styles.header2Text}>Groovy Product</Text>
+    <Text style={styles.header2Text}>Our Product</Text>
     <ScrollView style={styles.scrollViewContainer2}>
       <View style={[styles.screenContainer]}>
         <View style={[styles.boxContainer]}>
@@ -132,10 +131,8 @@ export default function ProductScreen() {
       <Text style={styles.buttonText}>Button Text</Text>
     </TouchableOpacity>
   </View>
-</View>
-            
-                        
-      </View>   
+</View>              
+    </View>   
     </ScrollView>
   </SafeAreaView>
 );
@@ -146,10 +143,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewContainer: {
-    top: 0,
+    top: 50,
   },
   scrollViewContainer2: {
-    top: -50,
+    top: -20,
   },
   screenContainer: {
     borderTopLeftRadius: 10,
@@ -167,20 +164,20 @@ const styles = StyleSheet.create({
   headerText: {
     position: 'absolute',
     fontSize: 30,
-    fontWeight: 'light',
+    fontWeight: 'bold',
     color: 'black',
     marginLeft: 25,
     marginRight: 25,
-    marginTop: 60,
+    marginTop: 50,
   },
   header2Text: {
     position: 'absolute',
-    fontSize: 30,
-    fontWeight: 'light',
+    fontSize: 22,
+    fontWeight: 'normal',
     color: 'black',
     marginLeft: 25,
     marginRight: 25,
-    marginTop: 260,
+    marginTop: 270,
   },
   imgProfile: {
     width: 60,
@@ -219,6 +216,9 @@ const styles = StyleSheet.create({
     marginBottom:16,
     width: screenWidth* 0.9,
     borderRadius: 20,
+  },
+  headerCoverage: {
+    top: 5,
   },
   flexRow : {
     flexDirection:'row',

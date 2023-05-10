@@ -130,12 +130,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 25,
     marginRight: 25,
-  }, 
-  andalContainer: {
-    flexDirection: "row",
-    marginLeft: 25,
-    marginRight: 25,
-  }, 
+  },  
   headerText: {
     position: 'absolute',
     fontSize: 16,
