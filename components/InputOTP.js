@@ -14,10 +14,11 @@ import InputField from "./InputField";
 import { useNavigation } from "@react-navigation/native";
 
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const InputOTP = ({ navigation }) => {
   const [otp, setOTP] = useState("");
-  const [, setMsg] = useState("");
+  const [msg, setMsg] = useState("");
 
   const handleResendOTP = () => {
     Alert.alert("Resend OTP", "Are you sure you want to resend the OTP?", [
@@ -64,8 +65,11 @@ const InputOTP = ({ navigation }) => {
           console.log(res.data);
           console.log(res.data.msg);
 
+          // set token
+          AsyncStorage.setItem("token", res.data.token);
+
           // redirect to dashboard(??)
-          navigation.navigate("InputOTP");
+          navigation.navigate("TabNavigator");
         } else if (res.data.status === 1 || res.data.status === 2) {
           console.log(res.data);
           console.log(res.data.message);
@@ -103,10 +107,7 @@ const InputOTP = ({ navigation }) => {
           onChangeText={(text) => setOTP(text)}
           keyboardType="number-pad"
         />
-        <CustomButton
-          label={"Login"}
-          onPress={() => navigation.navigate("TabNavigator")}
-        />
+        <CustomButton label={"Login"} onPress={() => handleVerifyOTP()} />
 
         <View
           style={{
