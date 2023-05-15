@@ -126,11 +126,6 @@ export default function ProductScreen() {
       <Text style={styles.profileText3}>Active Until {expDate}</Text>
     </View>
   </View>
-  <View style={styles.bottomRightButton}>
-    <TouchableOpacity onPress={() => handlePress()}>
-      <Text style={styles.buttonText}>Button Text</Text>
-    </TouchableOpacity>
-  </View>
 </View>              
     </View>   
     </ScrollView>
@@ -177,7 +172,7 @@ const styles = StyleSheet.create({
     color: 'black',
     marginLeft: 25,
     marginRight: 25,
-    marginTop: 270,
+    marginTop: 280,
   },
   imgProfile: {
     width: 60,

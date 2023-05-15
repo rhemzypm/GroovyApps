@@ -1,73 +1,36 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-  KeyboardAvoidingView,
-  Image,
-} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
+const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 const Profile = () => {
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([
-    {
-      id: '1',
-      message: 'Hi, how are you?',
-      sender: 'other',
-    },
-    {
-      id: '2',
-      message: 'I am good, thanks. How about you?',
-      sender: 'self',
-    },
-    {
-      id: '3',
-      message: 'I am doing great, thanks for asking.',
-      sender: 'other',
-    },
-  ]);
-
-  const sendMessage = () => {
-    if (message.trim() !== '') {
-      setMessages([...messages, { id: String(Date.now()), message, sender: 'self' }]);
-      setMessage('');
-    }
-  };
-
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.editButton}>
+        <Text style={styles.editButtonText}>Edit</Text>
+      </TouchableOpacity>
       <View style={styles.header}>
-        <Image style={styles.avatar} source={{ uri: 'https://picsum.photos/200' }} />
-        <Text style={styles.username}>John Doe</Text>
+        <Image
+          source={require('../assets/img/profile1.jpeg')}
+          style={styles.profilePicture}
+        />
+        <Text style={styles.name}>Rhemzy Putra Maulana</Text>
       </View>
-      <FlatList
-        data={messages}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={item.sender === 'self' ? styles.selfMessage : styles.otherMessage}>
-            {item.sender === 'other' && (
-              <Image style={styles.avatarSmall} source={{ uri: 'https://picsum.photos/100' }} />
-            )}
-            <Text style={styles.messageText}>{item.message}</Text>
-          </View>
-        )}
-      />
-      <KeyboardAvoidingView behavior="padding">
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Type your message"
-            value={message}
-            onChangeText={setMessage}
-          />
-          <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
-            <Text style={styles.sendButtonText}>Send</Text>
-          </TouchableOpacity>
+      <View style={styles.info}>
+        <View style={styles.infoItem}>
+          <Text style={styles.infoTitle}>Email</Text>
+          <Text style={styles.infoText}>rhemzy@andalworks.com</Text>
         </View>
-      </KeyboardAvoidingView>
+        <View style={styles.infoItem}>
+          <Text style={styles.infoTitle}>Phone</Text>
+          <Text style={styles.infoText}>+1234567890</Text>
+        </View>
+        <View style={styles.infoItem}>
+          <Text style={styles.infoTitle}>Address</Text>
+          <Text style={styles.infoText}>Rahasia woi</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -75,78 +38,69 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
+    padding: 20,
+    paddingTop: 100,
+  },
+  editButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
     padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#f0f0f0',
+    marginTop: 20,
+  },
+  editButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333333',
   },
   header: {
-    flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 20,
+  },
+  profilePicture: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     marginBottom: 10,
   },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10,
-  },
-  username: {
-    fontSize: 20,
+  name: {
+    fontSize: 24,
     fontWeight: 'bold',
   },
-  avatarSmall: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    marginRight: 10,
+  info: {
+    flex: 1,
   },
-  selfMessage: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#DCF8C5',
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 5,
-    marginBottom: 5,
+  infoItem: {
+    marginBottom: 15,
   },
-  otherMessage: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 5,
-    marginBottom: 5,
-    marginRight: 50,
+  infoTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  messageText: {
+  infoText: {
     fontSize: 16,
-    color: '#000',
   },
-  inputContainer: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  backgroundColor: '#F5F5F5',
-  padding: 10,
-  borderRadius: 30,
-  marginBottom: 10,
+  boxContainer: {
+    backgroundColor: 'white',
+    paddingBottom: 16,
+    marginBottom: 16,
+    width: ITEM_WIDTH,
+    borderRadius: 20,
   },
-  textInput: {
-  flex: 1,
-  height: 40,
-  backgroundColor: '#fff',
-  borderRadius: 20,
-  paddingLeft: 15,
-  marginRight: 10,
+  backgroundImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
-  sendButton: {
-  backgroundColor: '#1E90FF',
-  borderRadius: 20,
-  paddingVertical: 10,
-  paddingHorizontal: 20,
-  },
-  sendButtonText: {
-  color: '#fff',
-  fontSize: 16,
-  fontWeight: 'bold',
+  profilePictureContainer: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
