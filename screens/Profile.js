@@ -1,10 +1,44 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 
-const screenWidth = Dimensions.get('window').width;
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 const Profile = () => {
+  const token = AsyncStorage.getItem("token");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // const [userData, setUserData] = useState([]);
+
+  // get user data
+  // const getUserData = async () => {
+  //   await axios
+  //     .get("http://10.10.28.121:5000/v1/ga/users/me", {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setUserData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, err.message);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   getUserData();
+  // }, []);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.editButton}>
@@ -12,7 +46,7 @@ const Profile = () => {
       </TouchableOpacity>
       <View style={styles.header}>
         <Image
-          source={require('../assets/img/profile1.jpeg')}
+          source={require("../assets/img/profile1.jpeg")}
           style={styles.profilePicture}
         />
         <Text style={styles.name}>Rhemzy Putra Maulana</Text>
@@ -38,26 +72,26 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     padding: 20,
     paddingTop: 100,
   },
   editButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 20,
     right: 20,
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     marginTop: 20,
   },
   editButtonText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333333',
+    fontWeight: "bold",
+    color: "#333333",
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     marginBottom: 20,
   },
   profilePicture: {
@@ -68,7 +102,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   info: {
     flex: 1,
@@ -78,29 +112,29 @@ const styles = StyleSheet.create({
   },
   infoTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   infoText: {
     fontSize: 16,
   },
   boxContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     paddingBottom: 16,
     marginBottom: 16,
     width: ITEM_WIDTH,
     borderRadius: 20,
   },
   backgroundImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   profilePictureContainer: {
     width: 120,
     height: 120,
     borderRadius: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
