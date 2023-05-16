@@ -4,19 +4,18 @@ import React from 'react'
 import ChatHeader from './ChatHeader'
 import ChatInput from './ChatInput'
 import MessageList from './MessageList'
-
-const MessageScreen = ({navigation, route}) => {
-  const {username, bio, picture, isBlocked, isMuted} = route.params;
+import logo from '../../assets/img/logo.png'
+const MessageScreen = ({ username = 'Customer Center', picture = logo, onlineStatus = 'Online' }) => {
   return (
     <View style={{ flex: 1 }}>
-        <ChatHeader 
-        onPress ={() => {}}
-        username = {username}
-        picture = {picture}
-        onlineStatus={'Online'}
-    />
-    <MessageList/>
-    <ChatInput/>
+      <ChatHeader 
+        onPress={() => {}}
+        username={username}
+        picture={picture}
+        onlineStatus={onlineStatus}
+      />
+      <MessageList/>
+      <ChatInput/>
     </View>
   )
 }

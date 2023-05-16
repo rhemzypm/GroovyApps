@@ -69,6 +69,7 @@ function StackNavigator() {
     <Stack.Screen name="Register" component={Register} />
     <Stack.Screen name="BottomNav" component={BottomNav} />
     <Stack.Screen name="CarouselCards" component={CarouselCards} />
+    <Stack.Screen name="MessageScreen" component={MessageScreen} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
