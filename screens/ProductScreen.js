@@ -117,9 +117,9 @@ export default function ProductScreen() {
               </View>
             </View>
           </View>
-        {/* </View> */}
+        </View>
         <Text style={styles.header2Text}>Our Product</Text>
-        {/* <View style={[styles.screenContainer]}> */}
+        <View style={[styles.screenContainer]}>
           <View style={[styles.boxContainer]}>
             <View style={[styles.flexRow, styles.boxMargin]}>
               <View style={styles.imgProfile}>
@@ -132,7 +132,6 @@ export default function ProductScreen() {
               </View>
             </View>
           </View>
-
           <View style={[styles.boxContainer]}>
             <View style={[styles.flexRow, styles.boxMargin]}>
               <View style={styles.imgProfile}>
@@ -166,7 +165,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'black',
   },
   homeHeaderContainer: {
     flexDirection: "row",
