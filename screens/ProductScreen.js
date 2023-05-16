@@ -39,22 +39,6 @@ export default function ProductScreen() {
   const [point, setPoint] = useState("60 Points");
   const [expDate, setExpDate] = useState("28/04/2022");
 
-  const [currentPackage, setCurrentPackage] = useState([
-    { id: 1, title: "Internet", amount: "14,46 MB", date: "22/06/2021" },
-    { id: 2, title: "Multimedia", amount: "949,74 MB", date: "22/06/2021" },
-    { id: 3, title: "Voice", amount: "300 Min", date: "22/06/2021" },
-    { id: 4, title: "SMS", amount: "100 SMS", date: "22/06/2021" },
-    { id: 5, title: "Monetery", amount: "Rp. 0", date: "" },
-  ]);
-
-  const [recentTransaction, setRecentTransaction] = useState([
-    { id: 1, title: "Internet", date: "23 Apr 2021 03:24:06" },
-    { id: 2, title: "Combo", date: "06 Apr 2021 06:53:06" },
-  ]);
-
-  const [latestPromo, setLatestPromo] = useState([{ id: 1, type: "Promo" }]);
-  const [activeSlide, setActiveSlide] = useState(0);
-
   // const [userData, setUserData] = useState([]);
   // const [packageData, setPackageData] = useState([]);
 
@@ -119,7 +103,7 @@ export default function ProductScreen() {
         />
       </View>
       <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
-      <ScrollView style={styles.scrollViewContainer}>
+      <ScrollView style={styles.scrollViewContainer2}>
         <View style={[styles.screenContainer]}>
           <View style={[styles.boxContainer]}>
             <View style={[styles.flexRow, styles.boxMargin]}>
@@ -128,16 +112,14 @@ export default function ProductScreen() {
               </View>
               <View style={styles.headerCoverage}>
                 <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>Rp {balance}</Text>
-                <Text style={styles.profileText3}>Active Until {expDate}</Text>
+                <Text style={styles.profileText2}>{balance}</Text>
+                <Text style={styles.profileText3}> {expDate}</Text>
               </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
-      <Text style={styles.header2Text}>Our Product</Text>
-      <ScrollView style={styles.scrollViewContainer2}>
-        <View style={[styles.screenContainer]}>
+        {/* </View> */}
+        <Text style={styles.header2Text}>Our Product</Text>
+        {/* <View style={[styles.screenContainer]}> */}
           <View style={[styles.boxContainer]}>
             <View style={[styles.flexRow, styles.boxMargin]}>
               <View style={styles.imgProfile}>
@@ -162,37 +144,8 @@ export default function ProductScreen() {
                 <Text style={styles.profileText3}>Active Until {expDate}</Text>
               </View>
             </View>
-          </View>
-          <View style={[styles.boxContainer]}>
-            <View style={[styles.flexRow, styles.boxMargin]}>
-              <View style={styles.imgProfile}>
-                <Text style={styles.imgProfileText}>{initialName}</Text>
-              </View>
-              <View>
-                <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>Rp {balance}</Text>
-                <Text style={styles.profileText3}>Active Until {expDate}</Text>
-              </View>
-            </View>
-            <View style={styles.bottomRightButton}>
-              <TouchableOpacity onPress={() => handlePress()}>
-                <Text style={styles.buttonText}>Button Text</Text>
-              </TouchableOpacity>
-            </View>
-          </View>                              
-        </View>      
-        <View style={[styles.boxContainer]}>
-  <View style={[styles.flexRow,styles.boxMargin]}>
-    <View style={styles.imgProfile}>
-      <Text style={styles.imgProfileText}>{initialName}</Text>
-    </View>
-    <View >
-      <Text style={styles.profileText}>{userName}</Text>
-      <Text style={styles.profileText2}>Rp {balance}</Text>
-      <Text style={styles.profileText3}>Active Until {expDate}</Text>
-    </View>
-  </View>
-</View>              
+          </View>                           
+        </View>               
   
       </ScrollView>
     </SafeAreaView>
@@ -204,16 +157,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewContainer: {
-    top: 50,
+    top: 1,
   },
   scrollViewContainer2: {
-    top: -20,
+    flex: 0,
   },
   screenContainer: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'black',
   },
   homeHeaderContainer: {
     flexDirection: "row",

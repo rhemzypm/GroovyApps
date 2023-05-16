@@ -1,24 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function CreateScreen() {
+const PointScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>CreateScreen</Text>
+    <View>
+      <Text>PointScreen</Text>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#76a6ef'
-    },
-    text:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        backgroundColor: '#fff',
-    }
-})
+export default PointScreen

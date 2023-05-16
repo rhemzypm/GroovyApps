@@ -4,9 +4,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import AccordionItem from '../components/AccordionItem';
 import FloatingButton from '../components/FloatingButton';
+
 const FAQScreen = () => {
   const { top } = useSafeAreaInsets();
-  
+
   const faqData = [
     {
       title: 'Pembayaran Groovy Package Tidak Masuk',
@@ -27,20 +28,20 @@ const FAQScreen = () => {
 
   return (
     <SafeAreaView style={[tw`flex-1`, { paddingTop: top }]}>
-      <View style={tw`p-6`}>
+      <View style={tw`p-6 flex-1`}>
         <View style={tw`mb-2`}>
           <Text style={tw`text-4xl font-bold mb-10`}>Help Center</Text>
           <Text style={tw`text-xl font-bold`}>FAQs</Text>
-          </View>
+        </View>
         {faqData.map((faq, index) => (
           <AccordionItem key={index} title={faq.title} content={faq.content} />
-          ))}
-          </View>
-          <View style={tw `relative inset-x-4 h-64`}>
-          <FloatingButton/>
-          </View>
-          </SafeAreaView>
-          );
-        };
-        
-        export default FAQScreen;
+        ))}
+      </View>
+      <View style={[tw`absolute`, { bottom: 90, right: -10 }]}>
+        <FloatingButton />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default FAQScreen;
