@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function ChatHeader({ username, picture, onlineStatus}) {
   const navigation = useNavigation();
-
+  
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={navigation.goBack}>
