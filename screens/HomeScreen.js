@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewContainer: {
-    top: -230,
+    top: -100,
   },
   screenContainer: {
     borderTopLeftRadius: 10,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginRight: 25,
     alignItems: "center",
-    top: -260,
+    top: -140,
   }, 
   andalContainer: {
     flexDirection: "row",
