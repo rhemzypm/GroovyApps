@@ -2,11 +2,14 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { theme } from '../../src/theme.js'
+import { useNavigation } from '@react-navigation/native'
 
-export default function ChatHeader({ username, picture, onlineStatus, onPress }) {
+export default function ChatHeader({ username, picture, onlineStatus}) {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={onPress}>
+      <TouchableOpacity style={styles.backButton} onPress={navigation.goBack}>
         <Icon name="angle-left" size={30} color={theme.colors.black} />
       </TouchableOpacity>
       <Image style={styles.image} source={picture} />
