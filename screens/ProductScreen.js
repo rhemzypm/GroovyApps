@@ -100,58 +100,78 @@ export default function ProductScreen() {
             top: -150,
             right: -80,
           }}
-        />
-      </View>
-      <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
-      <ScrollView style={styles.scrollViewContainer2}>
-        <View style={[styles.screenContainer]}>
-          <View style={[styles.boxContainer]}>
-            <View style={[styles.flexRow, styles.boxMargin]}>
-              <View style={styles.imgProfile}>
-                <Text style={styles.imgProfileText}>{initialName}</Text>
-              </View>
-              <View style={styles.headerCoverage}>
-                <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>{balance}</Text>
-                <Text style={styles.profileText3}> {expDate}</Text>
-              </View>
-            </View>
+          />
           </View>
-        </View>
-        <Text style={styles.header2Text}>Our Product</Text>
-        <View style={[styles.screenContainer]}>
-          <View style={[styles.boxContainer]}>
-            <View style={[styles.flexRow, styles.boxMargin]}>
-              <View style={styles.imgProfile}>
-                <Text style={styles.imgProfileText}>{initialName}</Text>
-              </View>
-              <View>
-                <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>Rp {balance}</Text>
-                <Text style={styles.profileText3}>Active Until {expDate}</Text>
-              </View>
-            </View>
+          <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
+          <View style={styles.topView}>
           </View>
-          <View style={[styles.boxContainer]}>
-            <View style={[styles.flexRow, styles.boxMargin]}>
-              <View style={styles.imgProfile}>
-                <Text style={styles.imgProfileText}>{initialName}</Text>
-              </View>
-              <View>
-                <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>Rp {balance}</Text>
-                <Text style={styles.profileText3}>Active Until {expDate}</Text>
+          <ScrollView style={styles.scrollViewContainer2}>
+          <Text style={styles.header2Text}>COMING SOON</Text>
+            <View style={[styles.screenContainer]}>
+              <View style={[styles.boxContainer]}>
+                <View style={[styles.flexRow, styles.boxMargin]}>
+                  <View style={styles.imgProfile}>
+                    <Text style={styles.imgProfileText}>{initialName}</Text>
+                  </View>
+                  <View style={styles.headerCoverage}>
+                    <Text style={styles.profileText}>{userName}</Text>
+                    <Text style={styles.profileText2}>{balance}</Text>
+                    <Text style={styles.profileText3}> {expDate}</Text>
+                  </View>
+                </View>
               </View>
             </View>
-          </View>                           
-        </View>               
-  
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+            <Text style={styles.header2Text}>Our Product</Text>
+            <View style={[styles.screenContainer]}>
+              <View style={[styles.boxContainer]}>
+                <View style={[styles.flexRow, styles.boxMargin]}>
+                  <View style={styles.imgProfile}>
+                    <Text style={styles.imgProfileText}>{initialName}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.profileText}>{userName}</Text>
+                    <Text style={styles.profileText2}>Rp {balance}</Text>
+                    <Text style={styles.profileText3}>Active Until {expDate}</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={[styles.boxContainer]}>
+                <View style={[styles.flexRow, styles.boxMargin]}>
+                  <View style={styles.imgProfile}>
+                    <Text style={styles.imgProfileText}>{initialName}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.profileText}>{userName}</Text>
+                    <Text style={styles.profileText2}>Rp {balance}</Text>
+                    <Text style={styles.profileText3}>Active Until {expDate}</Text>
+                  </View>
+                </View>
+              </View> 
+              
+            </View>            
+            
+            
+            </ScrollView>
+            <View style={styles.bottomView}></View>
+      </SafeAreaView>
+      );
+    }
 
 const styles = StyleSheet.create({
+  topView:{
+    marginTop: -530,
+    height: 10,
+    // backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottomView: {
+    marginBottom: 90,
+    height: 10,
+    // backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   container: {
     flex: 1,
   },
@@ -159,7 +179,7 @@ const styles = StyleSheet.create({
     top: 1,
   },
   scrollViewContainer2: {
-    flex: 0,
+    flex: 1,
   },
   screenContainer: {
     flex: 1,
@@ -168,8 +188,7 @@ const styles = StyleSheet.create({
   },
   homeHeaderContainer: {
     flexDirection: "row",
-    marginLeft: 25,
-    marginRight: 25,
+    marginHorizontal: 25,
     alignItems: "center",
     top: 0,
   },
@@ -178,18 +197,16 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     color: "black",
-    marginLeft: 25,
-    marginRight: 25,
+    marginHorizontal: 25,
     marginTop: 50,
   },
   header2Text: {
-    position: "absolute",
+    position: "relative",
+    alignContent: "flex-start",
     fontSize: 22,
-    fontWeight: "normal",
+    fontWeight: "bold",
     color: "black",
-    marginLeft: 25,
-    marginRight: 25,
-    marginTop: 280,
+    marginHorizontal: 25,
   },
   imgProfile: {
     width: 60,
@@ -228,6 +245,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     width: screenWidth * 0.9,
     borderRadius: 20,
+    elevation: 5,
   },
   headerCoverage: {
     top: 5,
@@ -236,3 +254,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
+

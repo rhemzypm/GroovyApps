@@ -26,7 +26,7 @@ import CarouselCards from './components/CarouselCards';
 function TabNavigator(){
   return <Tab.Navigator
     tabBar={props => <TabBar {...props}/>}
-    initialRouteName="Product"
+    initialRouteName="Home"
     screenOptions={{headerShown: false}}>
         <Tab.Screen 
         name='Home' 

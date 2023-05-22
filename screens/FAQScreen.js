@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Dimensions, ScrollView, Text} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 import AccordionItem from '../components/AccordionItem';
@@ -24,24 +24,55 @@ const FAQScreen = () => {
       content:
         'Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.',
     },
+    {
+      title: 'OTP Tidak Masuk',
+      content:
+        'Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.',
+    },
+    {
+      title: 'OTP Tidak Masuk',
+      content:
+        'Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.',
+    },
   ];
 
   return (
     <SafeAreaView style={[tw`flex-1`, { paddingTop: top }]}>
-      <View style={tw`p-6 flex-1`}>
-        <View style={tw`mb-2`}>
-          <Text style={tw`text-4xl font-bold mb-10`}>Help Center</Text>
-          <Text style={tw`text-xl font-bold`}>FAQs</Text>
-        </View>
-        {faqData.map((faq, index) => (
-          <AccordionItem key={index} title={faq.title} content={faq.content} />
-        ))}
+    <View style={tw`mt-10 p-6 absolute`}>
+    <Text style={tw`text-4xl font-bold mb-10`}>Help Center</Text>
+    <Text style={tw`text-xl font-bold`}>FAQs</Text>
+    </View>
+    <View style={styles.topView}></View>
+    <ScrollView>
+    <View style={tw`mb-2 p-6 flex-1`}>
+    {faqData.map((faq, index) => (
+      <AccordionItem key={index} title={faq.title} content={faq.content} />
+      ))}
       </View>
+      </ScrollView>
+            <View style={styles.bottomView}></View>
       <View style={[tw`absolute`, { bottom: 90, right: -10 }]}>
         <FloatingButton />
       </View>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  topView:{
+    marginTop: 120,
+    height: 10,
+    // backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottomView: {
+    marginBottom: 90,
+    height: 10,
+    // backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default FAQScreen;

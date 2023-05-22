@@ -14,8 +14,7 @@ import Lottie from "lottie-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import CarouselCards from "../components/CarouselCards";
-import head1 from "../assets/img/headvg1.json";
-import head2 from "../assets/img/headvg2.json";
+import CarouselPromo from "../components/CarouselPromo";
 
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -111,19 +110,20 @@ export default function Home() {
           <Text style={styles.andalText}> The Andal Post </Text>
         </View>
         <View style={styles.carousel}>
-          <CarouselCards />
+        <CarouselCards />
         </View>
-        <Text> Promo </Text>
-        <View style={styles.PromoContainer}></View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+        </ScrollView>
+        </SafeAreaView>
+        );
+      }
+      // <View style={styles.PromoContainer}>
+      // <Text style={styles.PromoText}> Promo </Text>
+      // </View>
 
 const styles = StyleSheet.create({
   carousel: {
+    position: "relative",
     alignItems: "center",
-    justifyContent: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     padding: 40,
@@ -149,7 +149,10 @@ const styles = StyleSheet.create({
     top: -140,
   }, 
   andalContainer: {
-    flexDirection: "row",
+    marginLeft: 25,
+    marginRight: 25,
+  },  
+  PromoContainer: {
     marginLeft: 25,
     marginRight: 25,
   },  
@@ -160,7 +163,14 @@ const styles = StyleSheet.create({
     color: "black",
   },
   andalText: {
-    position: "absolute",
+    position: "relative",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
+  },
+  PromoText: {
+    position: "relative",
+    paddingTop: 200,
     fontSize: 20,
     fontWeight: "bold",
     color: "black",
