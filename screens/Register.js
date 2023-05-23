@@ -4,7 +4,7 @@ import { themeColors } from "../theme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
-import axios from "axios";
+import api from "../api";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -18,8 +18,8 @@ export default function Register() {
     console.log("Sending request...");
 
     // send POST request to API endpoint
-    await axios
-      .post("http://10.10.28.121:5000/v1/ga/users/signUp", {
+    await api
+      .post("/users/signUp", {
         firstName,
         lastName,
         emailAddress,

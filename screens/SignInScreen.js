@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import Register from "./Register";
 import InputOTP from "../components/InputOTP";
 
-import axios from "axios";
+import api from "../api";
 
 const LoginScreen = ({ navigation }) => {
   const [nomorHP, setNomorHP] = useState("");
@@ -14,8 +14,8 @@ const LoginScreen = ({ navigation }) => {
   const handleSignIn = async () => {
     console.log("Sending request...");
 
-    await axios
-      .post("http://10.10.28.121:5000/v1/ga/users/signIn", { nomorHP })
+    await api
+      .post("/users/signIn", { nomorHP })
       .then((res) => {
         if (res.data.status === 0) {
           console.log(res.data);
