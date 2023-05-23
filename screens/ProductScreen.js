@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
 import tw from "tailwind-react-native-classnames";
 
-import axios from "axios";
+import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
@@ -44,8 +44,8 @@ export default function ProductScreen() {
 
   // get user data
   // const getUserData = async () => {
-  //   await axios
-  //     .get("http://10.10.28.121:5000/v1/ga/users/me", {
+  //   await api
+  //     .get("/users/me", {
   //       headers: { Authorization: `Bearer ${token}` },
   //     })
   //     .then((res) => {
@@ -59,8 +59,8 @@ export default function ProductScreen() {
 
   // get product
   // const getProductData = async () => {
-  //   await axios
-  //     .get("http://10.10.28.121:5000/v1/ga/packages/", {
+  //   await api
+  //     .get("/packages/", {
   //       headers: { Authorization: `Bearer ${token}` },
   //     })
   //     .then((res) => {
@@ -100,65 +100,61 @@ export default function ProductScreen() {
             top: -150,
             right: -80,
           }}
-          />
-          </View>
-          <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
-          <View style={styles.topView}>
-          </View>
-          <ScrollView style={styles.scrollViewContainer2}>
-          <Text style={styles.header2Text}>COMING SOON</Text>
-            <View style={[styles.screenContainer]}>
-              <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow, styles.boxMargin]}>
-                  <View style={styles.imgProfile}>
-                    <Text style={styles.imgProfileText}>{initialName}</Text>
-                  </View>
-                  <View style={styles.headerCoverage}>
-                    <Text style={styles.profileText}>{userName}</Text>
-                    <Text style={styles.profileText2}>{balance}</Text>
-                    <Text style={styles.profileText3}> {expDate}</Text>
-                  </View>
-                </View>
+        />
+      </View>
+      <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
+      <View style={styles.topView}></View>
+      <ScrollView style={styles.scrollViewContainer2}>
+        <Text style={styles.header2Text}>COMING SOON</Text>
+        <View style={[styles.screenContainer]}>
+          <View style={[styles.boxContainer]}>
+            <View style={[styles.flexRow, styles.boxMargin]}>
+              <View style={styles.imgProfile}>
+                <Text style={styles.imgProfileText}>{initialName}</Text>
+              </View>
+              <View style={styles.headerCoverage}>
+                <Text style={styles.profileText}>{userName}</Text>
+                <Text style={styles.profileText2}>{balance}</Text>
+                <Text style={styles.profileText3}> {expDate}</Text>
               </View>
             </View>
-            <Text style={styles.header2Text}>Our Product</Text>
-            <View style={[styles.screenContainer]}>
-              <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow, styles.boxMargin]}>
-                  <View style={styles.imgProfile}>
-                    <Text style={styles.imgProfileText}>{initialName}</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.profileText}>{userName}</Text>
-                    <Text style={styles.profileText2}>Rp {balance}</Text>
-                    <Text style={styles.profileText3}>Active Until {expDate}</Text>
-                  </View>
-                </View>
+          </View>
+        </View>
+        <Text style={styles.header2Text}>Our Product</Text>
+        <View style={[styles.screenContainer]}>
+          <View style={[styles.boxContainer]}>
+            <View style={[styles.flexRow, styles.boxMargin]}>
+              <View style={styles.imgProfile}>
+                <Text style={styles.imgProfileText}>{initialName}</Text>
               </View>
-              <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow, styles.boxMargin]}>
-                  <View style={styles.imgProfile}>
-                    <Text style={styles.imgProfileText}>{initialName}</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.profileText}>{userName}</Text>
-                    <Text style={styles.profileText2}>Rp {balance}</Text>
-                    <Text style={styles.profileText3}>Active Until {expDate}</Text>
-                  </View>
-                </View>
-              </View> 
-              
-            </View>            
-            
-            
-            </ScrollView>
-            <View style={styles.bottomView}></View>
-      </SafeAreaView>
-      );
-    }
+              <View>
+                <Text style={styles.profileText}>{userName}</Text>
+                <Text style={styles.profileText2}>Rp {balance}</Text>
+                <Text style={styles.profileText3}>Active Until {expDate}</Text>
+              </View>
+            </View>
+          </View>
+          <View style={[styles.boxContainer]}>
+            <View style={[styles.flexRow, styles.boxMargin]}>
+              <View style={styles.imgProfile}>
+                <Text style={styles.imgProfileText}>{initialName}</Text>
+              </View>
+              <View>
+                <Text style={styles.profileText}>{userName}</Text>
+                <Text style={styles.profileText2}>Rp {balance}</Text>
+                <Text style={styles.profileText3}>Active Until {expDate}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+      <View style={styles.bottomView}></View>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
-  topView:{
+  topView: {
     marginTop: -530,
     height: 10,
     // backgroundColor: "red",
@@ -183,8 +179,8 @@ const styles = StyleSheet.create({
   },
   screenContainer: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   homeHeaderContainer: {
     flexDirection: "row",
@@ -254,4 +250,3 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
-
