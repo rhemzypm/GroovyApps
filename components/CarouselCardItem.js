@@ -1,25 +1,24 @@
-import React from 'react'
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
+import React from "react";
+import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 
-export const SLIDER_WIDTH = Dimensions.get('window').width
-export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9)
+export const SLIDER_WIDTH = Dimensions.get("window").width;
+export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9);
+
+// const uri = "http://10.10.28.139:5000/v1/ga/";
 
 const CarouselCardItem = ({ item, index }) => {
   return (
     <View style={styles.container} key={index}>
-      <Image
-        source={{ uri: item.imgUrl }}
-        style={styles.image}
-      />
-      <Text style={styles.header}>{item.title}</Text>
-      <Text style={styles.body}>{item.body}</Text>
+      <Image source={{ uri: item.postImage }} style={styles.image} />
+      <Text style={styles.header}>{item.postTitle}</Text>
+      <Text style={styles.body}>{item.postDescription}</Text>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
     width: ITEM_WIDTH,
     paddingBottom: 15,
@@ -43,15 +42,15 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "bold",
     paddingLeft: 20,
-    paddingTop: 5
+    paddingTop: 5,
   },
   body: {
     color: "#222",
     fontSize: 18,
     paddingLeft: 20,
     paddingLeft: 20,
-    paddingRight: 20
-  }
-})
+    paddingRight: 20,
+  },
+});
 
-export default CarouselCardItem
+export default CarouselCardItem;
