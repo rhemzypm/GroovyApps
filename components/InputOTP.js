@@ -9,11 +9,12 @@ import {
   StyleSheet,
   Alert,
 } from "react-native"; // Menambahkan Alert
+
 import CustomButton from "./CustomButton";
 import InputField from "./InputField";
 import { useNavigation } from "@react-navigation/native";
 
-import axios from "axios";
+import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const InputOTP = ({ navigation }) => {
@@ -34,7 +35,7 @@ const InputOTP = ({ navigation }) => {
           console.log("Sending request...");
 
           await axios
-            .get("http://10.10.28.121:5000/v1/ga/users/resendOTP")
+            .get("/users/resendOTP")
             .then((res) => {
               if (res.data.status === 0) {
                 console.log(res.data);
@@ -56,8 +57,8 @@ const InputOTP = ({ navigation }) => {
     console.log("Sending request...");
 
     // send POST request to API endpoint
-    await axios
-      .post("http://10.10.28.121:5000/v1/ga/users/verified", {
+    await api
+      .post("/users/verified", {
         otp,
       })
       .then((res) => {
