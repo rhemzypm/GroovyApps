@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Image } from 'react-native';
 
-const ServiceButton = ({ label, imageSource, onPress }) => {
+const ServiceButton = ({ label, imageSource, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <View style={styles.button}>
+      <View style={[styles.button]}>
         {imageSource && <Image source={imageSource} style={styles.image} />}
       </View>
       <Text style={styles.text}>{label}</Text>
@@ -14,18 +14,19 @@ const ServiceButton = ({ label, imageSource, onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    marginRight: 20,
-    marginBottom: 20,
+    // alignItems: 'center',
+    // marginHorizontal: 25,
   },
   button: {
     width: 70,
     height: 70,
     borderRadius: 40,
-    backgroundColor: 'blue',
+    backgroundColor: '#fef5ec',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
+    elevation: 5,
+    flexDirection: 'column',
   },
   image: {
     width: 40,

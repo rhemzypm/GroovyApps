@@ -8,25 +8,27 @@ import ServiceButton from '../components/ServiceButton';
 const {height, width} = Dimensions.get('window');
 
 const buttons = [
-    { id: '1', label: 'Button 1', imageSource: logo },
-    { id: '2', label: 'Button 2', imageSource: logo },
-    { id: '3', label: 'Button 3', imageSource: logo },
-    { id: '4', label: 'Button 4', imageSource: logo },
-    { id: '5', label: 'Button 5', imageSource: logo },
-    { id: '6', label: 'Button 6', imageSource: logo },
-    { id: '7', label: 'Button 7', imageSource: logo },
+    { id: '1', label: 'Token Listrik', imageSource: logo },
+    { id: '2', label: 'Pulsa', imageSource: logo },
+    { id: '3', label: 'Food & Beverage', imageSource: logo },
+    { id: '4', label: 'More', imageSource: logo },
     // Add more buttons with different image sources
   ];
 
-  const renderItem = ({ item }) => (
-    <View style={styles.buttonWrapper}>
+  const renderItem = ({ item, index }) => (
+  <View style={[
+    styles.buttonWrapper
+  ]}>
     <ServiceButton
-    label={item.label}
-    imageSource={item.imageSource}
-    onPress={() => console.log(item.label)}
+      label={item.label}
+      imageSource={item.imageSource}
+      onPress={() => console.log(item.label)}
+      isFirstButton={index % 4 === 0}
+      isLastButton={(index + 1) % 4 === 0}
     />
-    </View>
+  </View>
   );
+
 
 export default function PointScreen() {
   return (
@@ -134,10 +136,8 @@ serviceText:{
   },
   serviceWrapper: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-  alignItems: 'center',
-  marginHorizontal: 25,
   marginBottom: 20,  
+  // backgroundColor: 'black',
 },
   wrapText:{
     fontSize: 20,
@@ -162,9 +162,22 @@ serviceText:{
   contentContainer: {
     flex: 1,
     justifyContent: 'space-between',
+    // backgroundColor: 'red',
+    marginHorizontal: 25,
   },
   buttonWrapper: {
     flex: 1,
-    marginHorizontal: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+  itemSeparator: {
+  width: '100%',
+  height: 20,
+},
+buttonWrapper: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginBottom: 20,
   },
 })

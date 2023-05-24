@@ -102,7 +102,7 @@ export default function ProductScreen() {
           }}
           />
           </View>
-          <Text style={styles.headerText}>Nusa Solution{"\n"}Product</Text>
+          <Text style={styles.headerText}>Groovy{"\n"}Product</Text>
           <View style={styles.topView}>
           </View>
           <ScrollView style={styles.scrollViewContainer2}>
