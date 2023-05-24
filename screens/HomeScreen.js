@@ -10,57 +10,68 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
+
 import Lottie from "lottie-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import CarouselCards from "../components/CarouselCards";
 import CarouselPromo from "../components/CarouselPromo";
 
-import axios from "axios";
+import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
+// formatting date
+// const formattedDate = (dateString) => {
+//   const date = new Date(dateString);
+//   const options = { day: "numeric", month: "numeric", year: "numeric" };
+
+//   return date.toLocaleString("id-ID", options);
+// };
+
 export default function Home() {
   const { top } = useSafeAreaInsets();
 
-  const token = AsyncStorage.getItem("token");
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const [point, setPoint] = useState("60");
   const [imgDashboard, setImgDashboard] = useState(
     require("../assets/img/head.png")
   );
+
   const [imgLogo, setImgLogo] = useState(
     require("../assets/img/G-Point-3.png")
   );
+
   const [initialName, setInitialName] = useState("TP");
   const [userName, setUserName] = useState("Rhemzy");
   const [balance, setBalance] = useState("69.420");
+  const [point, setPoint] = useState("60");
   const [expDate, setExpDate] = useState("28/04/2022");
 
-  // const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   // get user data
   // const getUserData = async () => {
-  //   await axios
-  //     .get("http://10.10.28.121:5000/v1/ga/users/me", {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setUserData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, err.message);
-  //     });
+  //   const token = await AsyncStorage.getItem("token");
+
+  //   if (token) {
+  //     await api
+  //       .get("/users/me", {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         setUserData(res.data.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err, err.message);
+  //       });
+  //   }
   // };
 
-  // useEffect(() => {
-  //   getUserData();
-  // }, []);
+  useEffect(() => {
+    // getUserData();
+  }, []);
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
@@ -110,15 +121,16 @@ export default function Home() {
           <Text style={styles.andalText}> The Andal Post </Text>
         </View>
         <View style={styles.carousel}>
-        <CarouselCards />
+          <CarouselCards />
         </View>
-        </ScrollView>
-        </SafeAreaView>
-        );
-      }
-      // <View style={styles.PromoContainer}>
-      // <Text style={styles.PromoText}> Promo </Text>
-      // </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+// <View style={styles.PromoContainer}>
+// <Text style={styles.PromoText}> Promo </Text>
+// </View>
 
 const styles = StyleSheet.create({
   carousel: {
@@ -147,15 +159,15 @@ const styles = StyleSheet.create({
     marginRight: 25,
     alignItems: "center",
     top: -140,
-  }, 
+  },
   andalContainer: {
     marginLeft: 25,
     marginRight: 25,
-  },  
+  },
   PromoContainer: {
     marginLeft: 25,
     marginRight: 25,
-  },  
+  },
   headerText: {
     position: "absolute",
     fontSize: 16,

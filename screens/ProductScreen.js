@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
 import tw from "tailwind-react-native-classnames";
 
-import axios from "axios";
+import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
@@ -44,8 +44,8 @@ export default function ProductScreen() {
 
   // get user data
   // const getUserData = async () => {
-  //   await axios
-  //     .get("http://10.10.28.121:5000/v1/ga/users/me", {
+  //   await api
+  //     .get("/users/me", {
   //       headers: { Authorization: `Bearer ${token}` },
   //     })
   //     .then((res) => {
@@ -59,8 +59,8 @@ export default function ProductScreen() {
 
   // get product
   // const getProductData = async () => {
-  //   await axios
-  //     .get("http://10.10.28.121:5000/v1/ga/packages/", {
+  //   await api
+  //     .get("/packages/", {
   //       headers: { Authorization: `Bearer ${token}` },
   //     })
   //     .then((res) => {
@@ -158,7 +158,7 @@ export default function ProductScreen() {
     }
 
 const styles = StyleSheet.create({
-  topView:{
+  topView: {
     marginTop: -530,
     height: 10,
     // backgroundColor: "red",
@@ -183,8 +183,8 @@ const styles = StyleSheet.create({
   },
   screenContainer: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   homeHeaderContainer: {
     flexDirection: "row",
@@ -254,4 +254,3 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
-
