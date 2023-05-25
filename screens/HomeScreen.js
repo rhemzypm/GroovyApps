@@ -121,7 +121,11 @@ export default function Home() {
           <Text style={styles.andalText}> The Andal Post </Text>
           </View>
           <CarouselCards />
-          <View style={styles.carousel}>
+          <View style={styles.PromoContainer}>
+          <Text style={styles.PromoText}>What's New ?</Text>
+        </View>
+          <CarouselPromo />
+        <View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -138,13 +142,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    padding: 0,
+  },
+  carousel2: {
+    position: "relative",
+    alignItems: "center",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   container: {
     flex: 1,
   },
   scrollViewContainer: {
-    top: -100,
+    top: 20,
   },
   screenContainer: {
     borderTopLeftRadius: 10,
@@ -158,21 +167,22 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginRight: 25,
     alignItems: "center",
-    top: -140,
+    top: -30,
   },
   andalContainer: {
-    marginLeft: 25,
-    marginRight: 25,
+    marginHorizontal: 25,
+    marginVertical: 25,
   },
   PromoContainer: {
-    marginLeft: 25,
-    marginRight: 25,
+    marginHorizontal: 25,
+    marginVertical: 25,
   },
   headerText: {
     position: "absolute",
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     color: "black",
+    bottom: 15,
   },
   andalText: {
     position: "relative",
@@ -182,7 +192,6 @@ const styles = StyleSheet.create({
   },
   PromoText: {
     position: "relative",
-    paddingTop: 200,
     fontSize: 20,
     fontWeight: "bold",
     color: "black",
@@ -233,7 +242,6 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     backgroundColor: "white",
-    paddingBottom: 16,
     marginBottom: 16,
     width: ITEM_WIDTH,
     borderRadius: 20,

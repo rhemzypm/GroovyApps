@@ -53,7 +53,6 @@ export default function PointScreen() {
             right: -80,
           }}
           />
-    <StatusBar barStyle="dark-content" translucent backgroundColor="rgba(0,0,0,0)"/>
     <Text style={styles.headText}>Groovy Point</Text>
     <View style={styles.wrapContainer}>
       <View style={styles.headWrapper}>
