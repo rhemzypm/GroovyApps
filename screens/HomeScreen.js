@@ -119,9 +119,9 @@ export default function Home() {
         </View>
         <View style={styles.andalContainer}>
           <Text style={styles.andalText}> The Andal Post </Text>
-        </View>
-        <View style={styles.carousel}>
+          </View>
           <CarouselCards />
+          <View style={styles.carousel}>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    padding: 40,
+    padding: 0,
   },
   container: {
     flex: 1,

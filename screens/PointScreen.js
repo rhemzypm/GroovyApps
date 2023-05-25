@@ -4,6 +4,7 @@ import logo from '../assets/img/logo.png'
 import Lottie from "lottie-react-native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ServiceButton from '../components/ServiceButton';
+import CarouselCards from '../components/CarouselCards';
 
 const {height, width} = Dimensions.get('window');
 
@@ -23,8 +24,6 @@ const buttons = [
       label={item.label}
       imageSource={item.imageSource}
       onPress={() => console.log(item.label)}
-      isFirstButton={index % 4 === 0}
-      isLastButton={(index + 1) % 4 === 0}
     />
   </View>
   );
@@ -51,8 +50,6 @@ export default function PointScreen() {
             position: "absolute",
             width: width,
             top: -150,
-
-
             right: -80,
           }}
           />
@@ -89,6 +86,8 @@ export default function PointScreen() {
         />
       </View>
     </View>
+    <Text style={styles.serviceText}>New Promos</Text>
+    <CarouselCards/>
     </View>
     )
   }
@@ -136,7 +135,6 @@ serviceText:{
   },
   serviceWrapper: {
     flexDirection: 'row',
-  marginBottom: 20,  
   // backgroundColor: 'black',
 },
   wrapText:{
@@ -178,6 +176,6 @@ buttonWrapper: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 5,
   },
 })

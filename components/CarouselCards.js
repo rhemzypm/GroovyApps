@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./CarouselCardItem";
 
@@ -36,7 +36,7 @@ const CarouselCards = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.carousel}>
       <Carousel
         layout="tinder"
         layoutCardOffset={9}
@@ -51,5 +51,15 @@ const CarouselCards = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  carousel: {
+    position: "relative",
+    alignItems: "center",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    paddingBottom: 40,
+  },
+});
 
 export default CarouselCards;
