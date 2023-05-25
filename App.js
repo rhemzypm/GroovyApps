@@ -16,6 +16,7 @@ import TabBar from "./components/TabBar";
 import Profile from "./screens/Profile";
 import ProductScreen from "./screens/ProductScreen";
 import MessageScreen from "./screens/messages/MessageScreen";
+import Andalpost from "./screens/Andalpost";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -72,6 +73,7 @@ function StackNavigator() {
     <Stack.Screen name="BottomNav" component={BottomNav} />
     <Stack.Screen name="CarouselCards" component={CarouselCards} />
     <Stack.Screen name="MessageScreen" component={MessageScreen} />
+    <Stack.Screen name="Andalpost" component={Andalpost} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
