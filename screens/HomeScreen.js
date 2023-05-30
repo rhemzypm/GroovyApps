@@ -10,6 +10,7 @@ import {
   Platform,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Lottie from "lottie-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -33,7 +34,7 @@ const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 export default function Home() {
   const { top } = useSafeAreaInsets();
-
+  const navigation = useNavigation();
   const [imgDashboard, setImgDashboard] = useState(
     require("../assets/img/head.png")
   );
@@ -120,7 +121,9 @@ export default function Home() {
         <View style={styles.andalContainer}>
           <Text style={styles.andalText}> The Andal Post </Text>
           </View>
+          <TouchableOpacity onPress={()=> navigation.navigate("Andalpost")}>
           <CarouselCards />
+          </TouchableOpacity>
           <View style={styles.PromoContainer}>
           <Text style={styles.PromoText}>What's New ?</Text>
         </View>

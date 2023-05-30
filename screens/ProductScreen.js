@@ -106,17 +106,12 @@ export default function ProductScreen() {
           <View style={styles.topView}>
           </View>
           <ScrollView style={styles.scrollViewContainer2}>
-          <Text style={styles.header2Text}>COMING SOON</Text>
             <View style={[styles.screenContainer]}>
               <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow, styles.boxMargin]}>
-                  <View style={styles.imgProfile}>
-                    <Text style={styles.imgProfileText}>{initialName}</Text>
-                  </View>
+                <View style={[styles.flexRow]}>
+                  <Image style={styles.coverage} source={require("../assets/img/Frame.png")}/>
+                  <Text style= {styles.coverageText}>Check{"\n"}Coverage Area</Text>
                   <View style={styles.headerCoverage}>
-                    <Text style={styles.profileText}>{userName}</Text>
-                    <Text style={styles.profileText2}>{balance}</Text>
-                    <Text style={styles.profileText3}> {expDate}</Text>
                   </View>
                 </View>
               </View>
@@ -206,7 +201,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     color: "black",
-    marginHorizontal: 25,
+    marginHorizontal: 20,
+    marginBottom: 10,
   },
   imgProfile: {
     width: 60,
@@ -252,5 +248,15 @@ const styles = StyleSheet.create({
   },
   flexRow: {
     flexDirection: "row",
+  },
+  coverage: {
+    top: 10,
+    right: 5,
+  },
+  coverageText: {
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 20,
+    left: 10,
   },
 });
