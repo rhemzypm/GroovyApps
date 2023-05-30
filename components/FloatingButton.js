@@ -46,12 +46,12 @@ const FloatingButton = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Animated.View style={[styles.circle, { bottom: icon_1 }]}>
+      <Animated.View style={[styles.circle, styles.container, { bottom: icon_1 }]}>
         <TouchableOpacity onPress={() => navigation.navigate("MessageScreen")}>
           <FontAwesomeIcon name="comment" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
-      <Animated.View style={[styles.circle, { right: icon_3 }]}>
+      <Animated.View style={[styles.circle, styles.container, { right: icon_3 }]}>
         <Hyperlink linkDefault={true} linkStyle={{ color: "#FFFF" }}>
           <TouchableOpacity onPress={openSupportLink}>
             <FontAwesomeIcon name="envelope" size={25} color="#FFFF" />
@@ -59,7 +59,7 @@ const FloatingButton = () => {
         </Hyperlink>
       </Animated.View>
       <TouchableOpacity
-        style={styles.circle}
+        style={[styles.circle, styles.container]}
         onPress={() => {
           pop === false ? popIn() : popOut();
         }}
@@ -73,6 +73,16 @@ const FloatingButton = () => {
 export default FloatingButton;
 
 const styles = StyleSheet.create({
+  container: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   circle: {
     backgroundColor: "#F79944",
     width: 60,
