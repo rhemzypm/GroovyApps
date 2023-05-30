@@ -17,6 +17,7 @@ import Profile from "./screens/Profile";
 import ProductScreen from "./screens/ProductScreen";
 import MessageScreen from "./screens/messages/MessageScreen";
 import CarouselCard from "./components/CarouselCards";
+import FormCheckCoverage from "./screens/FormCheckCoverage";
 
 import Andalpost from "./screens/Andalpost";
 const Stack = createNativeStackNavigator();
@@ -77,6 +78,7 @@ function StackNavigator() {
     <Stack.Screen name="MessageScreen" component={MessageScreen} />
     <Stack.Screen name="Andalpost" component={Andalpost} />
     <Stack.Screen name="Carousel" component={CarouselCard} />
+    <Stack.Screen name="FormCheckCoverage" component={FormCheckCoverage} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}

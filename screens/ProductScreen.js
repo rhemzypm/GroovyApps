@@ -12,9 +12,10 @@ import Lottie from "lottie-react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
 import tw from "tailwind-react-native-classnames";
-
+import { useNavigation } from "@react-navigation/native";
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
@@ -22,7 +23,7 @@ const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 export default function ProductScreen() {
   const { top } = useSafeAreaInsets();
   const token = AsyncStorage.getItem("token");
-
+  const navigation = useNavigation();
   const [imgDashboard, setImgDashboard] = useState(
     require("../assets/img/head.png")
   );
@@ -106,9 +107,10 @@ export default function ProductScreen() {
           <View style={styles.topView}>
           </View>
           <ScrollView style={styles.scrollViewContainer2}>
+            <TouchableOpacity onPress={()=> navigation.navigate("FormCheckCoverage")}>
             <View style={[styles.screenContainer]}>
               <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow]}>
+                <View style={[styles.flexRowCoverage]}>
                   <Image style={styles.coverage} source={require("../assets/img/Frame.png")}/>
                   <Text style= {styles.coverageText}>Check{"\n"}Coverage Area</Text>
                   <View style={styles.headerCoverage}>
@@ -116,6 +118,7 @@ export default function ProductScreen() {
                 </View>
               </View>
             </View>
+            </TouchableOpacity>
             <Text style={styles.header2Text}>Our Product</Text>
             <View style={[styles.screenContainer]}>
               <View style={[styles.boxContainer]}>
@@ -130,6 +133,7 @@ export default function ProductScreen() {
                   </View>
                 </View>
               </View>
+              {/*ini batas per container product list*/}
               <View style={[styles.boxContainer]}>
                 <View style={[styles.flexRow, styles.boxMargin]}>
                   <View style={styles.imgProfile}>
@@ -156,14 +160,12 @@ const styles = StyleSheet.create({
   topView: {
     marginTop: -530,
     height: 10,
-    // backgroundColor: "red",
     justifyContent: "center",
     alignItems: "center",
   },
   bottomView: {
     marginBottom: 90,
     height: 10,
-    // backgroundColor: "blue",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -257,6 +259,11 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "bold",
     fontSize: 20,
-    left: 10,
+    bottom: 10,
+    left: 5,
+  },
+  flexRowCoverage : {
+    flexDirection: "row",
+    alignItems: 'center',
   },
 });
