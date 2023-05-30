@@ -1,11 +1,42 @@
-import React from 'react'
-import { View } from "react-native"
-import Carousel from 'react-native-snap-carousel'
-import CarouselPromoItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselPromoItem'
-import data2 from './data2'
+import React, { useState, useEffect } from "react";
+import { View } from "react-native";
+import Carousel from "react-native-snap-carousel";
+import CarouselPromoItem, {
+  SLIDER_WIDTH,
+  ITEM_WIDTH,
+} from "./CarouselPromoItem";
+
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import data2 from "./data2";
 
 const CarouselPromo = () => {
-  const isCarousel = React.useRef(null)
+  const isCarousel = React.useRef(null);
+
+  // const [data, setData] = useState([]);
+
+  // const getPromo = async () => {
+  //   const token = await AsyncStorage.getItem("token");
+
+  //   if (token) {
+  //     await api
+  //       .get("/promos/", {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         setData(res.data.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err, err.message);
+  //       });
+  //   }
+  // };
+
+  useEffect(() => {
+    // getPromo();
+  }, []);
 
   return (
     <View>
@@ -21,8 +52,7 @@ const CarouselPromo = () => {
         useScrollView={true}
       />
     </View>
-  )
-}
+  );
+};
 
-
-export default CarouselPromo
+export default CarouselPromo;
