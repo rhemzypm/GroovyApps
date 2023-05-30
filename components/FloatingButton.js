@@ -46,7 +46,7 @@ const FloatingButton = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Animated.View style={[styles.circle, styles.container, { bottom: icon_1 }]}>
+      <Animated.View style={[styles.circle, styles.container,  { bottom: icon_1 }]}>
         <TouchableOpacity onPress={() => navigation.navigate("MessageScreen")}>
           <FontAwesomeIcon name="comment" size={25} color="#FFFF" />
         </TouchableOpacity>
