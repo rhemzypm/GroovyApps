@@ -91,11 +91,9 @@ const FormCheckCoverage = () => {
           style={styles.inputContainer}
         />
       </View>
-      <Button
-        title="Submit"
-        onPress={handleFormSubmit}
-        containerStyle={styles.buttonContainer}
-      />
+      <TouchableOpacity style={[styles.confirmButton, styles.shadow]} onPress={handleFormSubmit}>
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -128,7 +126,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderWidth: 1,
     borderColor: "white",
-    borderRadius: 5,
+    borderRadius: 10,
     padding: 10,
     backgroundColor: "white",
   },
@@ -141,6 +139,25 @@ const styles = StyleSheet.create({
   backIcon: {
     fontSize: 25,
     color: "#AFB1B6",
+  },
+  confirmButton: {
+    backgroundColor: '#F2C94C',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
 
