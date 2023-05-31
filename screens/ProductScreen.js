@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import ProductBox from "../components/ProductBox";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
@@ -34,11 +35,49 @@ export default function ProductScreen() {
 
   const [notification, setNotification] = useState(100);
 
-  const [initialName, setInitialName] = useState("TP");
-  const [userName, setUserName] = useState("Rhemzy");
-  const [balance, setBalance] = useState("69.420");
-  const [point, setPoint] = useState("60 Points");
-  const [expDate, setExpDate] = useState("28/04/2022");
+  const productData = [
+    {
+      id: 1,
+      initialName: "20",
+      userName: "Personal Plan",
+      price: "69.420",
+      expDate: "20 Mbps",
+      destination: "Home",
+    },
+    {
+      id: 2,
+      initialName: "150",
+      userName: "Business Plan",
+      price: "123.45",
+      expDate: "150 Mbps",
+      destination: "Point",
+    },
+    {
+      id: 3,
+      initialName: "150",
+      userName: "Business Plan",
+      price: "123.45",
+      expDate: "150 Mbps",
+      destination: "Point",
+    },
+    {
+      id: 4,
+      initialName: "150",
+      userName: "Business Plan",
+      price: "123.45",
+      expDate: "150 Mbps",
+      destination: "Point",
+    },
+    {
+      id: 5,
+      initialName: "150",
+      userName: "Business Plan",
+      price: "123.45",
+      expDate: "150 Mbps",
+      destination: "Point",
+    },
+    // Add more objects for additional product data
+  ];
 
   // const [userData, setUserData] = useState([]);
   // const [packageData, setPackageData] = useState([]);
@@ -120,35 +159,16 @@ export default function ProductScreen() {
             </View>
             </TouchableOpacity>
             <Text style={styles.header2Text}>Our Product</Text>
-            <View style={[styles.screenContainer]}>
-              <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow, styles.boxMargin]}>
-                  <View style={styles.imgProfile}>
-                    <Text style={styles.imgProfileText}>{initialName}</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.profileText}>{userName}</Text>
-                    <Text style={styles.profileText2}>Rp {balance}</Text>
-                    <Text style={styles.profileText3}>Active Until {expDate}</Text>
-                  </View>
-                </View>
-              </View>
-              {/*ini batas per container product list*/}
-              <View style={[styles.boxContainer]}>
-                <View style={[styles.flexRow, styles.boxMargin]}>
-                  <View style={styles.imgProfile}>
-                    <Text style={styles.imgProfileText}>{initialName}</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.profileText}>{userName}</Text>
-                    <Text style={styles.profileText2}>Rp {balance}</Text>
-                    <Text style={styles.profileText3}>Active Until {expDate}</Text>
-                  </View>
-                </View>
-              </View> 
-              
-            </View>            
-            
+            {productData.map((data) => (
+            <ProductBox
+              key={data.id}
+              initialName={data.initialName}
+              userName={data.userName}
+              price={data.price}
+              expDate={data.expDate}
+              destination={data.destination}
+            />
+            ))}
             
             </ScrollView>
             <View style={styles.bottomView}></View>
@@ -172,9 +192,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollViewContainer: {
-    top: 1,
-  },
   scrollViewContainer2: {
     flex: 1,
   },
@@ -182,12 +199,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-  },
-  homeHeaderContainer: {
-    flexDirection: "row",
-    marginHorizontal: 25,
-    alignItems: "center",
-    top: 0,
   },
   headerText: {
     position: "absolute",
@@ -206,45 +217,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 10,
   },
-  imgProfile: {
-    width: 60,
-    height: 60,
-    borderRadius: 60 / 2,
-    backgroundColor: "#ACACAC",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 16,
-  },
-  imgProfileText: {
-    color: "white",
-  },
-  profileText: {
-    color: "#121212",
-    fontWeight: "bold",
-    fontSize: 12,
-    marginBottom: 4,
-  },
-  profileText2: {
-    color: "#121212",
-    fontWeight: "bold",
-    marginBottom: 2,
-    fontSize: 14,
-  },
-  profileText3: {
-    color: "#B1B5B8",
-    fontSize: 10,
-  },
-  boxMargin: {
-    padding: 16,
-  },
-  boxContainer: {
-    backgroundColor: "white",
-    paddingBottom: 16,
-    marginBottom: 16,
-    width: screenWidth * 0.9,
-    borderRadius: 20,
-    elevation: 5,
-  },
   boxContainerCoverage: {
     backgroundColor: "#F8D344",
     paddingBottom: 16,
@@ -253,11 +225,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     elevation: 5,
   },
-  headerCoverage: {
-    top: 5,
-  },
-  flexRow: {
+  flexRowCoverage: {
     flexDirection: "row",
+    alignItems: "center",
   },
   coverage: {
     top: 10,
@@ -269,9 +239,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     bottom: 10,
     left: 5,
-  },
-  flexRowCoverage : {
-    flexDirection: "row",
-    alignItems: 'center',
   },
 });
