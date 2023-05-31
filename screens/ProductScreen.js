@@ -109,7 +109,7 @@ export default function ProductScreen() {
           <ScrollView style={styles.scrollViewContainer2}>
             <TouchableOpacity onPress={()=> navigation.navigate("FormCheckCoverage")}>
             <View style={[styles.screenContainer]}>
-              <View style={[styles.boxContainer]}>
+              <View style={[styles.boxContainerCoverage]}>
                 <View style={[styles.flexRowCoverage]}>
                   <Image style={styles.coverage} source={require("../assets/img/Frame.png")}/>
                   <Text style= {styles.coverageText}>Check{"\n"}Coverage Area</Text>
@@ -239,6 +239,14 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     backgroundColor: "white",
+    paddingBottom: 16,
+    marginBottom: 16,
+    width: screenWidth * 0.9,
+    borderRadius: 20,
+    elevation: 5,
+  },
+  boxContainerCoverage: {
+    backgroundColor: "#F8D344",
     paddingBottom: 16,
     marginBottom: 16,
     width: screenWidth * 0.9,
