@@ -20,7 +20,7 @@ const FormCheckCoverage = () => {
   };
 
   const handleFormSubmit = async () => {
-    const token = await AsyncStorage.getItem("token");
+    // const token = await AsyncStorage.getItem("token");
 
     console.log("Data Form:");
     console.log("Lokasi:", location);
