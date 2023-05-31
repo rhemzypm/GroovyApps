@@ -1,33 +1,60 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { Input, Button, Text } from 'react-native-elements';
-import { FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from "react";
+import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { Input, Button, Text } from "react-native-elements";
+import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FormCheckCoverage = () => {
-  const [location, setLocation] = useState('');
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [location, setLocation] = useState("");
+  const [name, setName] = useState("");
+  const [nomorHP, setNomorHP] = useState("");
+  const [detailedAddress, setDetailedAddress] = useState("");
 
   const navigation = useNavigation();
 
   const handleGoBack = () => {
-    navigation.navigate('Product'); 
+    navigation.navigate("Product");
   };
 
-  const handleFormSubmit = () => {
-    console.log('Data Form:');
-    console.log('Lokasi:', location);
-    console.log('Nama:', name);
-    console.log('Alamat:', address);
-    console.log('Nomor Telepon:', phoneNumber);
+  const handleFormSubmit = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    console.log("Data Form:");
+    console.log("Lokasi:", location);
+    console.log("Nama:", name);
+    console.log("Nomor Telepon:", nomorHP);
+    console.log("Alamat:", detailedAddress);
+
+    // await api
+    //   .post(
+    //     "/installations/",
+    //     {
+    //       location,
+    //       name,
+    //       nomorHP,
+    //       detailedAddress,
+    //     },
+    //     { headers: { Authorization: `Bearer ${token}` } }
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err, err.message);
+    //   });
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-        <FontAwesome name="chevron-left" style={styles.backIcon} testID="backIcon" />
+        <FontAwesome
+          name="chevron-left"
+          style={styles.backIcon}
+          testID="backIcon"
+        />
       </TouchableOpacity>
       <View>
         <Text style={styles.headerText}>Enter Installation{"\n"}Address</Text>
@@ -36,7 +63,7 @@ const FormCheckCoverage = () => {
         <TextInput
           placeholder="Lokasi"
           value={location}
-          onChangeText={text => setLocation(text)}
+          onChangeText={(text) => setLocation(text)}
           style={styles.inputContainer}
         />
       </View>
@@ -44,23 +71,23 @@ const FormCheckCoverage = () => {
         <TextInput
           placeholder="Nama"
           value={name}
-          onChangeText={text => setName(text)}
+          onChangeText={(text) => setName(text)}
           style={styles.inputContainer}
         />
       </View>
       <View style={styles.inputWrapper}>
         <TextInput
           placeholder="Alamat"
-          value={address}
-          onChangeText={text => setAddress(text)}
+          value={detailedAddress}
+          onChangeText={(text) => setDetailedAddress(text)}
           style={styles.inputContainer}
         />
       </View>
       <View style={styles.inputWrapper}>
         <TextInput
           placeholder="Nomor Telepon"
-          value={phoneNumber}
-          onChangeText={text => setPhoneNumber(text)}
+          value={nomorHP}
+          onChangeText={(text) => setNomorHP(text)}
           style={styles.inputContainer}
         />
       </View>
@@ -76,21 +103,21 @@ const FormCheckCoverage = () => {
 const styles = StyleSheet.create({
   headerText: {
     fontSize: 30,
-    fontWeight: 'bold',
-    color: 'black',
+    fontWeight: "bold",
+    color: "black",
     marginTop: 50,
     marginHorizontal: 10,
     marginBottom: 25,
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     padding: 15,
   },
   inputWrapper: {
-    width: '100%',
-    shadowColor: 'black',
+    width: "100%",
+    shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
     shadowRadius: 4,
@@ -98,22 +125,22 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputContainer: {
-    width: '100%',
+    width: "100%",
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: "white",
     borderRadius: 5,
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   buttonContainer: {
-    width: '100%',
+    width: "100%",
   },
   backButton: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
   },
   backIcon: {
     fontSize: 25,
-    color: '#AFB1B6',
+    color: "#AFB1B6",
   },
 });
 
