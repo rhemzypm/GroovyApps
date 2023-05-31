@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { Input, Button, Text } from 'react-native-elements';
+import { View, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -13,7 +12,7 @@ const FormCheckCoverage = () => {
   const navigation = useNavigation();
 
   const handleGoBack = () => {
-    navigation.navigate('Product'); 
+    navigation.navigate('Product');
   };
 
   const handleFormSubmit = () => {
@@ -37,7 +36,7 @@ const FormCheckCoverage = () => {
           placeholder="Lokasi"
           value={location}
           onChangeText={text => setLocation(text)}
-          style={styles.inputContainer}
+          style={[styles.inputContainer, styles.shadow]}
         />
       </View>
       <View style={styles.inputWrapper}>
@@ -45,7 +44,7 @@ const FormCheckCoverage = () => {
           placeholder="Nama"
           value={name}
           onChangeText={text => setName(text)}
-          style={styles.inputContainer}
+          style={[styles.inputContainer, styles.shadow]}
         />
       </View>
       <View style={styles.inputWrapper}>
@@ -53,7 +52,7 @@ const FormCheckCoverage = () => {
           placeholder="Alamat"
           value={address}
           onChangeText={text => setAddress(text)}
-          style={styles.inputContainer}
+          style={[styles.inputContainer, styles.shadow]}
         />
       </View>
       <View style={styles.inputWrapper}>
@@ -61,14 +60,12 @@ const FormCheckCoverage = () => {
           placeholder="Nomor Telepon"
           value={phoneNumber}
           onChangeText={text => setPhoneNumber(text)}
-          style={styles.inputContainer}
+          style={[styles.inputContainer, styles.shadow]}
         />
       </View>
-      <Button
-        title="Submit"
-        onPress={handleFormSubmit}
-        containerStyle={styles.buttonContainer}
-      />
+      <TouchableOpacity style={[styles.confirmButton, styles.shadow]} onPress={handleFormSubmit}>
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -84,29 +81,19 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
     padding: 15,
   },
   inputWrapper: {
     width: '100%',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    elevation: 4,
     marginBottom: 20,
   },
   inputContainer: {
     width: '100%',
     borderWidth: 1,
     borderColor: 'white',
-    borderRadius: 5,
+    borderRadius: 10,
     padding: 10,
     backgroundColor: 'white',
-  },
-  buttonContainer: {
-    width: '100%',
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -114,6 +101,25 @@ const styles = StyleSheet.create({
   backIcon: {
     fontSize: 25,
     color: '#AFB1B6',
+  },
+  confirmButton: {
+    backgroundColor: '#F2C94C',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
 
