@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-const ProductBox = ({ initialName, userName, price, expDate, destination }) => {
+const ProductDetailsContainer = ({ initialName, userName, price, expDate, destination }) => {
   const navigation = useNavigation();
 
   const navigateToScreen = () => {
@@ -30,9 +30,6 @@ const ProductBox = ({ initialName, userName, price, expDate, destination }) => {
         <View style={styles.text2Wrap}>
           <Text style={styles.profileText2}>Rp {price} / Month</Text>
         </View>
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate("CheckoutProduct")}>
-        <Text style={styles.buttonText}>Detail</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -103,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductBox;
+export default ProductDetailsContainer;
