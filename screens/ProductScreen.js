@@ -17,6 +17,7 @@ import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import ProductBox from "../components/ProductBox";
+import { productData } from "../components/product/productData";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
@@ -34,50 +35,6 @@ export default function ProductScreen() {
   );
 
   const [notification, setNotification] = useState(100);
-
-  const productData = [
-    {
-      id: 1,
-      initialName: "20",
-      userName: "Personal Plan",
-      price: "69.420",
-      expDate: "20 Mbps",
-      destination: "Home",
-    },
-    {
-      id: 2,
-      initialName: "150",
-      userName: "Business Plan",
-      price: "123.45",
-      expDate: "150 Mbps",
-      destination: "Point",
-    },
-    {
-      id: 3,
-      initialName: "150",
-      userName: "Business Plan",
-      price: "123.45",
-      expDate: "150 Mbps",
-      destination: "Point",
-    },
-    {
-      id: 4,
-      initialName: "150",
-      userName: "Business Plan",
-      price: "123.45",
-      expDate: "150 Mbps",
-      destination: "Point",
-    },
-    {
-      id: 5,
-      initialName: "150",
-      userName: "Business Plan",
-      price: "123.45",
-      expDate: "150 Mbps",
-      destination: "Point",
-    },
-    // Add more objects for additional product data
-  ];
 
   // const [userData, setUserData] = useState([]);
   // const [packageData, setPackageData] = useState([]);
@@ -143,8 +100,7 @@ export default function ProductScreen() {
           />
           </View>
           <Text style={styles.headerText}>Groovy{"\n"}Product</Text>
-          <View style={styles.topView}>
-          </View>
+          <View style={styles.topView}></View>
           <ScrollView style={styles.scrollViewContainer2}>
             <TouchableOpacity onPress={()=> navigation.navigate("FormCheckCoverage")}>
             <View style={[styles.screenContainer]}>

@@ -2,6 +2,7 @@ import { StyleSheet, FlatList, Text, View, Image, Dimensions, StatusBar } from '
 import React, {Component} from 'react'
 import logo from '../assets/img/logo.png'
 import Lottie from "lottie-react-native";
+import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ServiceButton from '../components/ServiceButton';
 import CarouselCards from '../components/CarouselCards';
@@ -9,27 +10,28 @@ import CarouselCards from '../components/CarouselCards';
 const {height, width} = Dimensions.get('window');
 
 const buttons = [
-    { id: '1', label: 'Token Listrik', imageSource: logo },
-    { id: '2', label: 'Pulsa', imageSource: logo },
-    { id: '3', label: 'Food & Beverage', imageSource: logo },
-    { id: '4', label: 'More', imageSource: logo },
-    // Add more buttons with different image sources
-  ];
+  { id: '1', label: 'Token', imageSource: logo },
+  { id: '2', label: 'Pulsa', imageSource: logo },
+  { id: '3', label: 'Food & Beverage', imageSource: logo },
+  { id: '4', label: 'More', imageSource: logo },
+  // Add more buttons with different image sources
+];
 
-  const renderItem = ({ item, index }) => (
-  <View style={[
-    styles.buttonWrapper
-  ]}>
-    <ServiceButton
-      label={item.label}
-      imageSource={item.imageSource}
-      onPress={() => console.log(item.label)}
-    />
-  </View>
-  );
 
 
 export default function PointScreen() {
+  const navigation = useNavigation();
+  const renderItem = ({ item, index }) => (
+    <View style={[
+      styles.buttonWrapper
+    ]}>
+    <ServiceButton
+    label={item.label}
+        imageSource={item.imageSource}
+        onPress={() => navigation.navigate("ServiceNavigator", { screen: item.label })}
+        />
+        </View>
+        );
   return (
     <View>
     <Lottie
@@ -69,8 +71,7 @@ export default function PointScreen() {
           position: "absolute",
           right: -130,
           top: -10,
-        }}
-        />
+        }}        />
       </View>
     </View>
     <Text style={styles.serviceText}>Groovy Point Services</Text>
