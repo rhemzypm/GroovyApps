@@ -20,6 +20,7 @@ import CarouselCard from "./components/CarouselCards";
 import FormCheckCoverage from "./screens/FormCheckCoverage";
 import CheckoutProduct from "./screens/CheckoutProduct";
 import Andalpost from "./screens/Andalpost";
+import PasscodePage from "./screens/PasscodePage";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -80,6 +81,7 @@ function StackNavigator() {
     <Stack.Screen name="Carousel" component={CarouselCard} />
     <Stack.Screen name="FormCheckCoverage" component={FormCheckCoverage} />
     <Stack.Screen name="CheckoutProduct" component={CheckoutProduct} />
+    <Stack.Screen name="PasscodePage" component={PasscodePage} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
