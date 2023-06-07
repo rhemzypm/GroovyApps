@@ -7,48 +7,68 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native";
-import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
-import api from "../../api";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import tw from "tailwind-react-native-classnames";
+
 import TokenBox from "../../components/services/TokenBox";
 import { TokenData } from "../../components/services/TokenData";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
+import api from "../../api";
+
 export default function Token() {
   const { top } = useSafeAreaInsets();
-  const token = AsyncStorage.getItem("token");
+
   const navigation = useNavigation();
 
   const [notification, setNotification] = useState(100);
+  // const [data, setData] = useState([]);
+
+  // const getVouchers = async () => {
+  // const token = await AsyncStorage.getItem("token");
+
+  //   await api
+  //     .get("/vouchers/", { headers: { Authorization: `Bearer ${token}` } })
+  //     .then((res) => {
+  //       console.log(res.data);
+
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, err.message);
+  //     });
+  // };
+
+  useEffect(() => {
+    // getVouchers();
+  }, []);
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
-          <Text style={styles.headerText}>Token Listrik</Text>
-          <View style={styles.topView}>
-          </View>
-          <ScrollView style={styles.scrollViewContainer2}>
-            {TokenData.map((data) => (
-            <TokenBox
-              key={data.id}
-              initialName={data.initialName}
-              userName={data.userName}
-              price={data.price}
-              expDate={data.expDate}
-              destination={data.destination}
-            />
-            ))}
-            
-            </ScrollView>
-            <View style={styles.bottomView}></View>
-      </SafeAreaView>
-      );
-    }
+      <Text style={styles.headerText}>Token Listrik</Text>
+      <View style={styles.topView}></View>
+      <ScrollView style={styles.scrollViewContainer2}>
+        {TokenData.map((data) => (
+          <TokenBox
+            key={data.id}
+            initialName={data.initialName}
+            userName={data.userName}
+            price={data.price}
+            expDate={data.expDate}
+            destination={data.destination}
+          />
+        ))}
+      </ScrollView>
+      <View style={styles.bottomView}></View>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
   topView: {
