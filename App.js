@@ -19,6 +19,8 @@ import MessageScreen from "./screens/messages/MessageScreen";
 import CarouselCard from "./components/CarouselCards";
 import FormCheckCoverage from "./screens/FormCheckCoverage";
 import CheckoutProduct from "./screens/CheckoutProduct";
+import Token from "./screens/services/Token";
+import ServiceTabBar from "./components/services/ServiceTabBar";
 import Andalpost from "./screens/Andalpost";
 import PasscodePage from "./screens/PasscodePage";
 const Stack = createNativeStackNavigator();
@@ -64,6 +66,27 @@ function TabNavigator() {
   );
 }
 
+function ServiceNavigator() {
+  return (
+    <Tab.Navigator
+      tabBar={(props) => <ServiceTabBar {...props} />}
+      initialRouteName="Home"
+      screenOptions={{ headerShown: false }}
+    >
+      <Tab.Screen
+        name="Token"
+        component={Token}
+        initialParams={{ icon: "home" }}
+      />
+      <Tab.Screen
+        name="Point"
+        component={PointScreen}
+        initialParams={{ icon: "point" }}
+      />
+    </Tab.Navigator>
+  );
+}
+
 function StackNavigator() {
   return (
     <Stack.Navigator
@@ -85,6 +108,11 @@ function StackNavigator() {
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
+          options={{ headerShown: false}}
+        />
+    <Stack.Screen
+          name="ServiceNavigator"
+          component={ServiceNavigator}
           options={{ headerShown: false}}
         />
     </Stack.Navigator>

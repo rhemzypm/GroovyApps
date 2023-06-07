@@ -43,11 +43,11 @@ export default function Home() {
     require("../assets/img/G-Point-3.png")
   );
 
-  const [initialName, setInitialName] = useState("TP");
-  const [userName, setUserName] = useState("Rhemzy");
-  const [balance, setBalance] = useState("69.420");
+  const [initialName, setInitialName] = useState("RZ");
+  const [userName, setUserName] = useState("Your Groovy Subscription Status");
+  const [balance, setBalance] = useState("Groovy Paket Hemat");
   const [point, setPoint] = useState("60");
-  const [expDate, setExpDate] = useState("28/04/2022");
+  const [expDate, setExpDate] = useState("Next Payment : 09/10/2023");
 
   const [userData, setUserData] = useState([]);
 
@@ -103,6 +103,7 @@ export default function Home() {
         <Image resizeMode="cover" style={styles.imgLogo} source={imgLogo} />
         <Text style={styles.point}>{point} Points</Text>
       </View>
+      <View style={styles.topView}></View>
       <ScrollView style={styles.scrollViewContainer}>
         <View style={[styles.screenContainer]}>
           <View style={[styles.boxContainer]}>
@@ -112,8 +113,8 @@ export default function Home() {
               </View>
               <View>
                 <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>Rp {balance}</Text>
-                <Text style={styles.profileText3}>Active Until {expDate}</Text>
+                <Text style={styles.profileText2}>{balance}</Text>
+                <Text style={styles.profileText3}>{expDate}</Text>
               </View>
             </View>
           </View>
@@ -131,6 +132,7 @@ export default function Home() {
         <View>
         </View>
       </ScrollView>
+      <View style={styles.bottomView}></View>
     </SafeAreaView>
   );
 }
@@ -156,7 +158,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollViewContainer: {
-    top: 20,
+    // top: 20,
+    top: 80,
   },
   screenContainer: {
     borderTopLeftRadius: 10,
@@ -170,7 +173,8 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginRight: 25,
     alignItems: "center",
-    top: -30,
+    // top: -30,
+    top: 50,
   },
   andalContainer: {
     marginHorizontal: 25,
@@ -267,5 +271,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     left: 24,
     bottom: 20,
+  },
+  topView: {
+    // marginTop: 30,
+    height: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottomView: {
+    marginBottom: 150,
+    height: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

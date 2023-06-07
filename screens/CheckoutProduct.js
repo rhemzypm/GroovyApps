@@ -9,8 +9,15 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { useSafeAreaInsets, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import ProductBox from "../components/ProductBox";
 import ProductDetailsContainer from "../components/ProductDetailsContainer";
+
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import ProductDetail from "../components/ProductDetail";
 
 const productData = [
@@ -27,6 +34,14 @@ const productData = [
 
 const CheckoutProduct = () => {
   const navigation = useNavigation();
+
+  // const getProductData = async () => {
+  //   const token = await AsyncStorage.getItem("token");
+  // };
+
+  useEffect(() => {
+    // getProductData();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -62,6 +77,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    paddingHorizontal: 16,
+  },
+  description: {
+    marginBottom: 16,
+    fontSize: 16,
+    textAlign: "center",
   },
   headerText: {
     fontSize: 30,
