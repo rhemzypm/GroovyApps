@@ -1,11 +1,23 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-const TokenBox = ({ initialName, userName, price, expDate, destination }) => {
+const TokenBox = ({
+  initialName,
+  voucherName,
+  voucherPrice,
+  expDate,
+  destination,
+}) => {
   const navigation = useNavigation();
 
   const navigateToScreen = () => {
@@ -20,17 +32,17 @@ const TokenBox = ({ initialName, userName, price, expDate, destination }) => {
         </View>
         <View>
           <View style={styles.boxMargin}>
-            <Text style={styles.profileText}>{userName}</Text>
+            <Text style={styles.profileText}>{voucherName}</Text>
           </View>
           <View>
             <Text style={styles.profileText3}>Discount {expDate} </Text>
-            <Text style={styles.profileText3}>Min. Buy Rp {price} </Text>
+            <Text style={styles.profileText3}>Min. Buy Rp {voucherPrice} </Text>
           </View>
-          </View>
-          </View>
-          <TouchableOpacity style={styles.button} onPress={navigateToScreen}>
-            <Text style={styles.buttonText}>Detail</Text>
-          </TouchableOpacity>
+        </View>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={navigateToScreen}>
+        <Text style={styles.buttonText}>Detail</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -58,7 +70,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontWeight: "bold",
     marginBottom: 4,
-    marginLeft: -4, 
+    marginLeft: -4,
     fontSize: 14,
   },
   text2Wrap: {
