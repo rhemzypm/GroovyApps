@@ -7,19 +7,47 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import api from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import tw from "tailwind-react-native-classnames";
+
 import ServiceBox from "../../components/services/ServiceBox";
 import { TokenData } from "../../components/services/TokenData";
 
 const screenWidth = Dimensions.get("window").width;
 
+import api from "../../api";
+
+import api from "../../api";
+
 export default function Token() {
   const { top } = useSafeAreaInsets();
-  const token = AsyncStorage.getItem("token");
+
+  // const [data, setData] = useState([]);
+
+  // const getVouchers = async () => {
+  // const token = await AsyncStorage.getItem("token");
+
+  //   await api
+  //     .get("/vouchers/", { headers: { Authorization: `Bearer ${token}` } })
+  //     .then((res) => {
+  //       console.log(res.data);
+
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, err.message);
+  //     });
+  // };
+
+  useEffect(() => {
+    // getVouchers();
+  }, []);
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>

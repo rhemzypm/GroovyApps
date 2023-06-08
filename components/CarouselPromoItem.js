@@ -18,7 +18,7 @@ const CarouselPromoItem = ({ item, index }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "black",
+    backgroundColor: "white", //ini background color punya what's new
     borderRadius: 10,
     width: ITEM_WIDTH,
     paddingBottom: 15,
