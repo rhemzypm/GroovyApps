@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Dimensions, FlatList, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MotiView } from 'moti';
 import randomColor from 'randomcolor';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width } = Dimensions.get('window');
 const pinLength = 4;
@@ -79,6 +80,54 @@ function DialPad({ onPress }) {
 
 export default function PasscodePage() {
   const [code, setCode] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    checkPin();
+  }, []);
+
+  const checkPin = async () => {
+    try {
+      const storedPin = await AsyncStorage.getItem('pin');
+      if (storedPin !== null) {
+        // Pin telah tersimpan sebelumnya
+        // Lakukan pengecekan saat ini
+        if (storedPin === '1234' && code.join('') === storedPin) {
+          // Jika pin yang dimasukkan benar, lakukan sesuatu
+          console.log('Pin benar!');
+        } else {
+          // Jika pin yang dimasukkan salah, tampilkan pesan kesalahan
+          setErrorMessage('Pin salah!');
+          setTimeout(() => {
+            setErrorMessage('');
+          }, 3000);
+        }
+      } else {
+        // Pin belum tersimpan sebelumnya
+        // Lakukan penanganan kasus ini sesuai kebutuhan aplikasi Anda
+        console.log('Pin belum tersimpan');
+      }
+    } catch (error) {
+      // Penanganan kesalahan saat mengambil pin dari AsyncStorage
+      console.log('Terjadi kesalahan:', error);
+    }
+  };
+  
+
+  
+
+  const handlePress = async (item) => {
+    if (item === 'del') {
+      setCode((prev) => prev.slice(0, prev.length - 1));
+    } else if (typeof item === 'number') {
+      if (code.length === pinLength) return;
+      setCode((prev) => [...prev, item]);
+      if (code.length + 1 === pinLength) {
+        // Jika panjang pin yang dimasukkan mencapai panjang pin yang diharapkan
+        await checkPin();
+      }
+    }
+  };
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.primary }}>
@@ -114,16 +163,10 @@ export default function PasscodePage() {
           );
         })}
       </View>
-      <DialPad
-        onPress={(item) => {
-          if (item === 'del') {
-            setCode((prev) => prev.slice(0, prev.length - 1));
-          } else if (typeof item === 'number') {
-            if (code.length === pinLength) return;
-            setCode((prev) => [...prev, item]);
-          }
-        }}
-      />
+      {errorMessage ? (
+        <Text style={{ color: 'red', marginBottom: 10 }}>{errorMessage}</Text>
+      ) : null}
+      <DialPad onPress={handlePress} />
     </View>
   );
 }
