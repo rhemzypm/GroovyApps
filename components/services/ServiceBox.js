@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-const TokenBox = ({ initialName, userName, price, expDate, destination }) => {
+const ServiceBox = ({ initialName, Brand, Min, Discount, destination }) => {
   const navigation = useNavigation();
 
   const navigateToScreen = () => {
@@ -20,11 +20,11 @@ const TokenBox = ({ initialName, userName, price, expDate, destination }) => {
         </View>
         <View>
           <View style={styles.boxMargin}>
-            <Text style={styles.profileText}>{userName}</Text>
+            <Text style={styles.profileText}>{Brand}</Text>
           </View>
           <View>
-            <Text style={styles.profileText3}>Discount {expDate} </Text>
-            <Text style={styles.profileText3}>Min. Buy Rp {price} </Text>
+            <Text style={styles.profileText3}>{Discount} </Text>
+            <Text style={styles.profileText3}>{Min} </Text>
           </View>
           </View>
           </View>
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TokenBox;
+export default ServiceBox;

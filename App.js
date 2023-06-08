@@ -9,6 +9,7 @@ import InputOTP from "./components/InputOTP";
 import Register from "./screens/Register";
 import BottomNav from "./components/BottomNav";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import HomeScreen from "./screens/HomeScreen";
 import PointScreen from "./screens/PointScreen";
 import FAQScreen from "./screens/FAQScreen";
@@ -19,9 +20,11 @@ import MessageScreen from "./screens/messages/MessageScreen";
 import CarouselCard from "./components/CarouselCards";
 import FormCheckCoverage from "./screens/FormCheckCoverage";
 import CheckoutProduct from "./screens/CheckoutProduct";
-import Token from "./screens/services/Token";
-import ServiceTabBar from "./components/services/ServiceTabBar";
 import Andalpost from "./screens/Andalpost";
+
+import ServiceNavigator from "./components/navigator/ServiceNavigator";
+
+const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -65,26 +68,52 @@ function TabNavigator() {
   );
 }
 
-function ServiceNavigator() {
-  return (
-    <Tab.Navigator
-      tabBar={(props) => <ServiceTabBar {...props} />}
-      initialRouteName="Home"
-      screenOptions={{ headerShown: false }}
-    >
-      <Tab.Screen
-        name="Token"
-        component={Token}
-        initialParams={{ icon: "home" }}
-      />
-      <Tab.Screen
-        name="Point"
-        component={PointScreen}
-        initialParams={{ icon: "point" }}
-      />
-    </Tab.Navigator>
-  );
-}
+// function ServiceNavigator() {
+//   return (
+//     <Tab.Navigator
+//       tabBar={(props) => <ServiceTabBar {...props} />}
+//       initialRouteName="Token"
+//       screenOptions={{ headerShown: false }}
+//     >
+//       <Tab.Screen
+//         name="Token"
+//         component={Token}
+//         initialParams={{ icon: "home" }}
+//       />
+//       <Tab.Screen
+//         name="Point"
+//         component={PointScreen}
+//         initialParams={{ icon: "point" }}
+//       />
+//     </Tab.Navigator>
+//   );
+// }
+
+// function ServiceNavigator() {
+//   return (
+//     <TopTab.Navigator
+//       screenOptions={{
+//         tabBarShowIcon: true,
+//         tabBarScrollEnabled: true,
+//         tabBarItemStyle: { width: 'auto' },
+//         tabBarIndicatorStyle: { backgroundColor: '#f79944' },
+//       }}
+//       initialRouteName="Home"
+//     >
+//       <TopTab.Screen
+//         name="Token"
+//         component={Token}
+//         initialParams={{ icon: "home" }}
+//       />
+//       <TopTab.Screen
+//         name="Point"
+//         component={PointScreen}
+//         initialParams={{ icon: "point" }}
+//       />
+//       {/* Add more Tab.Screen components for additional buttons */}
+//     </TopTab.Navigator>
+//   );
+// }
 
 function StackNavigator() {
   return (

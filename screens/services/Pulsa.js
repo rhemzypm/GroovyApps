@@ -13,21 +13,21 @@ import tw from "tailwind-react-native-classnames";
 import api from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ServiceBox from "../../components/services/ServiceBox";
-import { TokenData } from "../../components/services/TokenData";
+import { PulsaData } from "../../components/services/PulsaData";
 
 const screenWidth = Dimensions.get("window").width;
 
-export default function Token() {
+export default function Pulsa() {
   const { top } = useSafeAreaInsets();
   const token = AsyncStorage.getItem("token");
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
-          <Text style={styles.headerText}>Token Listrik</Text>
+          <Text style={styles.headerText}>Pulsa</Text>
           <View style={styles.topView}>
           </View>
           <ScrollView style={styles.scrollViewContainer2}>
-            {TokenData.map((data) => (
+            {PulsaData.map((data) => (
             <ServiceBox
               key={data.id}
               initialName={data.initialName}
