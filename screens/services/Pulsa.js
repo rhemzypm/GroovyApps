@@ -7,55 +7,27 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 import api from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import tw from "tailwind-react-native-classnames";
-
 import ServiceBox from "../../components/services/ServiceBox";
-import { TokenData } from "../../components/services/TokenData";
+import { PulsaData } from "../../components/services/PulsaData";
 
 const screenWidth = Dimensions.get("window").width;
 
-import api from "../../api";
-
-import api from "../../api";
-
-export default function Token() {
+export default function Pulsa() {
   const { top } = useSafeAreaInsets();
-
-  // const [data, setData] = useState([]);
-
-  // const getVouchers = async () => {
-  // const token = await AsyncStorage.getItem("token");
-
-  //   await api
-  //     .get("/vouchers/", { headers: { Authorization: `Bearer ${token}` } })
-  //     .then((res) => {
-  //       console.log(res.data);
-
-  //       setData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, err.message);
-  //     });
-  // };
-
-  useEffect(() => {
-    // getVouchers();
-  }, []);
+  const token = AsyncStorage.getItem("token");
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
-          <Text style={styles.headerText}>Token Listrik</Text>
+          <Text style={styles.headerText}>Pulsa</Text>
           <View style={styles.topView}>
           </View>
           <ScrollView style={styles.scrollViewContainer2}>
-            {TokenData.map((data) => (
+            {PulsaData.map((data) => (
             <ServiceBox
               key={data.id}
               initialName={data.initialName}

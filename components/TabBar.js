@@ -7,7 +7,7 @@ import pointSelectIcon from '../assets/img/G-Point-3.png';
 const {width} = Dimensions.get('screen');
 
 export default function TabBar ({state, navigation}) {
-    const [selected, setSelected] = useState('Home');
+    const [selected, setSelected] = useState(state.routes[state.index].name);
     const [pointIconSource, setpointIconSource] = useState(pointIcon);
     const {routes} = state;
     const renderColor = currentTab => (currentTab === selected ? '#f79944' : 'black');

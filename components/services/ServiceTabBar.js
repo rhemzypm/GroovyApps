@@ -6,21 +6,21 @@ import pointSelectIcon from "../../assets/img/G-Point-3.png";
 
 const { width } = Dimensions.get("screen");
 
-export default function ServiceTabBar({ state, navigation }) {
-  const [selected, setSelected] = useState(selected);
-  const [pointIconSource, setpointIconSource] = useState(pointIcon);
-  const { routes } = state;
-  const renderColor = (currentTab) =>
-    currentTab === selected ? "#f79944" : "black";
-  const handlePress = (activeTab, index) => {
-    if (state.index !== index) {
-      setSelected(activeTab);
-      if (activeTab === "Point") {
-        setpointIconSource(pointSelectIcon);
-      } else {
-        setpointIconSource(pointIcon);
-      }
-      navigation.navigate(activeTab);
+export default function ServiceTabBar ({state, navigation}) {
+    const [selected, setSelected] = useState(state.routes[state.index].name);
+    const [pointIconSource, setpointIconSource] = useState(pointIcon);
+    const {routes} = state;
+    const renderColor = currentTab => (currentTab === selected ? '#f79944' : 'black');
+    const handlePress = (activeTab, index) => {
+        if(state.index !== index){
+            setSelected(activeTab);
+            if (activeTab === 'Point') {
+              setpointIconSource(pointSelectIcon);
+            } else {
+              setpointIconSource(pointIcon);
+            }
+            navigation.navigate(activeTab);
+        }
     }
   };
 
@@ -39,7 +39,7 @@ export default function ServiceTabBar({ state, navigation }) {
       </View>
     </View>
   );
-}
+
 
 const styles = StyleSheet.create({
   container: {
