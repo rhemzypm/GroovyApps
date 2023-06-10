@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Dimensions, FlatList, Text, TouchableOpacity, View, Alert } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MotiView } from 'moti';
 import randomColor from 'randomcolor';
 
@@ -79,28 +79,31 @@ function DialPad({ onPress }) {
 
 export default function PasscodePage() {
   const [code, setCode] = useState([]);
-
-  const validatePasscode = () => {
-    const passcode = code.join('');
-    const validPasscode = '5678';
-    if (passcode === validPasscode) {
-      Alert.alert('Passcode valid');
-    } else {
-      Alert.alert('Passcode salah', 'Silakan coba lagi.');
-      setCode([]);
+  
+  useEffect(() => {
+    const validatePasscode = () => {
+      const passcode = code.join('');
+      const validPasscode = '5678';
+      console.log(`passcode: ${passcode}`);
+      console.log(`validPasscode: ${validPasscode}`);
+      if (passcode === validPasscode) {
+        Alert.alert('Passcode valid');
+      } else {
+        Alert.alert('Passcode salah', 'Silakan coba lagi.');
+        setCode([]);
+      }
+    };
+    
+    if (code.length === pinLength) {
+      validatePasscode();
     }
-  };
-
+  }, [code]);
+  
   const handlePress = (item) => {
     if (item === 'del') {
       setCode((prev) => prev.slice(0, prev.length - 1));
     } else if (typeof item === 'number') {
-      if (code.length === pinLength) return;
       setCode((prev) => [...prev, item]);
-
-      if (code.length + 1 === pinLength) {
-        validatePasscode();
-      }
     }
   };
 
@@ -132,7 +135,7 @@ export default function PasscodePage() {
               }}
               transition={{
                 type: 'timing',
-                duration: 200,
+                duration: 100,
               }}
             />
           );
