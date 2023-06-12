@@ -46,7 +46,7 @@ const FAQScreen = () => {
     },
   ];
 
-  const [faqData, setFaqData] = useState([]);
+  // const [faqData, setFaqData] = useState([]);
 
   const getFaqData = async () => {
     const token = await AsyncStorage.getItem("token");
