@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Dimensions, FlatList, Text, TouchableOpacity, View, Alert } from 'react-native';
+import { Dimensions, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { MotiView } from 'moti';
 import randomColor from 'randomcolor';
@@ -79,7 +79,9 @@ function DialPad({ onPress }) {
 
 export default function PasscodePage() {
   const [code, setCode] = useState([]);
-  
+  const [errorMessage, setErrorMessage] = useState('');
+  const errorColor = '#FF0000'; 
+
   useEffect(() => {
     const validatePasscode = () => {
       const passcode = code.join('');
@@ -87,18 +89,19 @@ export default function PasscodePage() {
       console.log(`passcode: ${passcode}`);
       console.log(`validPasscode: ${validPasscode}`);
       if (passcode === validPasscode) {
-        Alert.alert('Passcode valid');
+        setErrorMessage('Passcode valid');
+        setCode([]); // Reset code
       } else {
-        Alert.alert('Passcode salah', 'Silakan coba lagi.');
-        setCode([]);
+        setErrorMessage('Passcode salah. Silakan coba lagi.');
+        setCode([]); // Reset code
       }
     };
-    
+
     if (code.length === pinLength) {
       validatePasscode();
     }
   }, [code]);
-  
+
   const handlePress = (item) => {
     if (item === 'del') {
       setCode((prev) => prev.slice(0, prev.length - 1));
@@ -109,6 +112,20 @@ export default function PasscodePage() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.primary }}>
+      {errorMessage ? (
+        <View style={{ marginTop: 20, marginBottom: pinSize * 2 }}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: errorColor,
+              textAlign: 'center',
+            }}
+          >
+            {errorMessage}
+          </Text>
+        </View>
+      ) : null}
       <View
         style={{
           flexDirection: 'row',
