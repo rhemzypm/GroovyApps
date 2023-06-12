@@ -1,11 +1,20 @@
-import React from "react";
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { TokenData } from "../../../components/services/TokenData";
 import { PulsaData } from "../../../components/services/PulsaData";
 import { FoodData } from "../../../components/services/FoodData";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from '@expo/vector-icons';
-import Lottie from 'lottie-react-native';
+import { AntDesign } from "@expo/vector-icons";
+import Lottie from "lottie-react-native";
+
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -13,19 +22,18 @@ const RewardDetail = ({ route }) => {
   // Extract the id from route params
   const { id } = route.params;
   const navigation = useNavigation();
-  const handleBackButton = () => {
-    navigation.navigate('ServiceNavigator');
-  };
+
+  const [data, setData] = useState([]);
 
   // Determine the data source based on the ID prefix
   const dataPrefix = id.toString().charAt(0);
   let selectedItem;
 
-  if (dataPrefix === '1') {
+  if (dataPrefix === "1") {
     selectedItem = TokenData.find((item) => item.id === id);
-  } else if (dataPrefix === '2') {
+  } else if (dataPrefix === "2") {
     selectedItem = PulsaData.find((item) => item.id === id);
-  } else if (dataPrefix === '3') {
+  } else if (dataPrefix === "3") {
     selectedItem = FoodData.find((item) => item.id === id);
   }
 
@@ -39,7 +47,33 @@ const RewardDetail = ({ route }) => {
   }
 
   // Access the properties of the selected item
-  const { initialName, Brand, Min, Discount, description, deadline, GPoint } = selectedItem;
+  const { initialName, Brand, Min, Discount, description, deadline, GPoint } =
+    selectedItem;
+
+  const getVoucherDetail = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    await api
+      .get(`/vouchers/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, err.message);
+      });
+  };
+
+  const handleBackButton = () => {
+    navigation.navigate("ServiceNavigator");
+  };
+
+  useEffect(() => {
+    // getVoucherDetail();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -53,21 +87,26 @@ const RewardDetail = ({ route }) => {
         <View style={styles.imgProfile}>
           <Text style={styles.imgProfileText}>{initialName}</Text>
         </View>
-        <Text style={styles.title}>{Brand} {Min}</Text>
+        <Text style={styles.title}>
+          {Brand} {Min}
+        </Text>
         <Text style={styles.date}>Valid Until {deadline}</Text>
         <View style={styles.line}></View>
         <Text style={styles.desc}>{description}</Text>
         <Text style={styles.text}>{GPoint} Groovy Point</Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Redeem')}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Redeem")}
+      >
         <Text style={styles.buttonText}>Redeem</Text>
       </TouchableOpacity>
       <View style={styles.lottie}>
-        <Lottie 
-          source={require('../../../assets/img/rewardecor.json')} 
+        <Lottie
+          source={require("../../../assets/img/rewardecor.json")}
           autoPlay
           loop={false}
-          style={{}} 
+          style={{}}
         />
       </View>
     </View>
@@ -88,13 +127,13 @@ const styles = {
     width: 180,
     height: 450,
   },
-  detail:{
+  detail: {
     width: screenWidth * 0.85,
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
-  header:{
+  header: {
     fontSize: 25,
     marginBottom: 20,
   },
@@ -113,7 +152,7 @@ const styles = {
     marginBottom: 20,
     elevation: 5,
   },
-    imgProfileText: {
+  imgProfileText: {
     color: "white",
     fontSize: 30,
   },
@@ -137,7 +176,7 @@ const styles = {
     width: "100%",
     marginBottom: 10,
   },
-  back:{
+  back: {
     position: "absolute",
     top: 5,
     left: 25,
