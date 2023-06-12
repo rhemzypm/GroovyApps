@@ -5,11 +5,11 @@ import { useNavigation } from "@react-navigation/native";
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-const ServiceBox = ({ initialName, Brand, Min, Discount, destination }) => {
+const ServiceBox = ({ initialName, Brand, Min, Discount, destination, id, deadline, GPoint }) => {
   const navigation = useNavigation();
 
   const navigateToScreen = () => {
-    navigation.navigate(destination);
+    navigation.navigate(destination, { id }); // Pass the id as a route parameter
   };
 
   return (
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 10,
+    elevation: 5,
   },
   buttonText: {
     color: "black",

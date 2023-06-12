@@ -22,8 +22,9 @@ import FormCheckCoverage from "./screens/FormCheckCoverage";
 import CheckoutProduct from "./screens/CheckoutProduct";
 import Andalpost from "./screens/Andalpost";
 import PasscodePage from "./screens/PasscodePage";
-
+import RewardDetail from "./screens/services/Detail/RewardDetail";
 import ServiceNavigator from "./components/navigator/ServiceNavigator";
+import Redeem from "./screens/services/Detail/Redeem";
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -134,6 +135,8 @@ function StackNavigator() {
     <Stack.Screen name="FormCheckCoverage" component={FormCheckCoverage} />
     <Stack.Screen name="CheckoutProduct" component={CheckoutProduct} />
     <Stack.Screen name="PasscodePage" component={PasscodePage} />
+    <Stack.Screen name="RewardDetail" component={RewardDetail} />
+    <Stack.Screen name="Redeem" component={Redeem} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}

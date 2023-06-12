@@ -17,26 +17,26 @@ const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 // const uri = `http://10.10.28.139:5000/v1/ga`;
 
 const Profile = () => {
-  // const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   // get user data
-  // const getUserData = async () => {
-  //   const token = await AsyncStorage.getItem("token");
+  const getUserData = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  //   if (token) {
-  //     await api
-  //       .get("/users/me", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         setUserData(res.data.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err, err.message);
-  //       });
-  //   }
-  // };
+    if (token) {
+      await api
+        .get("/users/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setUserData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
 
   useEffect(() => {
     // getUserData();

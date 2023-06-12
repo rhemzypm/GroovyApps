@@ -35,9 +35,11 @@ const productData = [
 const CheckoutProduct = () => {
   const navigation = useNavigation();
 
-  // const getProductData = async () => {
-  //   const token = await AsyncStorage.getItem("token");
-  // };
+  const getProductData = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    // code here
+  };
 
   useEffect(() => {
     // getProductData();

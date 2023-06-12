@@ -48,22 +48,22 @@ const FAQScreen = () => {
 
   // const [faqData, setFaqData] = useState([]);
 
-  // const getFaqData = async () => {
-  //   const token = await AsyncStorage.getItem("token");
+  const getFaqData = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  //   if (token) {
-  //     await api
-  //       .get("/faqs/", { headers: { Authorization: `Bearer ${token}` } })
-  //       .then((res) => {
-  //         console.log(res.data);
+    if (token) {
+      await api
+        .get("/faqs/", { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => {
+          console.log(res.data);
 
-  //         setFaqData(res.data.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err, err.message);
-  //       });
-  //   }
-  // };
+          setFaqData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
 
   useEffect(() => {
     // getFaqData();

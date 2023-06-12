@@ -20,7 +20,7 @@ const FormCheckCoverage = () => {
   };
 
   const handleFormSubmit = async () => {
-    // const token = await AsyncStorage.getItem("token");
+    const token = await AsyncStorage.getItem("token");
 
     console.log("Data Form:");
     console.log("Lokasi:", location);
@@ -91,7 +91,10 @@ const FormCheckCoverage = () => {
           style={styles.inputContainer}
         />
       </View>
-      <TouchableOpacity style={[styles.confirmButton, styles.shadow]} onPress={handleFormSubmit}>
+      <TouchableOpacity
+        style={[styles.confirmButton, styles.shadow]}
+        onPress={handleFormSubmit}
+      >
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </View>
@@ -141,19 +144,19 @@ const styles = StyleSheet.create({
     color: "#AFB1B6",
   },
   confirmButton: {
-    backgroundColor: '#F2C94C',
+    backgroundColor: "#F2C94C",
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: "center",
+    fontWeight: "bold",
   },
   shadow: {
-    shadowColor: 'black',
+    shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
     shadowRadius: 4,

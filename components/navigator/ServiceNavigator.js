@@ -2,6 +2,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import Token from '../../screens/services/Token';
 import Pulsa from '../../screens/services/Pulsa';
+import Food from '../../screens/services/Food';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -47,6 +48,10 @@ function ServiceNavigator() {
         <TopTab.Screen
           name="Pulsa"
           component={Pulsa}
+        />
+        <TopTab.Screen
+          name="Food"
+          component={Food}
         />
         {/* Add more Tab.Screen components for additional buttons */}
       </TopTab.Navigator>

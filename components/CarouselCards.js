@@ -13,23 +13,23 @@ const CarouselCards = () => {
 
   // const [data, setData] = useState([]);
 
-  // const getPost = async () => {
-  //   const token = await AsyncStorage.getItem("token");
+  const getPost = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  //   if (token) {
-  //     await api
-  //       .get("/posts/", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         setData(res.data.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err, err.message);
-  //       });
-  //   }
-  // };
+    if (token) {
+      await api
+        .get("/posts/", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
 
   useEffect(() => {
     // getPost();
