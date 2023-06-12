@@ -11,7 +11,7 @@ import data from "./data";
 const CarouselCards = () => {
   const isCarousel = React.useRef(null);
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   const getPost = async () => {
     const token = await AsyncStorage.getItem("token");
