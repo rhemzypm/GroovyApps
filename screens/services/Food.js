@@ -15,13 +15,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import tw from "tailwind-react-native-classnames";
 
 import ServiceBox from "../../components/services/ServiceBox";
-import { PulsaData } from "../../components/services/PulsaData";
+import { FoodData } from "../../components/services/FoodData";
 
 const screenWidth = Dimensions.get("window").width;
 
 import api from "../../api";
 
-export default function Pulsa() {
+export default function Food() {
   const { top } = useSafeAreaInsets();
 
   // const [data, setData] = useState([]);
@@ -47,11 +47,11 @@ export default function Pulsa() {
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
-          <Text style={styles.headerText}>Pulsa</Text>
+          <Text style={styles.headerText}>Food & Beverage</Text>
           <View style={styles.topView}>
           </View>
           <ScrollView style={styles.scrollViewContainer2}>
-            {PulsaData.map((data) => (
+            {FoodData.map((data) => (
             <ServiceBox
               key={data.id}
               initialName={data.initialName}

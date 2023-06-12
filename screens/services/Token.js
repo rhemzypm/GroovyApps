@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import tw from "tailwind-react-native-classnames";
-import api from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import tw from "tailwind-react-native-classnames";
 
@@ -20,8 +18,6 @@ import ServiceBox from "../../components/services/ServiceBox";
 import { TokenData } from "../../components/services/TokenData";
 
 const screenWidth = Dimensions.get("window").width;
-
-import api from "../../api";
 
 import api from "../../api";
 
@@ -63,6 +59,10 @@ export default function Token() {
               Min={data.Min}
               Discount={data.Discount}
               destination={data.destination}
+              description={data.description}
+              id={data.id}
+              deadline={data.deadline}
+              GPoint={data.GPoint}
             />
             ))}
             

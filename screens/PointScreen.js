@@ -21,7 +21,7 @@ const { height, width } = Dimensions.get("window");
 const buttons = [
   { id: "1", label: "Token", imageSource: logo },
   { id: "2", label: "Pulsa", imageSource: logo },
-  { id: "3", label: "Food & Beverage", imageSource: logo },
+  { id: "3", label: "Food", imageSource: logo },
   { id: "4", label: "More", imageSource: logo },
   // Add more buttons with different image sources
 ];
