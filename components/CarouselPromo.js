@@ -14,25 +14,25 @@ import data2 from "./data2";
 const CarouselPromo = () => {
   const isCarousel = React.useRef(null);
 
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-  // const getPromo = async () => {
-  //   const token = await AsyncStorage.getItem("token");
+  const getPromo = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  //   if (token) {
-  //     await api
-  //       .get("/promos/", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         setData(res.data.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err, err.message);
-  //       });
-  //   }
-  // };
+    if (token) {
+      await api
+        .get("/promos/", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
 
   useEffect(() => {
     // getPromo();
