@@ -7,25 +7,29 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import Lottie from "lottie-react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native";
-import tw from "tailwind-react-native-classnames";
 import { useNavigation } from "@react-navigation/native";
-import api from "../api";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+
+import tw from "tailwind-react-native-classnames";
+
 import ProductBox from "../components/ProductBox";
 import { productData } from "../components/product/productData";
+
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 export default function ProductScreen() {
-  const { top } = useSafeAreaInsets();
-  const token = AsyncStorage.getItem("token");
   const navigation = useNavigation();
+
+  const { top } = useSafeAreaInsets();
+
   const [imgDashboard, setImgDashboard] = useState(
     require("../assets/img/head.png")
   );
@@ -36,43 +40,51 @@ export default function ProductScreen() {
 
   const [notification, setNotification] = useState(100);
 
-  // const [userData, setUserData] = useState([]);
-  // const [packageData, setPackageData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [packageData, setPackageData] = useState([]);
 
   // get user data
-  // const getUserData = async () => {
-  //   await api
-  //     .get("/users/me", {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setUserData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, err.message);
-  //     });
-  // };
+  const getUserData = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    if (token) {
+      await api
+        .get("/users/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setUserData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
 
   // get product
-  // const getProductData = async () => {
-  //   await api
-  //     .get("/packages/", {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setPackageData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, err.message);
-  //     });
-  // }
+  const getProductData = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  // useEffect(() => {
-  //   getUserData();
-  //   getPackageData();
-  // }, []);
+    if (token) {
+      await api
+        .get("/packages/", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setPackageData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
+
+  useEffect(() => {
+    // getUserData();
+    // getPackageData();
+  }, []);
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
@@ -97,40 +109,45 @@ export default function ProductScreen() {
             top: -150,
             right: -80,
           }}
-          />
-          </View>
-          <Text style={styles.headerText}>Groovy{"\n"}Product</Text>
-          <View style={styles.topView}></View>
-          <ScrollView style={styles.scrollViewContainer2}>
-            <TouchableOpacity onPress={()=> navigation.navigate("FormCheckCoverage")}>
-            <View style={[styles.screenContainer]}>
-              <View style={[styles.boxContainerCoverage]}>
-                <View style={[styles.flexRowCoverage]}>
-                  <Image style={styles.coverage} source={require("../assets/img/Frame.png")}/>
-                  <Text style= {styles.coverageText}>Check{"\n"}Coverage Area</Text>
-                  <View style={styles.headerCoverage}>
-                  </View>
-                </View>
+        />
+      </View>
+      <Text style={styles.headerText}>Groovy{"\n"}Product</Text>
+      <View style={styles.topView}></View>
+      <ScrollView style={styles.scrollViewContainer2}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("FormCheckCoverage")}
+        >
+          <View style={[styles.screenContainer]}>
+            <View style={[styles.boxContainerCoverage]}>
+              <View style={[styles.flexRowCoverage]}>
+                <Image
+                  style={styles.coverage}
+                  source={require("../assets/img/Frame.png")}
+                />
+                <Text style={styles.coverageText}>
+                  Check{"\n"}Coverage Area
+                </Text>
+                <View style={styles.headerCoverage}></View>
               </View>
             </View>
-            </TouchableOpacity>
-            <Text style={styles.header2Text}>Our Product</Text>
-            {productData.map((data) => (
-            <ProductBox
-              key={data.id}
-              initialName={data.initialName}
-              userName={data.userName}
-              price={data.price}
-              expDate={data.expDate}
-              destination={data.destination}
-            />
-            ))}
-            
-            </ScrollView>
-            <View style={styles.bottomView}></View>
-      </SafeAreaView>
-      );
-    }
+          </View>
+        </TouchableOpacity>
+        <Text style={styles.header2Text}>Our Product</Text>
+        {productData.map((data) => (
+          <ProductBox
+            key={data.id}
+            initialName={data.initialName}
+            userName={data.userName}
+            price={data.price}
+            expDate={data.expDate}
+            destination={data.destination}
+          />
+        ))}
+      </ScrollView>
+      <View style={styles.bottomView}></View>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
   topView: {

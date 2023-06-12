@@ -52,23 +52,23 @@ export default function Home() {
   const [userData, setUserData] = useState([]);
 
   // get user data
-  // const getUserData = async () => {
-  //   const token = await AsyncStorage.getItem("token");
+  const getUserData = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  //   if (token) {
-  //     await api
-  //       .get("/users/me", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         setUserData(res.data.data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err, err.message);
-  //       });
-  //   }
-  // };
+    if (token) {
+      await api
+        .get("/users/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setUserData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
 
   useEffect(() => {
     // getUserData();
@@ -121,16 +121,15 @@ export default function Home() {
         </View>
         <View style={styles.andalContainer}>
           <Text style={styles.andalText}> The Andal Post </Text>
-          </View>
-          <TouchableOpacity onPress={()=> navigation.navigate("Andalpost")}>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Andalpost")}>
           <CarouselCards />
-          </TouchableOpacity>
-          <View style={styles.PromoContainer}>
+        </TouchableOpacity>
+        <View style={styles.PromoContainer}>
           <Text style={styles.PromoText}>What's New ?</Text>
         </View>
-          <CarouselPromo />
-        <View>
-        </View>
+        <CarouselPromo />
+        <View></View>
       </ScrollView>
       <View style={styles.bottomView}></View>
     </SafeAreaView>

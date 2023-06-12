@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   FlatList,
@@ -7,7 +8,6 @@ import {
   Dimensions,
   StatusBar,
 } from "react-native";
-import React, { Component } from "react";
 import logo from "../assets/img/logo.png";
 import Lottie from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -15,6 +15,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import ServiceButton from "../components/ServiceButton";
 import CarouselCards from "../components/CarouselCards";
+
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { height, width } = Dimensions.get("window");
 
@@ -28,6 +31,15 @@ const buttons = [
 
 export default function PointScreen() {
   const navigation = useNavigation();
+
+  const [data, setData] = useState([]);
+
+  const getPointCategory = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    // code
+  };
+
   const renderItem = ({ item, index }) => (
     <View style={[styles.buttonWrapper]}>
       <ServiceButton
@@ -39,6 +51,11 @@ export default function PointScreen() {
       />
     </View>
   );
+
+  useEffect(() => {
+    // getPointCategory();
+  }, []);
+
   return (
     <View>
       <Lottie

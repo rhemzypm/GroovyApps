@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Dimensions, FlatList, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MotiView } from 'moti';
 import randomColor from 'randomcolor';
 
@@ -79,9 +79,53 @@ function DialPad({ onPress }) {
 
 export default function PasscodePage() {
   const [code, setCode] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const errorColor = '#FF0000'; 
+
+  useEffect(() => {
+    const validatePasscode = () => {
+      const passcode = code.join('');
+      const validPasscode = '5678';
+      console.log(`passcode: ${passcode}`);
+      console.log(`validPasscode: ${validPasscode}`);
+      if (passcode === validPasscode) {
+        setErrorMessage('Passcode valid');
+        setCode([]); // Reset code
+      } else {
+        setErrorMessage('Passcode salah. Silakan coba lagi.');
+        setCode([]); // Reset code
+      }
+    };
+
+    if (code.length === pinLength) {
+      validatePasscode();
+    }
+  }, [code]);
+
+  const handlePress = (item) => {
+    if (item === 'del') {
+      setCode((prev) => prev.slice(0, prev.length - 1));
+    } else if (typeof item === 'number') {
+      setCode((prev) => [...prev, item]);
+    }
+  };
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.primary }}>
+      {errorMessage ? (
+        <View style={{ marginTop: 20, marginBottom: pinSize * 2 }}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: 'bold',
+              color: errorColor,
+              textAlign: 'center',
+            }}
+          >
+            {errorMessage}
+          </Text>
+        </View>
+      ) : null}
       <View
         style={{
           flexDirection: 'row',
@@ -108,22 +152,13 @@ export default function PasscodePage() {
               }}
               transition={{
                 type: 'timing',
-                duration: 200,
+                duration: 100,
               }}
             />
           );
         })}
       </View>
-      <DialPad
-        onPress={(item) => {
-          if (item === 'del') {
-            setCode((prev) => prev.slice(0, prev.length - 1));
-          } else if (typeof item === 'number') {
-            if (code.length === pinLength) return;
-            setCode((prev) => [...prev, item]);
-          }
-        }}
-      />
+      <DialPad onPress={handlePress} />
     </View>
   );
 }
