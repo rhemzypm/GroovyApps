@@ -25,7 +25,7 @@ import PasscodePage from "./screens/PasscodePage";
 import RewardDetail from "./screens/services/Detail/RewardDetail";
 import ServiceNavigator from "./components/navigator/ServiceNavigator";
 import Redeem from "./screens/services/Detail/Redeem";
-
+import PaymentStatus from "./screens/PaymentStatus";
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -137,6 +137,7 @@ function StackNavigator() {
     <Stack.Screen name="PasscodePage" component={PasscodePage} />
     <Stack.Screen name="RewardDetail" component={RewardDetail} />
     <Stack.Screen name="Redeem" component={Redeem} />
+    <Stack.Screen name="PaymentStatus" component={PaymentStatus} />
     <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}

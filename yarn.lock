@@ -2317,6 +2317,11 @@
     color "^4.2.3"
     warn-once "^0.1.0"
 
+"@remix-run/router@1.6.3":
+  version "1.6.3"
+  resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.6.3.tgz"
+  integrity sha512-EXJysQ7J3veRECd0kZFQwYYd5sJMcq2O/m60zu1W2l3oVQ9xtub8jTOtYRE0+M2iomyG/W3Ps7+vp2kna0C27Q==
+
 "@segment/loosely-validate-event@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@segment/loosely-validate-event/-/loosely-validate-event-2.0.0.tgz"
@@ -4554,6 +4559,15 @@ fbjs@^3.0.0:
     promise "^7.1.1"
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.30"
+
+fbjs@0.1.0-alpha.10:
+  version "0.1.0-alpha.10"
+  resolved "https://registry.npmjs.org/fbjs/-/fbjs-0.1.0-alpha.10.tgz"
+  integrity sha512-J/R1vnoEb5AxuT8v/NdbMZ135ZGxTUAOSg1GsxVI5ArKwqnsblgZQecXnGqWnwb2KwC54j2KjgThq6fBpUM69A==
+  dependencies:
+    core-js "^1.0.0"
+    promise "^7.0.3"
+    whatwg-fetch "^0.9.0"
 
 fetch-retry@^4.1.1:
   version "4.1.1"
@@ -7399,7 +7413,7 @@ promise-inflight@^1.0.1:
   resolved "https://registry.npmjs.org/promise-inflight/-/promise-inflight-1.0.1.tgz"
   integrity sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==
 
-promise@^7.1.1:
+promise@^7.0.3, promise@^7.1.1:
   version "7.3.1"
   resolved "https://registry.npmjs.org/promise/-/promise-7.3.1.tgz"
   integrity sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==
@@ -7913,7 +7927,7 @@ react-devtools-core@^4.26.1:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-dom@*, react-dom@>=16.0.0, react-dom@>=16.11.0, "react-dom@>=16.8 || ^17.0.0 || ^18.0.0", react-dom@>=16.9.0:
+react-dom@*, react-dom@>=16.0.0, react-dom@>=16.11.0, react-dom@>=16.8, "react-dom@>=16.8 || ^17.0.0 || ^18.0.0", react-dom@>=16.9.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -8229,10 +8243,32 @@ react-native@*, "react-native@^0.0.0-0 || 0.60 - 0.71 || 1000.0.0", react-native
     whatwg-fetch "^3.0.0"
     ws "^6.2.2"
 
+react-redirect@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/react-redirect/-/react-redirect-1.0.0.tgz"
+  integrity sha512-NMjs0/Umi2DtZYwuKzEHBCr9xa5+c8RexhtRBU4JZQIRzuW/h+IqNXA5mqbfXFQoaePwRZ9fuddiHe9a4JCaOw==
+  dependencies:
+    react-side-effect "~0.3.0"
+
 react-refresh@^0.4.0:
   version "0.4.3"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.4.3.tgz"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
+
+react-router-dom@^6.12.1:
+  version "6.12.1"
+  resolved "https://registry.npmjs.org/react-router-dom/-/react-router-dom-6.12.1.tgz"
+  integrity sha512-POIZN9UDKWwEDga054LvYr2KnK8V+0HR4Ny4Bwv8V7/FZCPxJgsCjYxXGxqxzHs7VBxMKZfgvtKhafuJkJSPGA==
+  dependencies:
+    "@remix-run/router" "1.6.3"
+    react-router "6.12.1"
+
+react-router@6.12.1:
+  version "6.12.1"
+  resolved "https://registry.npmjs.org/react-router/-/react-router-6.12.1.tgz"
+  integrity sha512-evd/GrKJOeOypD0JB9e1r7pQh2gWCsTbUfq059Wm1AFT/K2MNZuDo19lFtAgIhlBrp0MmpgpqtvZC7LPAs7vSw==
+  dependencies:
+    "@remix-run/router" "1.6.3"
 
 react-shallow-renderer@^16.15.0:
   version "16.15.0"
@@ -8242,7 +8278,14 @@ react-shallow-renderer@^16.15.0:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@>=16.0, react@>=16.0.0, react@>=16.11.0, react@>=16.8, "react@>=16.8 || ^17.0.0 || ^18.0.0", react@>=16.9.0, react@>=17.0.0, react@18.2.0:
+react-side-effect@~0.3.0:
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-0.3.2.tgz"
+  integrity sha512-UGaE75w7UXQA3XYRWh2KLpU1oq8sJDhkgT91HVRzejGwVU516ll6l3xjqCAVXEl7xTCECLRbA7fr4V+h07iCwg==
+  dependencies:
+    fbjs "0.1.0-alpha.10"
+
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, "react@>=0.11.0 || >=0.13.0-beta.1", react@>=16.0, react@>=16.0.0, react@>=16.11.0, react@>=16.8, "react@>=16.8 || ^17.0.0 || ^18.0.0", react@>=16.9.0, react@>=17.0.0, react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
@@ -9755,6 +9798,11 @@ webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"
   integrity sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==
+
+whatwg-fetch@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-0.9.0.tgz"
+  integrity sha512-DIuh7/cloHxHYwS/oRXGgkALYAntijL63nsgMQsNSnBj825AysosAqA2ZbYXGRqpPRiNH7335dTqV364euRpZw==
 
 whatwg-fetch@^3.0.0, whatwg-fetch@>=0.10.0:
   version "3.6.2"

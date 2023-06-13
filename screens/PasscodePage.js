@@ -77,10 +77,10 @@ function DialPad({ onPress }) {
   );
 }
 
-export default function PasscodePage() {
+export default function PasscodePage({ navigation }) {
   const [code, setCode] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-  const errorColor = '#FF0000'; 
+  const errorColor = '#FF0000';
 
   useEffect(() => {
     const validatePasscode = () => {
@@ -91,6 +91,7 @@ export default function PasscodePage() {
       if (passcode === validPasscode) {
         setErrorMessage('Passcode valid');
         setCode([]); // Reset code
+        navigation.navigate('PaymentStatus'); // Navigates to PaymentStatus page
       } else {
         setErrorMessage('Passcode salah. Silakan coba lagi.');
         setCode([]); // Reset code
@@ -100,7 +101,7 @@ export default function PasscodePage() {
     if (code.length === pinLength) {
       validatePasscode();
     }
-  }, [code]);
+  }, [code, navigation]);
 
   const handlePress = (item) => {
     if (item === 'del') {
@@ -111,7 +112,14 @@ export default function PasscodePage() {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.primary }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.primary,
+      }}
+    >
       {errorMessage ? (
         <View style={{ marginTop: 20, marginBottom: pinSize * 2 }}>
           <Text
