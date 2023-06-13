@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import Lottie from "lottie-react-native";
 
-import api from "../api";
+import api from "../../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
@@ -67,6 +67,25 @@ const RewardDetail = ({ route }) => {
       });
   };
 
+  const handleRedeem = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    navigation.navigate("Redeem");
+
+    // await api
+    //   .patch(`/vouchers/${id}`, {
+    //     headers: { Authorization: `Bearer ${token}` },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+
+    //     navigation.navigate("Redeem");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err, err.message);
+    //   });
+  };
+
   const handleBackButton = () => {
     navigation.navigate("ServiceNavigator");
   };
@@ -95,10 +114,7 @@ const RewardDetail = ({ route }) => {
         <Text style={styles.desc}>{description}</Text>
         <Text style={styles.text}>{GPoint} Groovy Point</Text>
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("Redeem")}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => handleRedeem()}>
         <Text style={styles.buttonText}>Redeem</Text>
       </TouchableOpacity>
       <View style={styles.lottie}>
