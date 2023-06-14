@@ -25,12 +25,12 @@ const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 // formatting date
-// const formattedDate = (dateString) => {
-//   const date = new Date(dateString);
-//   const options = { day: "numeric", month: "numeric", year: "numeric" };
+const formattedDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { day: "numeric", month: "numeric", year: "numeric" };
 
-//   return date.toLocaleString("id-ID", options);
-// };
+  return date.toLocaleString("id-ID", options);
+};
 
 export default function Home() {
   const { top } = useSafeAreaInsets();
@@ -50,6 +50,7 @@ export default function Home() {
   const [expDate, setExpDate] = useState("Next Payment : 09/10/2023");
 
   const [userData, setUserData] = useState([]);
+  const [data, setData] = useState([]);
 
   // get user data
   const getUserData = async () => {
@@ -70,8 +71,28 @@ export default function Home() {
     }
   };
 
+  // get user current package
+  const getUserPackage = async () => {
+    const token = await AsyncStorage.getItem("token");
+
+    if (token) {
+      await api
+        .get("/users/packages", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
+    }
+  };
+
   useEffect(() => {
     // getUserData();
+    // getUserPackage();
   }, []);
 
   return (
