@@ -10,36 +10,40 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import tw from "tailwind-react-native-classnames";
 
 import ServiceBox from "../../components/services/ServiceBox";
 import { PulsaData } from "../../components/services/PulsaData";
 
-const screenWidth = Dimensions.get("window").width;
-
 import api from "../../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const screenWidth = Dimensions.get("window").width;
 
 export default function Pulsa() {
   const { top } = useSafeAreaInsets();
 
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-  // const getVouchers = async () => {
-  // const token = await AsyncStorage.getItem("token");
+  const getVouchers = async () => {
+    const token = await AsyncStorage.getItem("token");
 
-  //   await api
-  //     .get("/vouchers/", { headers: { Authorization: `Bearer ${token}` } })
-  //     .then((res) => {
-  //       console.log(res.data);
+    await api
+      .get("/vouchers?voucherType=Pulsa", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
 
-  //       setData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, err.message);
-  //     });
-  // };
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, err.message);
+      });
+  };
 
   useEffect(() => {
     // getVouchers();
@@ -47,30 +51,28 @@ export default function Pulsa() {
 
   return (
     <SafeAreaView style={[tw`flex-1`]}>
-          <Text style={styles.headerText}>Pulsa</Text>
-          <View style={styles.topView}>
-          </View>
-          <ScrollView style={styles.scrollViewContainer2}>
-            {PulsaData.map((data) => (
-            <ServiceBox
-              key={data.id}
-              initialName={data.initialName}
-              Brand={data.Brand}
-              Min={data.Min}
-              Discount={data.Discount}
-              destination={data.destination}
-              description={data.description}
-              id={data.id}
-              deadline={data.deadline}
-              GPoint={data.GPoint}
-            />
-            ))}
-            
-            </ScrollView>
-            <View style={styles.bottomView}></View>
-      </SafeAreaView>
-      );
-    }
+      <Text style={styles.headerText}>Pulsa</Text>
+      <View style={styles.topView}></View>
+      <ScrollView style={styles.scrollViewContainer2}>
+        {PulsaData.map((data) => (
+          <ServiceBox
+            key={data.id}
+            initialName={data.initialName}
+            Brand={data.Brand}
+            Min={data.Min}
+            Discount={data.Discount}
+            destination={data.destination}
+            description={data.description}
+            id={data.id}
+            deadline={data.deadline}
+            GPoint={data.GPoint}
+          />
+        ))}
+      </ScrollView>
+      <View style={styles.bottomView}></View>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
   topView: {
