@@ -1,30 +1,38 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
-import { TokenData } from "../components/services/TokenData";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Lottie from 'lottie-react-native';
+import Lottie from "lottie-react-native";
+
+import { TokenData } from "../components/services/TokenData";
 
 const screenWidth = Dimensions.get("window").width;
 
 const PaymentStatus = () => {
-
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.lottie}>
-        <Lottie 
-            source={require('../assets/img/sukses.json')} 
-            autoPlay
-            loop={false}
-            style={{ 
-        }} 
+        <Lottie
+          source={require("../assets/img/sukses.json")}
+          autoPlay
+          loop={false}
+          style={{}}
         />
       </View>
       <Text style={styles.header}>Your Payment Success !</Text>
-        <Text style={styles.text}>Your Groovy package has been paid</Text>
-        <Text style={styles.text}>Check your E-mail to check your invoice</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Point')}>
-      <Text style={styles.buttonText}>Back</Text>
+      <Text style={styles.text}>Your Groovy package has been paid</Text>
+      <Text style={styles.text}>Check your E-mail to check your invoice</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Point")}
+      >
+        <Text style={styles.buttonText}>Back</Text>
       </TouchableOpacity>
     </View>
   );
@@ -42,7 +50,7 @@ const styles = {
     width: 330,
     height: 280,
   },
-  header:{
+  header: {
     fontSize: 25,
     marginBottom: 20,
   },
@@ -56,7 +64,7 @@ const styles = {
     borderRadius: 10,
     elevation: 5,
     width: screenWidth * 0.4,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
     color: "black",
