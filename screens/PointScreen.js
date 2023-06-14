@@ -32,14 +32,6 @@ const buttons = [
 export default function PointScreen() {
   const navigation = useNavigation();
 
-  const [data, setData] = useState([]);
-
-  const getPointCategory = async () => {
-    const token = await AsyncStorage.getItem("token");
-
-    // code
-  };
-
   const renderItem = ({ item, index }) => (
     <View style={[styles.buttonWrapper]}>
       <ServiceButton
@@ -51,10 +43,6 @@ export default function PointScreen() {
       />
     </View>
   );
-
-  useEffect(() => {
-    // getPointCategory();
-  }, []);
 
   return (
     <View>
