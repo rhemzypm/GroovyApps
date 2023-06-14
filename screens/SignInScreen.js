@@ -14,6 +14,8 @@ const LoginScreen = ({ navigation }) => {
   const handleSignIn = async () => {
     console.log("Sending request...");
 
+    console.log(nomorHP);
+
     await api
       .post("/users/signIn", { nomorHP })
       .then((res) => {
