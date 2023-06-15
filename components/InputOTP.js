@@ -34,7 +34,7 @@ const InputOTP = ({ navigation }) => {
 
           console.log("Sending request...");
 
-          await axios
+          await api
             .get("/users/resendOTP")
             .then((res) => {
               if (res.data.status === 0) {
