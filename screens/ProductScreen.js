@@ -63,7 +63,7 @@ export default function ProductScreen() {
   };
 
   // get product
-  const getProductData = async () => {
+  const getPackageData = async () => {
     const token = await AsyncStorage.getItem("token");
 
     if (token) {
