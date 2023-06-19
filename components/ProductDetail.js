@@ -8,6 +8,10 @@ const ProductDetail = (id) => {
   // Data deskripsi produk
   const [data, setData] = useState([]);
 
+  const productDescription =
+    "Introducing our premium broadband service offering fast and reliable internet access for up to 4 devices. \nWith speeds of 10 Mbps, expandable to 20 Mbps annually, enjoy seamless streaming,gaming, and browsing.\nBenefit from a static IP address, 24/7 support, Wi-Fi access point, and a convenient ticketing system. \nGet started with a one-time installation fee of Rp 499,500 and a one-month deposit, \nAll taxes included for transparent pricing.\n";
+  const productTittle = "Level 1 Personal";
+
   const getProductDetail = async (id) => {
     const token = await AsyncStorage.getItem("token");
 
@@ -28,10 +32,6 @@ const ProductDetail = (id) => {
     }
   };
 
-  useEffect(() => {
-    // getProductDetail();
-  }, []);
-
   const ProductDescription = ({ tittle, description }) => {
     const paragraphs = description.split("\n");
 
@@ -47,9 +47,10 @@ const ProductDetail = (id) => {
     );
   };
 
-  const productDescription =
-    "Introducing our premium broadband service offering fast and reliable internet access for up to 4 devices. \nWith speeds of 10 Mbps, expandable to 20 Mbps annually, enjoy seamless streaming,gaming, and browsing.\nBenefit from a static IP address, 24/7 support, Wi-Fi access point, and a convenient ticketing system. \nGet started with a one-time installation fee of Rp 499,500 and a one-month deposit, \nAll taxes included for transparent pricing.\n";
-  const productTittle = "Level 1 Personal";
+  useEffect(() => {
+    // getProductDetail();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ProductDescription
