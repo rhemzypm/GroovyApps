@@ -1,36 +1,49 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
+import { BACKEND_URL } from "../backendURL";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-const ProductBox = ({ initialName, userName, price, expDate, destination }) => {
+const ProductBox = ({ packageData, onPress }) => {
   const navigation = useNavigation();
-
-  const navigateToScreen = () => {
-    navigation.navigate(destination);
-  };
 
   return (
     <View style={styles.boxContainer}>
       <View style={styles.boxMargin}>
         <View style={styles.imgProfile}>
-          <Text style={styles.imgProfileText}>{initialName}</Text>
+          {/* <Text style={styles.imgProfileText}>{initialName}</Text> */}
+          <Image
+            source={{ uri: `${BACKEND_URL}${packageData.packageImage}` }}
+            width={60}
+            height={60}
+            borderRadius={50}
+          />
         </View>
         <View>
           <View style={styles.boxMargin}>
-            <Text style={styles.profileText}>{userName}</Text>
+            <Text style={styles.profileText}>{packageData.packageName}</Text>
           </View>
-          <View>
-            <Text style={styles.profileText3}>{expDate} Broadband Speed</Text>
-          </View>
+          {/* <View>
+            <Text style={styles.profileText3}>{packageType} Broadband Speed</Text>
+          </View> */}
         </View>
-        </View>
-        <View style={styles.text2Wrap}>
-          <Text style={styles.profileText2}>Rp {price} / Month</Text>
-        </View>
-      <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate("CheckoutProduct")}>
+      </View>
+      <View style={styles.text2Wrap}>
+        <Text style={styles.profileText2}>
+          Rp {packageData.packagePrice} / {packageData.packageType}
+        </Text>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={styles.buttonText}>Detail</Text>
       </TouchableOpacity>
     </View>
@@ -60,7 +73,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontWeight: "bold",
     marginBottom: 4,
-    marginLeft: -4, 
+    marginLeft: -4,
     fontSize: 14,
   },
   text2Wrap: {
