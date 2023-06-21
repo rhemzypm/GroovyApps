@@ -28,23 +28,23 @@ const FormCheckCoverage = () => {
     console.log("Nomor Telepon:", nomorHP);
     console.log("Alamat:", detailedAddress);
 
-    // await api
-    //   .post(
-    //     "/installations/",
-    //     {
-    //       location,
-    //       name,
-    //       nomorHP,
-    //       detailedAddress,
-    //     },
-    //     { headers: { Authorization: `Bearer ${token}` } }
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err, err.message);
-    //   });
+    await api
+      .post(
+        "/installations/",
+        {
+          location,
+          name,
+          nomorHP,
+          detailedAddress,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err, err.message);
+      });
   };
 
   return (
