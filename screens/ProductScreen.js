@@ -25,9 +25,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-export default function ProductScreen() {
-  const navigation = useNavigation();
-
+export default function ProductScreen({ navigation }) {
   const { top } = useSafeAreaInsets();
 
   const [imgDashboard, setImgDashboard] = useState(
@@ -82,8 +80,8 @@ export default function ProductScreen() {
   };
 
   useEffect(() => {
-    // getUserData();
-    // getPackageData();
+    getUserData();
+    getPackageData();
   }, []);
 
   return (
@@ -133,14 +131,13 @@ export default function ProductScreen() {
           </View>
         </TouchableOpacity>
         <Text style={styles.header2Text}>Our Product</Text>
-        {productData.map((data) => (
+        {packageData.map((data) => (
           <ProductBox
-            key={data.id}
-            initialName={data.initialName}
-            userName={data.userName}
-            price={data.price}
-            expDate={data.expDate}
-            destination={data.destination}
+            key={data._id}
+            packageData={data}
+            onPress={() =>
+              navigation.navigate("CheckoutProduct", { id: data._id })
+            }
           />
         ))}
       </ScrollView>
