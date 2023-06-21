@@ -9,7 +9,7 @@ import InputOTP from "./components/InputOTP";
 import Register from "./screens/Register";
 import BottomNav from "./components/BottomNav";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import PointScreen from "./screens/PointScreen";
 import FAQScreen from "./screens/FAQScreen";
@@ -120,34 +120,35 @@ function TabNavigator() {
 function StackNavigator() {
   return (
     <Stack.Navigator
-    initialRouteName="TabNavigator"
-    screenOptions={{headerShown: false}}>
-    <Stack.Screen name="Splashscreen" component={Splashscreen} />
-    <Stack.Screen name="Onboarding" component={Onboarding} />
-    <Stack.Screen name="SignInScreen" component={SignInScreen} />
-    <Stack.Screen name="InputOTP" component={InputOTP} />
-    <Stack.Screen name="Register" component={Register} />
-    <Stack.Screen name="BottomNav" component={BottomNav} />
-    <Stack.Screen name="CarouselCards" component={CarouselCards} />
-    <Stack.Screen name="MessageScreen" component={MessageScreen} />
-    <Stack.Screen name="Andalpost" component={Andalpost} />
-    <Stack.Screen name="Carousel" component={CarouselCard} />
-    <Stack.Screen name="FormCheckCoverage" component={FormCheckCoverage} />
-    <Stack.Screen name="CheckoutProduct" component={CheckoutProduct} />
-    <Stack.Screen name="PasscodePage" component={PasscodePage} />
-    <Stack.Screen name="RewardDetail" component={RewardDetail} />
-    <Stack.Screen name="Redeem" component={Redeem} />
-    <Stack.Screen name="PaymentStatus" component={PaymentStatus} />
-    <Stack.Screen
-          name="TabNavigator"
-          component={TabNavigator}
-          options={{ headerShown: false}}
-        />
-    <Stack.Screen
-          name="ServiceNavigator"
-          component={ServiceNavigator}
-          options={{ headerShown: false}}
-        />
+      initialRouteName="Splashscreen"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="Splashscreen" component={Splashscreen} />
+      <Stack.Screen name="Onboarding" component={Onboarding} />
+      <Stack.Screen name="SignInScreen" component={SignInScreen} />
+      <Stack.Screen name="InputOTP" component={InputOTP} />
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="BottomNav" component={BottomNav} />
+      <Stack.Screen name="CarouselCards" component={CarouselCards} />
+      <Stack.Screen name="MessageScreen" component={MessageScreen} />
+      <Stack.Screen name="Andalpost" component={Andalpost} />
+      <Stack.Screen name="Carousel" component={CarouselCard} />
+      <Stack.Screen name="FormCheckCoverage" component={FormCheckCoverage} />
+      <Stack.Screen name="CheckoutProduct" component={CheckoutProduct} />
+      <Stack.Screen name="PasscodePage" component={PasscodePage} />
+      <Stack.Screen name="RewardDetail" component={RewardDetail} />
+      <Stack.Screen name="Redeem" component={Redeem} />
+      <Stack.Screen name="PaymentStatus" component={PaymentStatus} />
+      <Stack.Screen
+        name="TabNavigator"
+        component={TabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ServiceNavigator"
+        component={ServiceNavigator}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
