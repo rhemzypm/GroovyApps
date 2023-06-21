@@ -1,36 +1,48 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-const ServiceBox = ({ initialName, Brand, Min, Discount, destination, id, deadline, GPoint }) => {
+const ServiceBox = ({ voucherData, onPress }) => {
   const navigation = useNavigation();
 
-  const navigateToScreen = () => {
-    navigation.navigate(destination, { id }); // Pass the id as a route parameter
-  };
+  const uri = `http://10.10.28.103:5000/v1/ga/`;
 
   return (
     <View style={styles.boxContainer}>
       <View style={styles.boxMargin}>
         <View style={styles.imgProfile}>
-          <Text style={styles.imgProfileText}>{initialName}</Text>
+          {/* <Text style={styles.imgProfileText}>{voucherData.initialName}</Text> */}
+
+          <Image
+            source={{ uri: `${uri}${voucherData.voucherImage}` }}
+            width={170}
+            height={100}
+            borderRadius={10}
+          />
         </View>
         <View>
           <View style={styles.boxMargin}>
-            <Text style={styles.profileText}>{Brand}</Text>
+            <Text style={styles.profileText}>{voucherData.voucherTitle}</Text>
           </View>
-          <View>
+          {/* <View>
             <Text style={styles.profileText3}>{Discount} </Text>
             <Text style={styles.profileText3}>{Min} </Text>
-          </View>
-          </View>
-          </View>
-          <TouchableOpacity style={styles.button} onPress={navigateToScreen}>
-            <Text style={styles.buttonText}>Detail</Text>
-          </TouchableOpacity>
+          </View> */}
+        </View>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Text style={styles.buttonText}>Detail</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -58,7 +70,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontWeight: "bold",
     marginBottom: 4,
-    marginLeft: -4, 
+    marginLeft: -4,
     fontSize: 14,
   },
   text2Wrap: {
