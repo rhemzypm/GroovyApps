@@ -15,7 +15,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 
 import ServiceBox from "../../components/services/ServiceBox";
-import { FoodData } from "../../components/services/FoodData";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -25,7 +24,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function Food() {
   const { top } = useSafeAreaInsets();
 
-  const [data, setData] = useState([]);
+  const [voucherData, setVoucherData] = useState([]);
 
   const getVouchers = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -37,7 +36,7 @@ export default function Food() {
       .then((res) => {
         console.log(res.data);
 
-        setData(res.data.data);
+        setVoucherData(res.data.data);
       })
       .catch((err) => {
         console.log(err, err.message);
@@ -45,7 +44,7 @@ export default function Food() {
   };
 
   useEffect(() => {
-    // getVouchers();
+    getVouchers();
   }, []);
 
   return (
@@ -53,18 +52,13 @@ export default function Food() {
       <Text style={styles.headerText}>Food & Beverage</Text>
       <View style={styles.topView}></View>
       <ScrollView style={styles.scrollViewContainer2}>
-        {FoodData.map((data) => (
+        {voucherData.map((data) => (
           <ServiceBox
-            key={data.id}
-            initialName={data.initialName}
-            Brand={data.Brand}
-            Min={data.Min}
-            Discount={data.Discount}
-            destination={data.destination}
-            description={data.description}
-            id={data.id}
-            deadline={data.deadline}
-            GPoint={data.GPoint}
+            key={data._id}
+            voucherData={data}
+            onPress={() =>
+              navigation.navigate("RewardDetail", { id: data._id })
+            }
           />
         ))}
       </ScrollView>
