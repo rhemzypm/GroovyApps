@@ -44,10 +44,10 @@ export default function Home() {
   );
 
   const [initialName, setInitialName] = useState("RZ");
-  const [userName, setUserName] = useState("Your Groovy Subscription Status");
-  const [balance, setBalance] = useState("Groovy Paket Hemat");
-  const [point, setPoint] = useState("60");
-  const [expDate, setExpDate] = useState("Next Payment : 09/10/2023");
+  // const [text, setText] = useState("Your Groovy Subscription Status");
+  // const [balance, setBalance] = useState("Groovy Paket Hemat");
+  // const [point, setPoint] = useState("60");
+  // const [expDate, setExpDate] = useState("Next Payment : 09/10/2023");
 
   const [userData, setUserData] = useState([]);
   const [data, setData] = useState([]);
@@ -91,8 +91,8 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // getUserData();
-    // getUserPackage();
+    getUserData();
+    getUserPackage();
   }, []);
 
   return (
@@ -120,9 +120,9 @@ export default function Home() {
         />
       </View>
       <View style={styles.homeHeaderContainer}>
-        <Text style={styles.headerText}>Welcome, Rhemzy</Text>
+        <Text style={styles.headerText}>Welcome, {userData.firstName}</Text>
         <Image resizeMode="cover" style={styles.imgLogo} source={imgLogo} />
-        <Text style={styles.point}>{point} Points</Text>
+        <Text style={styles.point}>{userData.point} Points</Text>
       </View>
       <View style={styles.topView}></View>
       <ScrollView style={styles.scrollViewContainer}>
@@ -133,9 +133,13 @@ export default function Home() {
                 <Text style={styles.imgProfileText}>{initialName}</Text>
               </View>
               <View>
-                <Text style={styles.profileText}>{userName}</Text>
-                <Text style={styles.profileText2}>{balance}</Text>
-                <Text style={styles.profileText3}>{expDate}</Text>
+                <Text style={styles.profileText}>
+                  Your Groovy Subscription Status
+                </Text>
+                <Text style={styles.profileText2}>{data.packageName}</Text>
+                <Text style={styles.profileText3}>
+                  Next payment: {data.packageNextPayment}
+                </Text>
               </View>
             </View>
           </View>
