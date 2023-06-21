@@ -20,56 +20,65 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ProductDetail from "../components/ProductDetail";
 
-const productData = [
-  {
-    id: 1,
-    initialName: "20",
-    userName: "Personal Plan",
-    price: "69.420",
-    expDate: "20 Mbps",
-    destination: "Home",
-    description: "Ini adalah deskripsi produk yang sangat menarik.",
-  },
-];
+// const productData = [
+//   {
+//     id: 1,
+//     initialName: "20",
+//     userName: "Personal Plan",
+//     price: "69.420",
+//     expDate: "20 Mbps",
+//     destination: "Home",
+//     description: "Ini adalah deskripsi produk yang sangat menarik.",
+//   },
+// ];
 
-const CheckoutProduct = () => {
-  const navigation = useNavigation();
+const CheckoutProduct = ({ route, navigation }) => {
+  const { id } = route.params;
 
-  const getProductData = async () => {
+  const [packageData, setPackageData] = useState([]);
+
+  const getPackageData = async () => {
     const token = await AsyncStorage.getItem("token");
 
     // code here
+    await api
+      .get(`/packages/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        setPackageData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err, err.message);
+      });
   };
 
   useEffect(() => {
-    // getProductData();
+    getPackageData();
   }, []);
 
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Payment Process</Text>
       <View style={styles.productContainer}>
-        {productData.map((data) => (
-          <View key={data.id}>
-            <ProductDetailsContainer
-              initialName={data.initialName}
-              userName={data.userName}
-              price={data.price}
-              expDate={data.expDate}
-              destination={data.destination}
-            />
-            <ProductDetail description={data.description} />
-            <View style={styles.bottomContainer}>
-              <Text style={styles.priceText}>Rp 298.590 per month</Text>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate("PasscodePage")}
-              >
-                <Text style={styles.buttonText}>Beli</Text>
-              </TouchableOpacity>
-            </View>
+        <View key={packageData._id}>
+          <ProductDetailsContainer packageData={packageData} />
+          <ProductDetail packageData={packageData} />
+          <View style={styles.bottomContainer}>
+            <Text style={styles.priceText}>
+              Rp {packageData.packagePrice} per{" "}
+              {packageData.packageType === "Monthly" ? "month" : "year"}
+            </Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("PasscodePage")}
+            >
+              <Text style={styles.buttonText}>Beli</Text>
+            </TouchableOpacity>
           </View>
-        ))}
+        </View>
       </View>
     </View>
   );
