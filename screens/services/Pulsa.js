@@ -16,17 +16,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
 
 import ServiceBox from "../../components/services/ServiceBox";
-import { PulsaData } from "../../components/services/PulsaData";
 
 import api from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
 
-export default function Pulsa() {
+export default function Pulsa({ navigation }) {
   const { top } = useSafeAreaInsets();
 
-  const [data, setData] = useState([]);
+  const [voucherData, setVoucherData] = useState([]);
 
   const getVouchers = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -38,7 +37,7 @@ export default function Pulsa() {
       .then((res) => {
         console.log(res.data);
 
-        setData(res.data.data);
+        setVoucherData(res.data.data);
       })
       .catch((err) => {
         console.log(err, err.message);
@@ -46,7 +45,7 @@ export default function Pulsa() {
   };
 
   useEffect(() => {
-    // getVouchers();
+    getVouchers();
   }, []);
 
   return (
@@ -54,18 +53,13 @@ export default function Pulsa() {
       <Text style={styles.headerText}>Pulsa</Text>
       <View style={styles.topView}></View>
       <ScrollView style={styles.scrollViewContainer2}>
-        {PulsaData.map((data) => (
+        {voucherData.map((data) => (
           <ServiceBox
-            key={data.id}
-            initialName={data.initialName}
-            Brand={data.Brand}
-            Min={data.Min}
-            Discount={data.Discount}
-            destination={data.destination}
-            description={data.description}
-            id={data.id}
-            deadline={data.deadline}
-            GPoint={data.GPoint}
+            key={data._id}
+            voucherData={data}
+            onPress={() =>
+              navigation.navigate("RewardDetail", { id: data._id })
+            }
           />
         ))}
       </ScrollView>
