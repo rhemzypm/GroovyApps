@@ -4,51 +4,38 @@ import {
   Text,
   Dimensions,
   StyleSheet,
+  Image,
   TouchableOpacity,
 } from "react-native";
-import { TokenData } from "../../../components/services/TokenData";
-import { PulsaData } from "../../../components/services/PulsaData";
-import { FoodData } from "../../../components/services/FoodData";
 import { useNavigation } from "@react-navigation/native";
+
 import { AntDesign } from "@expo/vector-icons";
 import Lottie from "lottie-react-native";
+
+// import { TokenData } from "../../../components/services/TokenData";
+// import { PulsaData } from "../../../components/services/PulsaData";
+// import { FoodData } from "../../../components/services/FoodData";
 
 import api from "../../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { BACKEND_URL } from "../../../backendURL";
+
 const screenWidth = Dimensions.get("window").width;
 
-const RewardDetail = ({ route }) => {
+const RewardDetail = ({ route, navigation }) => {
   // Extract the id from route params
   const { id } = route.params;
-  const navigation = useNavigation();
 
-  const [data, setData] = useState([]);
+  const [voucherData, setVoucherData] = useState([]);
 
-  // Determine the data source based on the ID prefix
-  const dataPrefix = id.toString().charAt(0);
-  let selectedItem;
+  // formatting date
+  const formattedDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { day: "numeric", month: "long", year: "numeric" };
 
-  if (dataPrefix === "1") {
-    selectedItem = TokenData.find((item) => item.id === id);
-  } else if (dataPrefix === "2") {
-    selectedItem = PulsaData.find((item) => item.id === id);
-  } else if (dataPrefix === "3") {
-    selectedItem = FoodData.find((item) => item.id === id);
-  }
-
-  if (!selectedItem) {
-    // Handle the case when no item is found
-    return (
-      <View>
-        <Text>No item found for ID: {id}</Text>
-      </View>
-    );
-  }
-
-  // Access the properties of the selected item
-  const { initialName, Brand, Min, Discount, description, deadline, GPoint } =
-    selectedItem;
+    return date.toLocaleString("en-us", options);
+  };
 
   const getVoucherDetail = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -60,30 +47,28 @@ const RewardDetail = ({ route }) => {
       .then((res) => {
         console.log(res.data);
 
-        setData(res.data.data);
+        setVoucherData(res.data.data);
       })
       .catch((err) => {
         console.log(err, err.message);
       });
   };
 
-  const handleRedeem = async () => {
+  const handleRedeem = async (id) => {
     const token = await AsyncStorage.getItem("token");
 
-    navigation.navigate("Redeem");
+    await api
+      .patch(`/vouchers/${id}/redeem`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
 
-    // await api
-    //   .patch(`/vouchers/${id}`, {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-
-    //     navigation.navigate("Redeem");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err, err.message);
-    //   });
+        navigation.navigate("Redeem");
+      })
+      .catch((err) => {
+        console.log(err, err.response.data.msg);
+      });
   };
 
   const handleBackButton = () => {
@@ -91,30 +76,39 @@ const RewardDetail = ({ route }) => {
   };
 
   useEffect(() => {
-    // getVoucherDetail();
+    getVoucherDetail();
   }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.back}>
-        <TouchableOpacity onPress={handleBackButton}>
+        <TouchableOpacity onPress={() => handleBackButton()}>
           <AntDesign name="left" size={24} color="black" />
         </TouchableOpacity>
       </View>
       <Text style={styles.header}>Reward Details</Text>
       <View style={styles.detail}>
         <View style={styles.imgProfile}>
-          <Text style={styles.imgProfileText}>{initialName}</Text>
+          {/* <Text style={styles.imgProfileText}>{initialName}</Text> */}
+          <Image
+            source={{ uri: `${BACKEND_URL}${voucherData.voucherImage}` }}
+            width={screenWidth * 0.85}
+            height={170}
+            borderRadius={10}
+          />
         </View>
-        <Text style={styles.title}>
-          {Brand} {Min}
+        <Text style={styles.title}>{voucherData.voucherTitle}</Text>
+        <Text style={styles.date}>
+          Valid Until {formattedDate(voucherData.validUntilDate)}
         </Text>
-        <Text style={styles.date}>Valid Until {deadline}</Text>
         <View style={styles.line}></View>
-        <Text style={styles.desc}>{description}</Text>
-        <Text style={styles.text}>{GPoint} Groovy Point</Text>
+        <Text style={styles.desc}>{voucherData.voucherDescription}</Text>
+        <Text style={styles.text}>{voucherData.voucherPrice} Groovy Point</Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={() => handleRedeem()}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleRedeem(voucherData._id)}
+      >
         <Text style={styles.buttonText}>Redeem</Text>
       </TouchableOpacity>
       <View style={styles.lottie}>
