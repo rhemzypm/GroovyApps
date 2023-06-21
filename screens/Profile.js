@@ -8,16 +8,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import { BACKEND_URL } from "../backendURL";
+
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
-// const uri = `http://10.10.28.139:5000/v1/ga`;
-
 const Profile = () => {
   const [userData, setUserData] = useState([]);
+
+  const handleEditProfile = () => {
+    console.log("edit profile");
+  };
 
   // get user data
   const getUserData = async () => {
@@ -39,34 +43,39 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    // getUserData();
+    getUserData();
   }, []);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.editButton}>
+      <TouchableOpacity
+        style={styles.editButton}
+        onPress={() => handleEditProfile()}
+      >
         <Text style={styles.editButtonText}>Edit</Text>
       </TouchableOpacity>
       <View style={styles.header}>
         <Image
-          source={require("../assets/img/profile1.jpeg")}
+          source={{ uri: `${BACKEND_URL}${userData.profileImage}` }}
           style={styles.profilePicture}
         />
-        <Text style={styles.name}>Rhemzy Putra Maulana</Text>
+        <Text style={styles.name}>
+          {userData.firstName} {userData.lastName}
+        </Text>
       </View>
       <View style={styles.info}>
         <View style={styles.infoItem}>
           <Text style={styles.infoTitle}>Email</Text>
-          <Text style={styles.infoText}>rhemzy@andalworks.com</Text>
+          <Text style={styles.infoText}>{userData.emailAddress}</Text>
         </View>
         <View style={styles.infoItem}>
           <Text style={styles.infoTitle}>Phone</Text>
-          <Text style={styles.infoText}>+1234567890</Text>
+          <Text style={styles.infoText}>+62{userData.nomorHP}</Text>
         </View>
-        <View style={styles.infoItem}>
+        {/* <View style={styles.infoItem}>
           <Text style={styles.infoTitle}>Address</Text>
           <Text style={styles.infoText}>Rahasia woi</Text>
-        </View>
+        </View> */}
       </View>
     </View>
   );
