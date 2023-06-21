@@ -9,12 +9,12 @@ import CarouselPromoItem, {
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import data2 from "./data2";
+// import data2 from "./data2";
 
 const CarouselPromo = () => {
   const isCarousel = React.useRef(null);
 
-  const [data, setData] = useState([]);
+  const [promoData, setPromoData] = useState([]);
 
   const getPromo = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -26,7 +26,7 @@ const CarouselPromo = () => {
         })
         .then((res) => {
           console.log(res.data);
-          setData(res.data.data);
+          setPromoData(res.data.data);
         })
         .catch((err) => {
           console.log(err, err.message);
@@ -35,7 +35,7 @@ const CarouselPromo = () => {
   };
 
   useEffect(() => {
-    // getPromo();
+    getPromo();
   }, []);
 
   return (
@@ -44,7 +44,7 @@ const CarouselPromo = () => {
         layout="tinder"
         layoutCardOffset={9}
         ref={isCarousel}
-        data={data2}
+        data={promoData}
         renderItem={CarouselPromoItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
