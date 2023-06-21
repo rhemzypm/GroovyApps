@@ -4,14 +4,17 @@ import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 export const SLIDER_WIDTH = Dimensions.get("window").width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9);
 
-// const uri = "http://10.10.28.139:5000/v1/ga/";
+import { BACKEND_URL } from "../backendURL";
 
-const CarouselPromoItem = ({ item, index }) => {
+const CarouselPromoItem = ({ item }) => {
   return (
-    <View style={styles.container} key={index}>
-      <Image source={{ uri: item.promoImage }} style={styles.image} />
+    <View style={styles.container} key={item._id}>
+      <Image
+        source={{ uri: `${BACKEND_URL}${item.promoImage}` }}
+        style={styles.image}
+      />
       <Text style={styles.header}>{item.promoTitle}</Text>
-      <Text style={styles.body}>{item.promoBody}</Text>
+      <Text style={styles.body}>{item.promoDescription}</Text>
     </View>
   );
 };
