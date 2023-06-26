@@ -11,10 +11,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import Lottie from "lottie-react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import tw from "tailwind-react-native-classnames";
+
 import CarouselCards from "../components/CarouselCards";
 import CarouselPromo from "../components/CarouselPromo";
 
@@ -35,6 +36,7 @@ const formattedDate = (dateString) => {
 export default function Home() {
   const { top } = useSafeAreaInsets();
   const navigation = useNavigation();
+
   const [imgDashboard, setImgDashboard] = useState(
     require("../assets/img/head.png")
   );
@@ -92,7 +94,7 @@ export default function Home() {
 
   useEffect(() => {
     getUserData();
-    getUserPackage();
+    // getUserPackage();
   }, []);
 
   return (
@@ -147,9 +149,7 @@ export default function Home() {
         <View style={styles.andalContainer}>
           <Text style={styles.andalText}> The Andal Post </Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Andalpost")}>
-          <CarouselCards />
-        </TouchableOpacity>
+        <CarouselCards />
         <View style={styles.PromoContainer}>
           <Text style={styles.PromoText}>What's New ?</Text>
         </View>
