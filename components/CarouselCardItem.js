@@ -1,17 +1,27 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 
+import parse from "html-react-parser";
+
 export const SLIDER_WIDTH = Dimensions.get("window").width;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9);
 
-// const uri = "http://10.10.28.139:5000/v1/ga/";
-
 const CarouselCardItem = ({ item, index }) => {
   return (
-    <View style={styles.container} key={index}>
-      <Image source={{ uri: item.postImage }} style={styles.image} />
-      <Text style={styles.header}>{item.postTitle}</Text>
-      <Text style={styles.body}>{item.postDescription}</Text>
+    <View style={styles.container} key={index.id}>
+      <Image
+        source={{
+          uri: item._embedded["wp:featuredmedia"][0].media_details.source_url,
+        }}
+        style={styles.image}
+        resizeMode="cover"
+      />
+      <Text style={styles.header} numberOfLines={1}>
+        {parse(item.title.rendered)}
+      </Text>
+      <Text style={styles.body} numberOfLines={2}>
+        {item.yoast_head_json.description}
+      </Text>
     </View>
   );
 };
@@ -39,14 +49,14 @@ const styles = StyleSheet.create({
   },
   header: {
     color: "#222",
-    fontSize: 26,
+    fontSize: 20,
     fontWeight: "bold",
     paddingLeft: 20,
     paddingTop: 5,
   },
   body: {
     color: "#222",
-    fontSize: 18,
+    fontSize: 15,
     paddingLeft: 20,
     paddingRight: 20,
   },
