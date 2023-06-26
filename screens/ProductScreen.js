@@ -17,7 +17,7 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import tw from "tailwind-react-native-classnames";
 
 import ProductBox from "../components/ProductBox";
-import { productData } from "../components/product/productData";
+// import { productData } from "../components/product/productData";
 
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
