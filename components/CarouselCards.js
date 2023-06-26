@@ -1,54 +1,56 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Carousel from "react-native-snap-carousel";
+
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from "./CarouselCardItem";
 
-import api from "../api";
+import parse from "html-react-parser";
+
+import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import data from "./data";
-
 const CarouselCards = () => {
+  const navigation = useNavigation();
   const isCarousel = React.useRef(null);
 
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
-  const getPost = async () => {
-    const token = await AsyncStorage.getItem("token");
-
-    if (token) {
-      await api
-        .get("/posts/", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+  useEffect(() => {
+    const getPost = async () => {
+      await axios
+        .get("http://andalpost.com/wp-json/wp/v2/posts/?_embed")
         .then((res) => {
-          console.log(res.data);
-          setData(res.data.data);
+          setData(res.data);
         })
         .catch((err) => {
           console.log(err, err.message);
         });
-    }
-  };
+    };
 
-  useEffect(() => {
-    // getPost();
+    console.log("Post: ", data);
+
+    getPost();
   }, []);
 
   return (
-    <View style={styles.carousel}>
-      <Carousel
-        layout="tinder"
-        layoutCardOffset={9}
-        ref={isCarousel}
-        data={data}
-        renderItem={CarouselCardItem}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
-        inactiveSlideShift={0}
-        useScrollView={true}
-      />
-    </View>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Andalpost", { slug: data.slug })}
+    >
+      <View style={styles.carousel}>
+        <Carousel
+          layout="tinder"
+          layoutCardOffset={9}
+          ref={isCarousel}
+          data={data}
+          renderItem={CarouselCardItem}
+          sliderWidth={SLIDER_WIDTH}
+          itemWidth={ITEM_WIDTH}
+          inactiveSlideShift={0}
+          useScrollView={true}
+        />
+      </View>
+    </TouchableOpacity>
   );
 };
 
