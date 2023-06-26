@@ -1,10 +1,19 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Dimensions, FlatList, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { MotiView } from 'moti';
-import randomColor from 'randomcolor';
+import { Ionicons } from "@expo/vector-icons";
+import {
+  Dimensions,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React, { useState, useEffect } from "react";
+import { MotiView } from "moti";
+import randomColor from "randomcolor";
 
-const { width } = Dimensions.get('window');
+import api from "../api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const { width } = Dimensions.get("window");
 const pinLength = 4;
 const pinContainerSize = width / 2;
 const pinFullSize = pinContainerSize / pinLength;
@@ -15,12 +24,12 @@ const dialPadSize = width * 0.2;
 const dialPadFontSize = dialPadSize * 0.4;
 const gap = 14;
 
-const dialPad = [1, 2, 3, 4, 5, 6, 7, 8, 9, '', 0, 'del'];
+const dialPad = [1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "del"];
 
 const baseColor = randomColor();
 const colors = {
-  primary: '#F8D344',
-  secondary: '#D45239',
+  primary: "#F8D344",
+  secondary: "#D45239",
 };
 
 function DialPad({ onPress }) {
@@ -34,10 +43,10 @@ function DialPad({ onPress }) {
       contentContainerStyle={{ gap: gap * 2 }}
       scrollEnabled={false}
       renderItem={({ item }) => {
-        const isNumber = typeof item === 'number';
+        const isNumber = typeof item === "number";
         return (
           <TouchableOpacity
-            disabled={item === ''}
+            disabled={item === ""}
             onPress={() => {
               onPress(item);
             }}
@@ -48,12 +57,12 @@ function DialPad({ onPress }) {
                 height: dialPadSize,
                 borderRadius: dialPadSize,
                 borderWidth: isNumber ? 1 : 0,
-                borderColor: 'black',
-                justifyContent: 'center',
-                alignItems: 'center',
+                borderColor: "black",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              {item === 'del' ? (
+              {item === "del" ? (
                 <Ionicons
                   name="backspace-outline"
                   size={dialPadFontSize}
@@ -79,21 +88,22 @@ function DialPad({ onPress }) {
 
 export default function PasscodePage({ navigation }) {
   const [code, setCode] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
-  const errorColor = '#FF0000';
+  const [errorMessage, setErrorMessage] = useState("");
+  const errorColor = "#FF0000";
 
   useEffect(() => {
     const validatePasscode = () => {
-      const passcode = code.join('');
-      const validPasscode = '5678';
+      const passcode = code.join("");
+      const validPasscode = "5678";
       console.log(`passcode: ${passcode}`);
       console.log(`validPasscode: ${validPasscode}`);
+
       if (passcode === validPasscode) {
-        setErrorMessage('Passcode valid');
+        setErrorMessage("Passcode valid");
         setCode([]); // Reset code
-        navigation.navigate('PaymentStatus'); // Navigates to PaymentStatus page
+        navigation.navigate("PaymentStatus"); // Navigates to PaymentStatus page
       } else {
-        setErrorMessage('Passcode salah. Silakan coba lagi.');
+        setErrorMessage("Passcode salah. Silakan coba lagi.");
         setCode([]); // Reset code
       }
     };
@@ -104,9 +114,9 @@ export default function PasscodePage({ navigation }) {
   }, [code, navigation]);
 
   const handlePress = (item) => {
-    if (item === 'del') {
+    if (item === "del") {
       setCode((prev) => prev.slice(0, prev.length - 1));
-    } else if (typeof item === 'number') {
+    } else if (typeof item === "number") {
       setCode((prev) => [...prev, item]);
     }
   };
@@ -115,8 +125,8 @@ export default function PasscodePage({ navigation }) {
     <View
       style={{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: colors.primary,
       }}
     >
@@ -125,9 +135,9 @@ export default function PasscodePage({ navigation }) {
           <Text
             style={{
               fontSize: 16,
-              fontWeight: 'bold',
+              fontWeight: "bold",
               color: errorColor,
-              textAlign: 'center',
+              textAlign: "center",
             }}
           >
             {errorMessage}
@@ -136,11 +146,11 @@ export default function PasscodePage({ navigation }) {
       ) : null}
       <View
         style={{
-          flexDirection: 'row',
+          flexDirection: "row",
           gap: pinSpacing * 2,
           height: pinSize * 2,
           marginBottom: pinSize * 2,
-          alignItems: 'flex-end',
+          alignItems: "flex-end",
           backgroundColor: colors.primary,
         }}
       >
@@ -159,7 +169,7 @@ export default function PasscodePage({ navigation }) {
                 marginBottom: isSelected ? pinSize / 2 : 0,
               }}
               transition={{
-                type: 'timing',
+                type: "timing",
                 duration: 100,
               }}
             />
