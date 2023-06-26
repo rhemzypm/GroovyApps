@@ -1,33 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-const Andalpost = () => {
-  const navigation = useNavigation();
-  const [article, setArticle] = useState(null);
+import parse from "html-react-parser";
+
+import { FontAwesome } from "@expo/vector-icons";
+
+import axios from "axios";
+
+const Andalpost = ({ route, navigation }) => {
+  const { slug } = route.params;
+
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        const response = await fetch(
-          'https://newsapi.org/v2/everything?q=apple&from=2023-05-24&to=2023-05-24&sortBy=popularity&apiKey=76a93ecf19984f2682e81ca559762d7c'
-        );
-        const data = await response.json();
-        setArticle(data.articles[10]);
-      } catch (error) {
-        console.log('Error fetching article:', error);
-      }
+    const getPost = async () => {
+      await axios
+        .get(`http://andalpost.com/wp-json/wp/v2/posts/${slug}`)
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data);
+        })
+        .catch((err) => {
+          console.log(err, err.message);
+        });
     };
 
-    fetchArticle();
+    getPost();
   }, []);
 
   const handleGoBack = () => {
-    navigation.navigate('Home'); 
+    navigation.navigate("Home");
   };
 
-  if (!article) {
+  if (!data) {
     return (
       <View style={styles.container}>
         <Text>Loading...</Text>
@@ -37,15 +50,30 @@ const Andalpost = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: article.urlToImage }} style={styles.image} />
+      <Image
+        source={{
+          uri:
+            data && data._embedded && data._embedded["wp:featuredmedia"]
+              ? data._embedded["wp:featuredmedia"][0].media_details.sizes
+                  .thumbnail.source_url
+              : "",
+        }}
+        style={styles.image}
+      />
       <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-        <FontAwesome name="chevron-left" style={styles.backIcon} testID="backIcon" />
+        <FontAwesome
+          name="chevron-left"
+          style={styles.backIcon}
+          testID="backIcon"
+        />
       </TouchableOpacity>
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>{article.title}</Text>
-        <Text style={styles.author}>By {article.author}</Text>
-        <Text style={styles.description}>{article.description}</Text>
-        <Text style={styles.content}>{article.content}</Text>
+        <Text style={styles.title}>{parse(data.title.rendered)}</Text>
+        <Text style={styles.author}>By {data.yoast_head_json.author}</Text>
+        <Text style={styles.description}>
+          {data.yoast_head_json.description}
+        </Text>
+        <Text style={styles.content}>{parse(data.excerpt.rendered)}</Text>
       </View>
     </ScrollView>
   );
@@ -54,35 +82,35 @@ const Andalpost = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 20,
     left: 20,
     zIndex: 1,
   },
   backIcon: {
     fontSize: 20,
-    color: '#fff',
+    color: "#fff",
   },
   image: {
-    width: '100%',
+    width: "100%",
     height: 200,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   contentContainer: {
     padding: 20,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
   },
   author: {
     fontSize: 16,
     marginBottom: 10,
-    color: '#888',
+    color: "#888",
   },
   description: {
     fontSize: 18,
