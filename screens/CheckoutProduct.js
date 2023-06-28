@@ -65,7 +65,9 @@ const CheckoutProduct = ({ route, navigation }) => {
       <View style={styles.productContainer}>
         <View key={packageData._id}>
           <ProductDetailsContainer packageData={packageData} />
+
           <ProductDetail packageData={packageData} />
+
           <View style={styles.bottomContainer}>
             <Text style={styles.priceText}>
               Rp {packageData.packagePrice} per{" "}
