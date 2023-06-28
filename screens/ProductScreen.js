@@ -17,7 +17,6 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import tw from "tailwind-react-native-classnames";
 
 import ProductBox from "../components/ProductBox";
-// import { productData } from "../components/product/productData";
 
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -131,15 +130,20 @@ export default function ProductScreen({ navigation }) {
           </View>
         </TouchableOpacity>
         <Text style={styles.header2Text}>Our Product</Text>
-        {packageData.map((data) => (
-          <ProductBox
-            key={data._id}
-            packageData={data}
-            onPress={() =>
-              navigation.navigate("CheckoutProduct", { id: data._id })
-            }
-          />
-        ))}
+
+        {packageData.length > 0 ? (
+          packageData.map((data) => (
+            <ProductBox
+              key={data._id}
+              packageData={data}
+              onPress={() =>
+                navigation.navigate("CheckoutProduct", { id: data._id })
+              }
+            />
+          ))
+        ) : (
+          <Text style={styles.header3Text}>No package datas are fetched.</Text>
+        )}
       </ScrollView>
       <View style={styles.bottomView}></View>
     </SafeAreaView>
@@ -184,7 +188,16 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     color: "black",
-    marginHorizontal: 20,
+    marginHorizontal: 25,
+    marginBottom: 10,
+  },
+  header3Text: {
+    position: "relative",
+    alignContent: "flex-start",
+    fontSize: 15,
+    fontWeight: 500,
+    color: "black",
+    marginHorizontal: 25,
     marginBottom: 10,
   },
   boxContainerCoverage: {
