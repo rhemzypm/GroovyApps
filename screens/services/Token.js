@@ -51,17 +51,23 @@ export default function Token({ navigation }) {
     <SafeAreaView style={[tw`flex-1`]}>
       <Text style={styles.headerText}>Token Listrik</Text>
       <View style={styles.topView}></View>
-      <ScrollView style={styles.scrollViewContainer2}>
-        {voucherData.map((data) => (
-          <ServiceBox
-            key={data._id}
-            voucherData={data}
-            onPress={() =>
-              navigation.navigate("RewardDetail", { id: data._id })
-            }
-          />
-        ))}
-      </ScrollView>
+
+      {voucherData.length > 0 ? (
+        <ScrollView style={styles.scrollViewContainer2}>
+          {voucherData.map((data) => (
+            <ServiceBox
+              key={data._id}
+              voucherData={data}
+              onPress={() =>
+                navigation.navigate("RewardDetail", { id: data._id })
+              }
+            />
+          ))}
+        </ScrollView>
+      ) : (
+        <Text style={styles.header3Text}>No voucher datas are fetched.</Text>
+      )}
+
       <View style={styles.bottomView}></View>
     </SafeAreaView>
   );
@@ -105,7 +111,16 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     color: "black",
-    marginHorizontal: 20,
+    marginHorizontal: 25,
+    marginBottom: 10,
+  },
+  header3Text: {
+    position: "relative",
+    alignContent: "flex-start",
+    fontSize: 15,
+    fontWeight: 500,
+    color: "black",
+    marginHorizontal: 25,
     marginBottom: 10,
   },
   boxContainerCoverage: {
