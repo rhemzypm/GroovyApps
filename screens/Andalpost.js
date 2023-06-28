@@ -23,7 +23,7 @@ const Andalpost = ({ route, navigation }) => {
   useEffect(() => {
     const getPost = async () => {
       await axios
-        .get(`http://andalpost.com/wp-json/wp/v2/posts/${slug}`)
+        .get(`http://andalpost.com/wp-json/wp/v2/posts/?slug=${slug}`)
         .then((res) => {
           console.log(res.data);
           setData(res.data);
@@ -32,7 +32,6 @@ const Andalpost = ({ route, navigation }) => {
           console.log(err, err.message);
         });
     };
-
     getPost();
   }, []);
 
@@ -50,16 +49,6 @@ const Andalpost = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <Image
-        source={{
-          uri:
-            data && data._embedded && data._embedded["wp:featuredmedia"]
-              ? data._embedded["wp:featuredmedia"][0].media_details.sizes
-                  .thumbnail.source_url
-              : "",
-        }}
-        style={styles.image}
-      />
       <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
         <FontAwesome
           name="chevron-left"
@@ -67,13 +56,22 @@ const Andalpost = ({ route, navigation }) => {
           testID="backIcon"
         />
       </TouchableOpacity>
+
       <View style={styles.contentContainer}>
+        <Text>{slug}</Text>
+        {/* <Image
+          source={{
+            uri: data._embedded["wp:featuredmedia"][0].media_details.sizes
+              .medium.source_url,
+          }}
+          style={styles.image}
+        />
         <Text style={styles.title}>{parse(data.title.rendered)}</Text>
         <Text style={styles.author}>By {data.yoast_head_json.author}</Text>
         <Text style={styles.description}>
           {data.yoast_head_json.description}
         </Text>
-        <Text style={styles.content}>{parse(data.excerpt.rendered)}</Text>
+        <Text style={styles.content}>{parse(data.excerpt.rendered)}</Text> */}
       </View>
     </ScrollView>
   );
