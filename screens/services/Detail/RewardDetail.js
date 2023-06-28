@@ -12,10 +12,6 @@ import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 import Lottie from "lottie-react-native";
 
-// import { TokenData } from "../../../components/services/TokenData";
-// import { PulsaData } from "../../../components/services/PulsaData";
-// import { FoodData } from "../../../components/services/FoodData";
-
 import api from "../../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -91,7 +87,12 @@ const RewardDetail = ({ route, navigation }) => {
         <View style={styles.imgProfile}>
           {/* <Text style={styles.imgProfileText}>{initialName}</Text> */}
           <Image
-            source={{ uri: `${BACKEND_URL}${voucherData.voucherImage}` }}
+            source={{
+              uri: `${voucherData.voucherImage.replace(
+                "http://127.0.0.1:5000/v1/ga/",
+                BACKEND_URL
+              )}`,
+            }}
             width={screenWidth * 0.85}
             height={170}
             borderRadius={10}
