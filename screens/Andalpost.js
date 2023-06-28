@@ -59,7 +59,7 @@ const Andalpost = ({ route, navigation }) => {
 
       <View style={styles.contentContainer}>
         <Text>{slug}</Text>
-        {/* <Image
+        <Image
           source={{
             uri: data._embedded["wp:featuredmedia"][0].media_details.sizes
               .medium.source_url,
@@ -71,7 +71,7 @@ const Andalpost = ({ route, navigation }) => {
         <Text style={styles.description}>
           {data.yoast_head_json.description}
         </Text>
-        <Text style={styles.content}>{parse(data.excerpt.rendered)}</Text> */}
+        <Text style={styles.content}>{parse(data.excerpt.rendered)}</Text>
       </View>
     </ScrollView>
   );
