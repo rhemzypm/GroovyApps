@@ -8,13 +8,14 @@ import {
   Dimensions,
   StatusBar,
 } from "react-native";
-import logo from "../assets/img/logo.png";
 import Lottie from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+import logo from "../assets/img/logo.png";
+
 import ServiceButton from "../components/ServiceButton";
-import CarouselCards from "../components/CarouselCards";
+import CarouselPromo from "../components/CarouselPromo";
 
 import api from "../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -100,7 +101,7 @@ export default function PointScreen() {
         </View>
       </View>
       <Text style={styles.serviceText}>New Promos</Text>
-      <CarouselCards />
+      <CarouselPromo />
     </View>
   );
 }
