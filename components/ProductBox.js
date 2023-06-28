@@ -23,7 +23,12 @@ const ProductBox = ({ packageData, onPress }) => {
         <View style={styles.imgProfile}>
           {/* <Text style={styles.imgProfileText}>{initialName}</Text> */}
           <Image
-            source={{ uri: `${BACKEND_URL}${packageData.packageImage}` }}
+            source={{
+              uri: `${packageData.packageImage.replace(
+                "http://127.0.0.1:5000/v1/ga/",
+                BACKEND_URL
+              )}`,
+            }}
             width={60}
             height={60}
             borderRadius={50}
