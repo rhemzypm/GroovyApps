@@ -14,7 +14,7 @@ const CarouselPromoItem = ({ item }) => {
         style={styles.image}
       />
       <Text style={styles.header}>{item.promoTitle}</Text>
-      <Text style={styles.body}>{item.promoDescription}</Text>
+      <Text style={styles.body}>{item.promoContent}</Text>
     </View>
   );
 };
