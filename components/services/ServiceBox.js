@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { BACKEND_URL } from "../../backendURL";
+
 const screenWidth = Dimensions.get("window").width;
 const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 const ServiceBox = ({ voucherData, onPress }) => {
   const navigation = useNavigation();
-
-  const uri = `http://10.10.28.103:5000/v1/ga/`;
 
   return (
     <View style={styles.boxContainer}>
@@ -24,7 +24,12 @@ const ServiceBox = ({ voucherData, onPress }) => {
           {/* <Text style={styles.imgProfileText}>{voucherData.initialName}</Text> */}
 
           <Image
-            source={{ uri: `${uri}${voucherData.voucherImage}` }}
+            source={{
+              uri: `${voucherData.voucherImage.replace(
+                "http://127.0.0.1:5000/v1/ga/",
+                BACKEND_URL
+              )}`,
+            }}
             width={170}
             height={100}
             borderRadius={10}
