@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { BACKEND_URL } from "../backendURL";
 
@@ -18,9 +19,10 @@ const ITEM_WIDTH = Math.round(screenWidth * 0.9);
 
 const Profile = () => {
   const [userData, setUserData] = useState([]);
+  const navigation = useNavigation();
 
   const handleEditProfile = () => {
-    console.log("edit profile");
+    navigation.navigate("EditProfile");
   };
 
   // get user data

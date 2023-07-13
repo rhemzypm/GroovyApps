@@ -26,6 +26,7 @@ import RewardDetail from "./screens/services/Detail/RewardDetail";
 import ServiceNavigator from "./components/navigator/ServiceNavigator";
 import Redeem from "./screens/services/Detail/Redeem";
 import PaymentStatus from "./screens/PaymentStatus";
+import EditProfile from "./screens/EditProfile";
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -139,6 +140,7 @@ function StackNavigator() {
       <Stack.Screen name="RewardDetail" component={RewardDetail} />
       <Stack.Screen name="Redeem" component={Redeem} />
       <Stack.Screen name="PaymentStatus" component={PaymentStatus} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
       <Stack.Screen
         name="TabNavigator"
         component={TabNavigator}
