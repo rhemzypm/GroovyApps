@@ -47,7 +47,9 @@ const EditProduct = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSave = async () => {
+  const handleSave = async (e) => {
+    e.preventDefault();
+
     // Tambahkan logika penyimpanan di sini
     console.log("Package updated");
 
