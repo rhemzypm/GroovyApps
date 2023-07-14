@@ -1,0 +1,18 @@
+extends baseEmail 
+
+block content
+  p(align='center')
+    img(src='Logo-Groovy-App-1.png', alt='Logo Groovy App')
+  p Halo #{firstName},
+  p Selamat datang di halaman dashboard Groovy App
+  p Mohon klik link ini untuk melakukan aktivasi akun Anda seperti di bawah ini:
+  table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+
+    tbody
+      tr
+        td(align='left')
+          table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+            tbody
+              tr
+                td
+                  a(href=`${url}`, target='_blank') Activate your account

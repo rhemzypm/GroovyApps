@@ -1,0 +1,35 @@
+{
+  "name": "groovyapps",
+  "version": "1.0.0",
+  "description": "A super app for supporting Andalworks services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm start --prefix backend",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhemzypm/GroovyApps.git"
+  },
+  "keywords": [
+    "Express JS",
+    "MongoDB",
+    "Mongoose",
+    "NodeJS",
+    "Nodemailer",
+    "RESTful API",
+    "React Native",
+    "React JS",
+    "Axios"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhemzypm/GroovyApps/issues"
+  },
+  "homepage": "https://github.com/rhemzypm/GroovyApps#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
