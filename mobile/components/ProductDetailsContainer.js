@@ -23,7 +23,7 @@ const ProductDetailsContainer = ({ packageData }) => {
           <Image
             source={{
               uri: `${packageData.packageImage.replace(
-                "http://127.0.0.1:5000/v1/ga/",
+                "http://localhost:5000/v1/ga/",
                 BACKEND_URL
               )}`,
             }}
