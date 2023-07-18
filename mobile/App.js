@@ -35,12 +35,33 @@ const Tab = createBottomTabNavigator();
 import { SafeAreaView } from "react-native";
 import CarouselCards from "./components/CarouselCards";
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
 function TabNavigator() {
   return (
     <Tab.Navigator
       tabBar={(props) => <TabBar {...props} />}
       initialRouteName="Home"
       screenOptions={{ headerShown: false }}
+      tabBarOptions={{
+        style: {
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOpacity: 0.3,
+          shadowRadius: 8,
+          shadowOffset: {
+            width: 0,
+            height: 4,
+          },
+        },
+      }}
     >
       <Tab.Screen
         name="Home"
@@ -70,53 +91,6 @@ function TabNavigator() {
     </Tab.Navigator>
   );
 }
-
-// function ServiceNavigator() {
-//   return (
-//     <Tab.Navigator
-//       tabBar={(props) => <ServiceTabBar {...props} />}
-//       initialRouteName="Token"
-//       screenOptions={{ headerShown: false }}
-//     >
-//       <Tab.Screen
-//         name="Token"
-//         component={Token}
-//         initialParams={{ icon: "home" }}
-//       />
-//       <Tab.Screen
-//         name="Point"
-//         component={PointScreen}
-//         initialParams={{ icon: "point" }}
-//       />
-//     </Tab.Navigator>
-//   );
-// }
-
-// function ServiceNavigator() {
-//   return (
-//     <TopTab.Navigator
-//       screenOptions={{
-//         tabBarShowIcon: true,
-//         tabBarScrollEnabled: true,
-//         tabBarItemStyle: { width: 'auto' },
-//         tabBarIndicatorStyle: { backgroundColor: '#f79944' },
-//       }}
-//       initialRouteName="Home"
-//     >
-//       <TopTab.Screen
-//         name="Token"
-//         component={Token}
-//         initialParams={{ icon: "home" }}
-//       />
-//       <TopTab.Screen
-//         name="Point"
-//         component={PointScreen}
-//         initialParams={{ icon: "point" }}
-//       />
-//       {/* Add more Tab.Screen components for additional buttons */}
-//     </TopTab.Navigator>
-//   );
-// }
 
 function StackNavigator() {
   return (
@@ -162,12 +136,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

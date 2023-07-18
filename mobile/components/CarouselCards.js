@@ -50,8 +50,9 @@ const CarouselCards = () => {
         <View style={styles.container} key={index.id}>
           <Image
             source={{
-              uri: item._embedded["wp:featuredmedia"][0].media_details.sizes
-                .medium.source_url,
+              uri: 'a',
+              // uri: item._embedded["wp:featuredmedia"][0].media_details.sizes
+              //   .medium.source_url,
             }}
             style={styles.image}
             resizeMode="cover"
