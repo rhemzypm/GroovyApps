@@ -61,8 +61,9 @@ const Andalpost = ({ route, navigation }) => {
         <Text>{slug}</Text>
         <Image
           source={{
-            uri: data._embedded["wp:featuredmedia"][0].media_details.sizes
-              .medium.source_url,
+            // uri: data._embedded["wp:featuredmedia"][0].media_details.sizes
+            //   .medium.source_url,
+            uri: "a",
           }}
           style={styles.image}
         />
