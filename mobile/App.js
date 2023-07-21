@@ -1,39 +1,41 @@
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StatusBar, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
 import Onboarding from "./screens/Onboarding";
 import Splashscreen from "./screens/Splashscreen";
 import SignInScreen from "./screens/SignInScreen";
 import InputOTP from "./components/InputOTP";
 import Register from "./screens/Register";
-import BottomNav from "./components/BottomNav";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
 import HomeScreen from "./screens/HomeScreen";
 import PointScreen from "./screens/PointScreen";
 import FAQScreen from "./screens/FAQScreen";
-import TabBar from "./components/TabBar";
 import Profile from "./screens/Profile";
 import ProductScreen from "./screens/ProductScreen";
 import MessageScreen from "./screens/messages/MessageScreen";
-import CarouselCard from "./components/CarouselCards";
+
 import FormCheckCoverage from "./screens/FormCheckCoverage";
 import CheckoutProduct from "./screens/CheckoutProduct";
 import Andalpost from "./screens/Andalpost";
 import PasscodePage from "./screens/PasscodePage";
 import RewardDetail from "./screens/services/Detail/RewardDetail";
-import ServiceNavigator from "./components/navigator/ServiceNavigator";
 import Redeem from "./screens/services/Detail/Redeem";
 import PaymentStatus from "./screens/PaymentStatus";
 import EditProfile from "./screens/EditProfile";
+
+import TabBar from "./components/TabBar";
+import BottomNav from "./components/BottomNav";
+import CarouselCard from "./components/CarouselCards";
+import CarouselCards from "./components/CarouselCards";
+import ServiceNavigator from "./components/navigator/ServiceNavigator";
+
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
-//test
-import { SafeAreaView } from "react-native";
-import CarouselCards from "./components/CarouselCards";
 
 const styles = StyleSheet.create({
   container: {
