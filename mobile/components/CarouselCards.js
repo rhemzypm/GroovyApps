@@ -50,7 +50,7 @@ const CarouselCards = () => {
         <View style={styles.container} key={index.id}>
           <Image
             source={{
-              uri: 'a',
+              uri: "a",
               // uri: item._embedded["wp:featuredmedia"][0].media_details.sizes
               //   .medium.source_url,
             }}
@@ -70,17 +70,21 @@ const CarouselCards = () => {
 
   return (
     <View style={styles.carousel}>
-      <Carousel
-        layout="tinder"
-        layoutCardOffset={9}
-        ref={isCarousel}
-        data={data}
-        renderItem={_renderItem}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
-        inactiveSlideShift={0}
-        useScrollView={true}
-      />
+      {data.length > 0 ? (
+        <Carousel
+          layout="tinder"
+          layoutCardOffset={9}
+          ref={isCarousel}
+          data={data}
+          renderItem={_renderItem}
+          sliderWidth={SLIDER_WIDTH}
+          itemWidth={ITEM_WIDTH}
+          inactiveSlideShift={0}
+          useScrollView={true}
+        />
+      ) : (
+        <Text style={styles.header3Text}>Fetching posts...</Text>
+      )}
     </View>
   );
 };
@@ -125,6 +129,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  header3Text: {
+    position: "relative",
+    alignContent: "flex-start",
+    fontSize: 15,
+    fontWeight: 500,
+    color: "black",
+    marginHorizontal: 25,
+    marginBottom: 10,
   },
 });
 
