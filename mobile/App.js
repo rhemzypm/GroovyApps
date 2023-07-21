@@ -97,7 +97,7 @@ function TabNavigator() {
 function StackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="Splashscreen"
+      initialRouteName="TabNavigator"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Splashscreen" component={Splashscreen} />
