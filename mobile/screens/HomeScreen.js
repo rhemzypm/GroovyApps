@@ -147,7 +147,7 @@ export default function Home() {
           </View>
         </View>
         <View style={styles.andalContainer}>
-          <Text style={styles.andalText}> The Andal Post </Text>
+          <Text style={styles.andalText}>The Andal Post </Text>
         </View>
         <CarouselCards />
         <View style={styles.PromoContainer}>
