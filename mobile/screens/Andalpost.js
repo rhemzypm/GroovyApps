@@ -18,15 +18,31 @@ import axios from "axios";
 const Andalpost = ({ route, navigation }) => {
   const { slug } = route.params;
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    title: "",
+    author: "",
+    description: "",
+    content: "",
+    image:
+      "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png",
+  });
 
   useEffect(() => {
     const getPost = async () => {
       await axios
-        .get(`http://andalpost.com/wp-json/wp/v2/posts/?slug=${slug}`)
+        .get(`http://andalpost.com/wp-json/wp/v2/posts/?_embed&slug=${slug}`)
         .then((res) => {
-          console.log(res.data);
-          setData(res.data);
+          const data = res.data[0];
+
+          setData({
+            title: data.title.rendered,
+            author: data.yoast_head_json.author,
+            description: data.yoast_head_json.description,
+            content: data.excerpt.rendered,
+            image:
+              data._embedded["wp:featuredmedia"][0].media_details.sizes.medium
+                .source_url,
+          });
         })
         .catch((err) => {
           console.log(err, err.message);
@@ -58,21 +74,11 @@ const Andalpost = ({ route, navigation }) => {
       </TouchableOpacity>
 
       <View style={styles.contentContainer}>
-        <Text>{slug}</Text>
-        <Image
-          source={{
-            // uri: data._embedded["wp:featuredmedia"][0].media_details.sizes
-            //   .medium.source_url,
-            uri: "a",
-          }}
-          style={styles.image}
-        />
-        <Text style={styles.title}>{parse(data.title.rendered)}</Text>
-        <Text style={styles.author}>By {data.yoast_head_json.author}</Text>
-        <Text style={styles.description}>
-          {data.yoast_head_json.description}
-        </Text>
-        <Text style={styles.content}>{parse(data.excerpt.rendered)}</Text>
+        <Image source={{ uri: data.image }} style={styles.image} />
+        <Text style={styles.title}>{parse(data.title)}</Text>
+        <Text style={styles.author}>By {data.author}</Text>
+        <Text style={styles.description}>{data.description}</Text>
+        <Text style={styles.content}>{data.content}</Text>
       </View>
     </ScrollView>
   );
