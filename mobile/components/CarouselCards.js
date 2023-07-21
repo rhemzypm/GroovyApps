@@ -92,7 +92,6 @@ const CarouselCards = () => {
 const styles = StyleSheet.create({
   carousel: {
     position: "relative",
-    alignItems: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingBottom: 40,
