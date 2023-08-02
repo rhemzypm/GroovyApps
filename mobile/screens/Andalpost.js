@@ -6,10 +6,12 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  useWindowDimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import parse from "html-react-parser";
+import RenderHTML from "react-native-render-html";
 
 import { FontAwesome } from "@expo/vector-icons";
 
@@ -78,7 +80,12 @@ const Andalpost = ({ route, navigation }) => {
         <Text style={styles.title}>{parse(data.title)}</Text>
         <Text style={styles.author}>By {data.author}</Text>
         <Text style={styles.description}>{data.description}</Text>
-        <Text style={styles.content}>{data.content}</Text>
+        <Text style={styles.content}>
+          <RenderHTML
+            contentWidth={useWindowDimensions()}
+            source={{ html: data.content }}
+          />
+        </Text>
       </View>
     </ScrollView>
   );
