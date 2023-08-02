@@ -92,7 +92,9 @@ export default function PasscodePage({ navigation }) {
   const errorColor = "#FF0000";
 
   useEffect(() => {
-    const validatePasscode = () => {
+    const validatePasscode = async () => {
+      const token = await AsyncStorage.getItem("token");
+
       const passcode = code.join("");
       const validPasscode = "5678";
       console.log(`passcode: ${passcode}`);
