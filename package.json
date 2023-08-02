@@ -1,0 +1,23 @@
+{
+  "name": "groovyapps",
+  "version": "1.0.0",
+  "description": "A super app for supporting Andalworks services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhemzypm/GroovyApps.git"
+  },
+  "keywords": [
+    "React Native",
+    "React JS",
+    "Axios"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rhemzypm/GroovyApps/issues"
+  },
+  "homepage": "https://github.com/rhemzypm/GroovyApps#readme"
+}
