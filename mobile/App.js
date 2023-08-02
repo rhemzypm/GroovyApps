@@ -27,6 +27,11 @@ import Redeem from "./screens/services/Detail/Redeem";
 import PaymentStatus from "./screens/PaymentStatus";
 import EditProfile from "./screens/EditProfile";
 
+import TabBar from "./components/TabBar";
+import BottomNav from "./components/BottomNav";
+import CarouselCard from "./components/CarouselCards";
+import CarouselCards from "./components/CarouselCards";
+import ServiceNavigator from "./components/navigator/ServiceNavigator";
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createNativeStackNavigator();
