@@ -1,11 +1,24 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Platform, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { theme } from "../../src/theme";
 
-const ChatInput = ({ reply, closeReply, isLeft, username }) => {
-  const [message, setMessage] = useState("");
-
+const ChatInput = ({
+  reply,
+  closeReply,
+  isLeft,
+  username,
+  message,
+  setMessage,
+  handleNewMessage,
+}) => {
   return (
     <View style={styles.container}>
       {reply && (
@@ -29,7 +42,7 @@ const ChatInput = ({ reply, closeReply, isLeft, username }) => {
             onChangeText={(text) => setMessage(text)}
           />
         </View>
-        <TouchableOpacity style={styles.sendButton}>
+        <TouchableOpacity style={styles.sendButton} onPress={handleNewMessage}>
           <Icon name="send" size={23} color={theme.colors.white} />
         </TouchableOpacity>
       </View>
