@@ -57,7 +57,7 @@
     "react-native-view-overflow": "^0.0.5",
     "react-redirect": "^1.0.0",
     "react-router-dom": "^6.12.1",
-    "socket.io-client": "^4.6.2",
+    "socket.io-client": "^4.7.2",
     "tailwind-react-native-classnames": "^1.5.1",
     "tailwindcss-react-native": "^1.7.10"
   },
