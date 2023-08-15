@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import {
   FlingGestureHandler,
   Directions,
   State,
+  FlatList,
 } from "react-native-gesture-handler";
 
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
@@ -27,12 +28,13 @@ import socket from "../../utils/socket";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const MessageScreen = ({
-  username = "Customer Center",
+  username = "Customer Service",
   picture = logo,
-  onlineStatus = "Online",
   route,
   navigation,
 }) => {
+  const [onlineStatus, setOnlineStatus] = useState(true);
+
   const [reply, setReply] = useState("");
   const [isLeft, setIsLeft] = useState();
 
@@ -45,18 +47,7 @@ const MessageScreen = ({
       ? `0${new Date().getMinutes()}`
       : `${new Date().getMinutes()}`;
 
-  const [messages, setMessages] = useState([
-    {
-      user: 0,
-      time: `${hour}:${mins}`,
-      content: "Hello",
-    },
-    {
-      user: 1,
-      time: `${hour}:${mins}`,
-      content: "Hello",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   // get id (soon)
@@ -71,14 +62,45 @@ const MessageScreen = ({
   };
 
   const handleNewMessage = () => {
-    setMessages([{ user: 0, time: `${hour}:${mins}`, content: message }]);
-
-    socket.emit("newMessage", {
-      user: 0,
-      time: { hour, mins },
-      content: message,
-    });
+    if (message.trim() !== "") {
+      socket.emit("newMessage", { content: message, isCustomerService: false });
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          user: 0,
+          time: `${hour}:${mins}`,
+          content: message,
+        },
+      ]);
+      setMessage("");
+    }
   };
+
+  useEffect(() => {
+    socket.on("connection", () => {
+      setOnlineStatus(true);
+    });
+
+    socket.on("disconnect", () => {
+      setOnlineStatus(false);
+    });
+
+    socket.on("newMessage", (data) => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          user: 1,
+          time: data.time,
+          content: data.content,
+          isCustomerService: data.isCustomerService,
+        },
+      ]);
+    });
+
+    return () => {
+      socket.disconnected();
+    };
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
@@ -88,7 +110,7 @@ const MessageScreen = ({
         onlineStatus={onlineStatus}
       />
 
-      <MessageList messages={messages} onSwipeToReply={swipeToReply} />
+      <MessageList data={messages} onSwipeToReply={swipeToReply} />
 
       <ChatInput
         reply={reply}

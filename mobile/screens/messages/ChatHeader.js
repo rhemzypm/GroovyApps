@@ -1,12 +1,12 @@
-import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { theme } from '../../src/theme.js'
-import { useNavigation } from '@react-navigation/native'
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { theme } from "../../src/theme.js";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ChatHeader({ username, picture, onlineStatus}) {
+export default function ChatHeader({ username, picture, onlineStatus }) {
   const navigation = useNavigation();
-  
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={navigation.goBack}>
@@ -17,7 +17,9 @@ export default function ChatHeader({ username, picture, onlineStatus}) {
         <TouchableOpacity style={styles.profile}>
           <View style={styles.usernameAndOnlineStatus}>
             <Text style={styles.username}>{username}</Text>
-            <Text style={styles.onlineStatus}>{onlineStatus}</Text>
+            <Text style={styles.onlineStatus}>
+              {onlineStatus ? "Online" : "Offline"}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -27,26 +29,26 @@ export default function ChatHeader({ username, picture, onlineStatus}) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingTop: 80,
     paddingBottom: 40,
   },
   backButton: {
     marginRight: 10,
-    alignSelf: 'center',
+    alignSelf: "center",
     paddingLeft: 20,
     paddingRight: 10,
   },
   profileOptions: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     flex: 1,
     paddingHorizontal: 5,
   },
   profile: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     flex: 4,
   },
   image: {
@@ -55,14 +57,14 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   usernameAndOnlineStatus: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
     paddingHorizontal: 10,
   },
   username: {
     color: theme.colors.black,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   onlineStatus: {
     color: theme.colors.black,

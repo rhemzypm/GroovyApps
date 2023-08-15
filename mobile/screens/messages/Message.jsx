@@ -1,6 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FlingGestureHandler, Directions, State } from "react-native-gesture-handler";
+import {
+  FlingGestureHandler,
+  Directions,
+  State,
+} from "react-native-gesture-handler";
 import { theme } from "../../src/theme.js";
 
 const Message = ({ time, isLeft, message, onSwipe }) => {
