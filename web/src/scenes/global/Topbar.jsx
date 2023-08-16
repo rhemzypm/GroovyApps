@@ -65,13 +65,6 @@ const Topbar = () => {
 
       {/* ICONS */}
       <Box display="flex">
-        <StyledSwitch
-          checked={theme.palette.mode === "light"}
-          onChange={colorMode.toggleColorMode}
-          color="primary"
-          icon={<StyledDarkIcon theme={theme} />}
-          checkedIcon={<StyledLightIcon theme={theme} />}
-        />
         <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>
