@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
 import {
   Dimensions,
   FlatList,
@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+
+import { Ionicons } from "@expo/vector-icons";
 import { MotiView } from "moti";
 import randomColor from "randomcolor";
 
@@ -32,61 +33,7 @@ const colors = {
   secondary: "#D45239",
 };
 
-function DialPad({ onPress }) {
-  return (
-    <FlatList
-      data={dialPad}
-      keyExtractor={(_, index) => index.toString()}
-      numColumns={3}
-      style={{ flexGrow: 0 }}
-      columnWrapperStyle={{ gap: gap * 2 }}
-      contentContainerStyle={{ gap: gap * 2 }}
-      scrollEnabled={false}
-      renderItem={({ item }) => {
-        const isNumber = typeof item === "number";
-        return (
-          <TouchableOpacity
-            disabled={item === ""}
-            onPress={() => {
-              onPress(item);
-            }}
-          >
-            <View
-              style={{
-                width: dialPadSize,
-                height: dialPadSize,
-                borderRadius: dialPadSize,
-                borderWidth: isNumber ? 1 : 0,
-                borderColor: "black",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {item === "del" ? (
-                <Ionicons
-                  name="backspace-outline"
-                  size={dialPadFontSize}
-                  color={colors.secondary}
-                />
-              ) : (
-                <Text
-                  style={{
-                    fontSize: dialPadFontSize,
-                    color: colors.secondary,
-                  }}
-                >
-                  {item}
-                </Text>
-              )}
-            </View>
-          </TouchableOpacity>
-        );
-      }}
-    />
-  );
-}
-
-export default function PasscodePage({ navigation }) {
+const PasscodePage = ({ navigation }) => {
   const [code, setCode] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const errorColor = "#FF0000";
@@ -94,6 +41,14 @@ export default function PasscodePage({ navigation }) {
   useEffect(() => {
     const validatePasscode = async () => {
       const token = await AsyncStorage.getItem("token");
+
+      // await api
+      //   .post()
+      //   .then((res) => {setErrorMessage("Passcode valid");
+      // setCode([]); // Reset code
+      // navigation.navigate("PaymentStatus"); })
+      //   .catch((err) => {setErrorMessage("Passcode salah. Silakan coba lagi.");
+      // setCode([]); // Reset code});
 
       const passcode = code.join("");
       const validPasscode = "5678";
@@ -121,6 +76,60 @@ export default function PasscodePage({ navigation }) {
     } else if (typeof item === "number") {
       setCode((prev) => [...prev, item]);
     }
+  };
+
+  const DialPad = ({ onPress }) => {
+    return (
+      <FlatList
+        data={dialPad}
+        keyExtractor={(_, index) => index.toString()}
+        numColumns={3}
+        style={{ flexGrow: 0 }}
+        columnWrapperStyle={{ gap: gap * 2 }}
+        contentContainerStyle={{ gap: gap * 2 }}
+        scrollEnabled={false}
+        renderItem={({ item }) => {
+          const isNumber = typeof item === "number";
+          return (
+            <TouchableOpacity
+              disabled={item === ""}
+              onPress={() => {
+                onPress(item);
+              }}
+            >
+              <View
+                style={{
+                  width: dialPadSize,
+                  height: dialPadSize,
+                  borderRadius: dialPadSize,
+                  borderWidth: isNumber ? 1 : 0,
+                  borderColor: "black",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {item === "del" ? (
+                  <Ionicons
+                    name="backspace-outline"
+                    size={dialPadFontSize}
+                    color={colors.secondary}
+                  />
+                ) : (
+                  <Text
+                    style={{
+                      fontSize: dialPadFontSize,
+                      color: colors.secondary,
+                    }}
+                  >
+                    {item}
+                  </Text>
+                )}
+              </View>
+            </TouchableOpacity>
+          );
+        }}
+      />
+    );
   };
 
   return (
@@ -181,4 +190,6 @@ export default function PasscodePage({ navigation }) {
       <DialPad onPress={handlePress} />
     </View>
   );
-}
+};
+
+export default PasscodePage;
