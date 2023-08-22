@@ -94,7 +94,7 @@ export default function Home() {
 
   useEffect(() => {
     getUserData();
-    // getUserPackage();
+    getUserPackage();
   }, []);
 
   return (
@@ -138,11 +138,33 @@ export default function Home() {
                 <Text style={styles.profileText}>
                   Your Groovy Subscription Status
                 </Text>
-                <Text style={styles.profileText2}>{data.packageName}</Text>
+                <Text style={styles.profileText2}>No purchased packages</Text>
                 <Text style={styles.profileText3}>
-                  Next payment: {data.packageNextPayment}
+                  You haven't purchased any subscriptions yet
                 </Text>
               </View>
+
+              {/* {data === null ? (
+                <View>
+                  <Text style={styles.profileText}>
+                    Your Groovy Subscription Status
+                  </Text>
+                  <Text style={styles.profileText2}>No purchased packages</Text>
+                  <Text style={styles.profileText3}>
+                    You haven't purchased any subscriptions yet
+                  </Text>
+                </View>
+              ) : (
+                <View>
+                  <Text style={styles.profileText}>
+                    Your Groovy Subscription Status
+                  </Text>
+                  <Text style={styles.profileText2}>{data.packageName}</Text>
+                  <Text style={styles.profileText3}>
+                    Next payment: {data.packageNextPayment}
+                  </Text>
+                </View>
+              )} */}
             </View>
           </View>
         </View>
