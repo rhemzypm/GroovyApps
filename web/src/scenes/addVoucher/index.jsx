@@ -30,8 +30,8 @@ const AddVoucher = () => {
   const [values, setValues] = useState({
     voucherTitle: "",
     voucherType: "",
-    voucherPrice: 0,
     voucherDescription: "",
+    voucherPoint: 0,
   });
 
   const handleFileChange = (e) => {
@@ -54,8 +54,8 @@ const AddVoucher = () => {
     formData.append("voucherImage", voucherImage);
     formData.append("voucherTitle", values.voucherTitle);
     formData.append("voucherType", values.voucherType);
-    formData.append("voucherPrice", values.voucherPrice);
     formData.append("voucherDescription", values.voucherDescription);
+    formData.append("voucherPoint", values.voucherPoint);
 
     await api
       .post("/vouchers/", formData, {
@@ -164,9 +164,9 @@ const AddVoucher = () => {
           </FormControl>
 
           <TextField
-            label="Voucher Price"
-            name="voucherPrice"
-            value={values.voucherPrice}
+            label="Voucher Point"
+            name="voucherPoint"
+            value={values.voucherPoint}
             onChange={handleChange}
             fullWidth
             margin="normal"

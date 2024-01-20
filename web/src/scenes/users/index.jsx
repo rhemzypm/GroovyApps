@@ -52,11 +52,11 @@ const Users = () => {
       headerName: "Balance",
       flex: 1,
     },
-    // {
-    //   field: "point",
-    //   headerName: "Point",
-    //   flex: 1,
-    // },
+    {
+      field: "point",
+      headerName: "Point",
+      flex: 1,
+    },
     {
       field: "paymentStatus",
       headerName: "Payment",

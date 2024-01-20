@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Button, Box } from "@mui/material";
 import { tokens } from "../../theme";
 
@@ -37,14 +37,20 @@ const ManageVoucher = () => {
       flex: 1,
     },
     {
-      field: "voucherPrice",
-      headerName: "Price",
+      field: "voucherPoint",
+      headerName: "Point",
       flex: 1,
     },
     {
       field: "validUntilDate",
       headerName: "ValidDate",
+      type: "dateTime",
       flex: 1,
+      renderCell: ({ row }) => {
+        return row.validUntilDate
+          ? new Date(row.validUntilDate).toLocaleDateString()
+          : "";
+      },
     },
     {
       field: "status",

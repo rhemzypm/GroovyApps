@@ -33,8 +33,8 @@ const EditVoucher = () => {
   const [values, setValues] = useState({
     voucherTitle: "",
     voucherType: "",
-    voucherPrice: 0,
     voucherDescription: "",
+    voucherPoint: 0,
   });
 
   const handleFileChange = (e) => {
@@ -59,8 +59,8 @@ const EditVoucher = () => {
     formData.append("voucherImage", voucherImage);
     formData.append("voucherTitle", values.voucherTitle);
     formData.append("voucherType", values.voucherType);
-    formData.append("voucherPrice", values.voucherPrice);
     formData.append("voucherDescription", values.voucherDescription);
+    formData.append("voucherPoint", values.voucherPoint);
 
     await api
       .patch(`/vouchers/${id}`, formData, {
@@ -102,8 +102,9 @@ const EditVoucher = () => {
         setValues({
           voucherTitle: data.voucherTitle,
           voucherType: data.voucherType,
-          voucherPrice: data.voucherPrice,
+          voucherPoint: data.voucherPoint,
           voucherDescription: data.voucherDescription,
+          discount: data.discount,
         });
       })
       .catch((err) => {
@@ -189,14 +190,14 @@ const EditVoucher = () => {
             </Box>
           </FormControl>
           <TextField
-            label="Voucher Price"
-            value={values.voucherPrice}
+            label="Voucher Point"
+            value={values.voucherPoint}
             onChange={handleChange}
             fullWidth
             margin="normal"
           />
           <TextField
-            label="Voucher Content"
+            label="Voucher Description"
             value={values.voucherDescription}
             onChange={handleChange}
             fullWidth
