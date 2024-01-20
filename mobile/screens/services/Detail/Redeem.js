@@ -12,25 +12,23 @@ import Lottie from "lottie-react-native";
 
 const screenWidth = Dimensions.get("window").width;
 
-const Redeem = () => {
-  const navigation = useNavigation();
+const Redeem = ({ route, navigation }) => {
+  const { status, msg } = route.params;
+
   return (
     <View style={styles.container}>
       <View style={styles.lottie}>
-        <Lottie
-          source={require("../../../assets/img/present.json")}
-          autoPlay
-          loop={false}
-          style={{}}
-        />
+        {status === "success" ? (
+          <Lottie
+            source={require("../../../assets/img/present.json")}
+            autoPlay
+            loop={false}
+          />
+        ) : // masukkin gambar yg gagal redeem
+        null}
       </View>
-      <Text style={styles.header}>Redeem Successful!</Text>
-      <Text style={styles.text}>
-        Your voucher has been successfully redeemed
-      </Text>
-      <Text style={styles.text}>
-        check your e-mail to use your voucher code
-      </Text>
+      <Text style={styles.header}>Redeem {status}!</Text>
+      <Text style={styles.text}>{msg}</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate("Point")}
@@ -59,6 +57,8 @@ const styles = {
   },
   text: {
     fontSize: 16,
+    textAlign: "center",
+    padding: 10,
   },
   button: {
     marginTop: 100,

@@ -20,22 +20,28 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ProductDetail from "../components/ProductDetail";
 
-// const productData = [
-//   {
-//     id: 1,
-//     initialName: "20",
-//     userName: "Personal Plan",
-//     price: "69.420",
-//     expDate: "20 Mbps",
-//     destination: "Home",
-//     description: "Ini adalah deskripsi produk yang sangat menarik.",
-//   },
-// ];
-
 const CheckoutProduct = ({ route, navigation }) => {
   const { id } = route.params;
 
   const [packageData, setPackageData] = useState([]);
+
+  const handleCheckout = async (packageId) => {
+    console.log("Sending request..");
+    const token = await AsyncStorage.getItem("token");
+
+    await api
+      .post(`/transactions/checkout/${packageId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        // navigation.navigate("PasscodePage")
+      })
+      .catch((err) => {
+        console.log(err, err.message);
+      });
+  };
 
   const getPackageData = async () => {
     const token = await AsyncStorage.getItem("token");
@@ -75,7 +81,7 @@ const CheckoutProduct = ({ route, navigation }) => {
             </Text>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("PasscodePage")}
+              onPress={() => handleCheckout(packageData._id)}
             >
               <Text style={styles.buttonText}>Beli</Text>
             </TouchableOpacity>

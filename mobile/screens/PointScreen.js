@@ -33,6 +33,22 @@ const buttons = [
 export default function PointScreen() {
   const navigation = useNavigation();
 
+  const [data, setData] = useState([]);
+
+  // const getData = async () => {
+  //   const token = await AsyncStorage.getItem("token");
+
+  //   await api
+  //     .get("", { headers: { Authorization: `Bearer ${token}` } })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, err.message);
+  //     });
+  // };
+
   const renderItem = ({ item, index }) => (
     <View style={[styles.buttonWrapper]}>
       <ServiceButton
@@ -44,6 +60,10 @@ export default function PointScreen() {
       />
     </View>
   );
+
+  useEffect(() => {
+    // getData();
+  }, []);
 
   return (
     <View>
@@ -105,7 +125,6 @@ export default function PointScreen() {
     </View>
   );
 }
-// <Image style={styles.logo} source={logo}/>
 
 const styles = StyleSheet.create({
   logo: {

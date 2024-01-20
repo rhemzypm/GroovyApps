@@ -19,33 +19,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const FAQScreen = () => {
   const { top } = useSafeAreaInsets();
 
-  // const faqData = [
-  //   {
-  //     title: "Pembayaran Groovy Package Tidak Masuk",
-  //     content:
-  //       "React Native is a framework for building mobile applications using React and JavaScript. It allows you to build mobile apps for iOS and Android platforms using a single codebase.",
-  //   },
-  //   {
-  //     title: "Saya Lupa Nomer Telefon",
-  //     content: "Lorem Ipsum Dolor Amet",
-  //   },
-  //   {
-  //     title: "OTP Tidak Masuk",
-  //     content:
-  //       "Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.",
-  //   },
-  //   {
-  //     title: "OTP Tidak Masuk",
-  //     content:
-  //       "Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.",
-  //   },
-  //   {
-  //     title: "OTP Tidak Masuk",
-  //     content:
-  //       "Some advantages of using React Native include faster development time, easier code sharing across platforms, and improved performance compared to other hybrid app development frameworks.",
-  //   },
-  // ];
-
   const [faqData, setFaqData] = useState([]);
 
   const getFaqData = async () => {

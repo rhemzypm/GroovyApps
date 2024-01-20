@@ -23,6 +23,7 @@ const RewardDetail = ({ route, navigation }) => {
   // Extract the id from route params
   const { id } = route.params;
 
+  const [msgStatus, setMsgStatus] = useState("");
   const [voucherData, setVoucherData] = useState([]);
 
   // formatting date
@@ -54,16 +55,25 @@ const RewardDetail = ({ route, navigation }) => {
     const token = await AsyncStorage.getItem("token");
 
     await api
-      .patch(`/vouchers/${id}/redeem`, {
+      .get(`/vouchers/${id}/redeem`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
         console.log(res.data);
 
-        navigation.navigate("Redeem");
+        setMsgStatus("successful");
+
+        navigation.navigate("Redeem", { status: msgStatus, msg: res.data.msg });
       })
       .catch((err) => {
         console.log(err, err.response.data.msg);
+
+        setMsgStatus("failed");
+
+        navigation.navigate("Redeem", {
+          status: msgStatus,
+          msg: err.response.data.msg,
+        });
       });
   };
 
@@ -88,10 +98,11 @@ const RewardDetail = ({ route, navigation }) => {
           {/* <Text style={styles.imgProfileText}>{initialName}</Text> */}
           <Image
             source={{
-              uri: `${voucherData.voucherImage.replace(
-                "http://127.0.0.1:5000/v1/ga/",
-                BACKEND_URL
-              )}`,
+              // uri: `${voucherData.voucherImage.replace(
+              //   "http://127.0.0.1:5000/v1/ga/",
+              //   BACKEND_URL
+              // )}`,
+              uri: `a`,
             }}
             width={screenWidth * 0.85}
             height={170}
@@ -104,7 +115,7 @@ const RewardDetail = ({ route, navigation }) => {
         </Text>
         <View style={styles.line}></View>
         <Text style={styles.desc}>{voucherData.voucherDescription}</Text>
-        <Text style={styles.text}>{voucherData.voucherPrice} Groovy Point</Text>
+        <Text style={styles.text}>{voucherData.voucherPoint} Groovy Point</Text>
       </View>
       <TouchableOpacity
         style={styles.button}
@@ -149,8 +160,8 @@ const styles = {
     marginBottom: 20,
   },
   text: {
-    fontSize: 16,
     marginBottom: 10,
+    fontSize: 16,
     fontWeight: "bold",
   },
   imgProfile: {
