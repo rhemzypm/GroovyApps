@@ -22,10 +22,11 @@ const ProductDetailsContainer = ({ packageData }) => {
           {/* <Text style={styles.imgProfileText}>{initialName}</Text> */}
           <Image
             source={{
-              uri: `${packageData.packageImage.replace(
-                "http://localhost:5000/v1/ga/",
-                BACKEND_URL
-              )}`,
+              // uri: `${packageData.packageImage.replace(
+              //   "http://localhost:5000/v1/ga/",
+              //   BACKEND_URL
+              // )}`,
+              uri: `a`,
             }}
             width={60}
             height={60}
